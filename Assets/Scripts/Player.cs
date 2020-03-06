@@ -8,27 +8,58 @@ public class Player : MonoBehaviour
     private Animator animator;
     public float jumpingSpeed = 500;
     public float jumpingHoldingSpeed = 500;
+    public float gravity = 500;
+
+    public bool jumpAvaliable;
+    public bool liftAvaliable;
 
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        jumpAvaliable = true;
+        liftAvaliable = true;
     }
 
     void Update()
     {
         var vel = rb2d.velocity;
         var speed = vel.magnitude;
+        Physics2D.gravity = new Vector2(0, gravity);
 
         animator.SetFloat("Speed", vel.y);
 
-        if (Input.GetKeyDown("space"))
+        if (jumpAvaliable)
         {
-            rb2d.AddForce(Vector3.up* jumpingSpeed);
+            if (Input.GetKeyDown("space"))
+            {
+                rb2d.AddForce(Vector3.up * jumpingSpeed);
+                jumpAvaliable = false;
+            }         
         }
-        if (Input.GetKey("space"))
+
+        if (!jumpAvaliable && !Input.GetKey("space"))
         {
-            rb2d.AddForce(Vector3.up * Time.deltaTime * jumpingHoldingSpeed);
+            liftAvaliable = false;
+        }
+
+        if (liftAvaliable)
+        {
+            if (Input.GetKey("space"))
+            {
+                rb2d.AddForce(Vector3.up * Time.deltaTime * jumpingHoldingSpeed);
+            }
+        }
+        
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log(col.transform.tag);
+        if (col.transform.tag == "Level")
+        {
+            jumpAvaliable = true;
+            liftAvaliable = true;
         }
     }
 }
