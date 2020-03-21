@@ -6,9 +6,16 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private Animator animator;
-    public float jumpingSpeed = 500;
-    public float jumpingHoldingSpeed = 500;
-    public float gravity = 500;
+    [Range(0.0f, 20.0f)]
+    public float jumpingSpeed = 0;
+    [Range(-0.0f, -20.0f)]
+    public float gravity = -10f;
+    [Range(0.0f, 20.0f)]
+    public float fallMultiplier = 2.5f;
+    [Range(0.0f, 20.0f)]
+    public float lowJumpMultiplier = 2f;
+
+    public LevelGenerator levelGenerator;
 
     public bool jumpAvaliable;
     public bool liftAvaliable;
@@ -21,11 +28,15 @@ public class Player : MonoBehaviour
         liftAvaliable = true;
     }
 
+
     void Update()
-    {
+    { 
+
+
+        Physics2D.gravity = new Vector2(0,gravity);
+
         var vel = rb2d.velocity;
         var speed = vel.magnitude;
-        Physics2D.gravity = new Vector2(0, gravity);
 
         animator.SetFloat("Speed", vel.y);
 
@@ -33,7 +44,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown("space"))
             {
-                rb2d.AddForce(Vector3.up * jumpingSpeed);
+                rb2d.velocity = (Vector3.up * jumpingSpeed);
                 jumpAvaliable = false;
             }         
         }
@@ -43,23 +54,28 @@ public class Player : MonoBehaviour
             liftAvaliable = false;
         }
 
-        if (liftAvaliable)
+        if (rb2d.velocity.y < 0)
         {
-            if (Input.GetKey("space"))
-            {
-                rb2d.AddForce(Vector3.up * Time.deltaTime * jumpingHoldingSpeed);
-            }
+            rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
-        
+
+        else if (rb2d.velocity.y > 0 && !Input.GetKey("space"))
+        {
+            rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log(col.transform.tag);
         if (col.transform.tag == "Level")
         {
             jumpAvaliable = true;
             liftAvaliable = true;
+        }
+        if (col.gameObject.tag == "Death")
+        {
+            levelGenerator.levelScrollingSpeed = 0;
         }
     }
 }
