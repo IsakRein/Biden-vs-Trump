@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
 
     void Update()
     { 
-
-
         Physics2D.gravity = new Vector2(0,gravity);
 
         var vel = rb2d.velocity;
@@ -42,14 +40,14 @@ public class Player : MonoBehaviour
 
         if (jumpAvaliable)
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             {
                 rb2d.velocity = (Vector3.up * jumpingSpeed);
                 jumpAvaliable = false;
-            }         
+            }    
         }
 
-        if (!jumpAvaliable && !Input.GetKey("space"))
+        if (!jumpAvaliable && !Input.GetKey("space") && Input.touchCount == 0)
         {
             liftAvaliable = false;
         }
@@ -59,7 +57,7 @@ public class Player : MonoBehaviour
             rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
         }
 
-        else if (rb2d.velocity.y > 0 && !Input.GetKey("space"))
+        else if (rb2d.velocity.y > 0 && !Input.GetKey("space") && Input.touchCount == 0)
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
@@ -76,6 +74,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.tag == "Death")
         {
             levelGenerator.levelScrollingSpeed = 0;
+            animator.SetBool("Death", true);
         }
     }
 }

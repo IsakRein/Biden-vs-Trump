@@ -37,7 +37,7 @@ public class BackgroundManager : MonoBehaviour
 
     void Update()
     {
-        MoveGround();
+        //MoveGround();
         MoveMainCloud();
         MoveCombinedCloud();
     }
