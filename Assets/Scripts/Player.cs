@@ -18,14 +18,16 @@ public class Player : MonoBehaviour
     public LevelGenerator levelGenerator;
 
     public bool jumpAvaliable;
-    public bool liftAvaliable;
+    private int waitFrames;
+    public bool collisionDetected;
+
 
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        jumpAvaliable = true;
-        liftAvaliable = true;
+        jumpAvaliable = false;
+        collisionDetected = false;
     }
 
 
@@ -47,11 +49,6 @@ public class Player : MonoBehaviour
             }    
         }
 
-        if (!jumpAvaliable && !Input.GetKey("space") && Input.touchCount == 0)
-        {
-            liftAvaliable = false;
-        }
-
         if (rb2d.velocity.y < 0)
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
@@ -61,20 +58,50 @@ public class Player : MonoBehaviour
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+        if (waitFrames > 2)
+        {
+            collisionDetected = true;
+        }
+        waitFrames++;
+    }
 
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (collisionDetected)
+        {
+            Debug.Log("2");
+
+            if (col.transform.tag == "Level")
+            {
+                jumpAvaliable = false;
+            }
+
+            waitFrames = 0;
+            collisionDetected = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.transform.tag == "Level")
+        if (collisionDetected)
         {
-            jumpAvaliable = true;
-            liftAvaliable = true;
-        }
-        if (col.gameObject.tag == "Death")
-        {
-            levelGenerator.levelScrollingSpeed = 0;
-            animator.SetBool("Death", true);
+            Debug.Log("1");
+
+            if (col.transform.tag == "Level")
+            {
+                jumpAvaliable = true;
+            }
+
+            if (col.gameObject.tag == "Death")
+            {
+                levelGenerator.levelScrollingSpeed = 0;
+                animator.SetBool("Death", true);
+            }
+
+            waitFrames = 0;
+            collisionDetected = false;
         }
     }
+
+
 }
