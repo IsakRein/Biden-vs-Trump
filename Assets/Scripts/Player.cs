@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     private Animator animator;
     [Range(0.0f, 20.0f)]
     public float jumpingSpeed = 0;
-    [Range(-0.0f, -20.0f)]
     public float gravity = -10f;
     [Range(0.0f, 20.0f)]
     public float fallMultiplier = 2.5f;

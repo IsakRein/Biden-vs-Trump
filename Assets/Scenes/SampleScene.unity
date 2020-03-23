@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpingSpeed: 9.69
-  gravity: -16.45
+  gravity: -164.5
   fallMultiplier: 2.62
   lowJumpMultiplier: 4.28
   levelGenerator: {fileID: 366391652}
