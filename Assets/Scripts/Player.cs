@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameManager gameManager;
+
     private Rigidbody2D rb2d;
     private Animator animator;
-    [Range(0.0f, 20.0f)]
     public float jumpingSpeed = 0;
     public float gravity = -10f;
     [Range(0.0f, 20.0f)]
@@ -14,19 +15,18 @@ public class Player : MonoBehaviour
     [Range(0.0f, 20.0f)]
     public float lowJumpMultiplier = 2f;
 
-    public LevelGenerator levelGenerator;
-
     public bool jumpAvaliable;
     private int waitFrames;
     public bool collisionDetected;
 
+    private Vector2 lastKnownVelocity;
 
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        jumpAvaliable = false;
-        collisionDetected = false;
     }
 
 
@@ -64,12 +64,35 @@ public class Player : MonoBehaviour
         waitFrames++;
     }
 
+    public void StartGame()
+    {
+        jumpAvaliable = false;
+        collisionDetected = false;
+        transform.position = new Vector2(-gameManager.horizontalSize/2 + 30f, 10f);
+        rb2d.simulated = true;
+        rb2d.velocity = new Vector2(0f,0f);
+        animator.enabled = true;
+    }
+
+    public void PauseGame()
+    {
+        rb2d.simulated = false;
+        animator.enabled = false;
+        lastKnownVelocity = rb2d.velocity;
+    }
+    
+    public void ResumeGame() 
+    {
+        rb2d.simulated = true;
+        animator.enabled = true;
+        rb2d.velocity = lastKnownVelocity;
+    }
+
+
     private void OnCollisionExit2D(Collision2D col)
     {
         if (collisionDetected)
         {
-            Debug.Log("2");
-
             if (col.transform.tag == "Level")
             {
                 jumpAvaliable = false;
@@ -80,12 +103,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.transform.tag == "Level")
+        {
+            jumpAvaliable = true;
+        }
+
+        if (col.gameObject.tag == "Death")
+        {
+            animator.SetBool("Death", true);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (collisionDetected)
         {
-            Debug.Log("1");
-
             if (col.transform.tag == "Level")
             {
                 jumpAvaliable = true;
@@ -93,7 +127,6 @@ public class Player : MonoBehaviour
 
             if (col.gameObject.tag == "Death")
             {
-                levelGenerator.levelScrollingSpeed = 0;
                 animator.SetBool("Death", true);
             }
 
@@ -101,6 +134,4 @@ public class Player : MonoBehaviour
             collisionDetected = false;
         }
     }
-
-
 }
