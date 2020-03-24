@@ -5,7 +5,6 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
-
     private bool gameActive;
 
     public float levelScrollingSpeed = 10f;
@@ -40,5 +39,10 @@ public class LevelManager : MonoBehaviour
     public void ResumeGame()
     {
         gameActive = true;
+    }
+
+    public void Death()
+    {
+        gameActive = false;
     }
 }

@@ -43,4 +43,11 @@ public class GameManager : MonoBehaviour
         environment.ResumeGame();
         levelManager.ResumeGame();
     }
+
+    public void Death()
+    {
+        player.Death();
+        environment.Death();
+        levelManager.Death();
+    }
 }

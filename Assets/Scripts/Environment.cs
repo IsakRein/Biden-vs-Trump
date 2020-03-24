@@ -107,6 +107,11 @@ public class Environment : MonoBehaviour
         gameActive = true;
     }
 
+    public void Death()
+    {
+        gameActive = false;
+    }
+
     Transform CreateClone(Transform child) 
     {
         float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
