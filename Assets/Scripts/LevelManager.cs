@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
     public void StartGame() 
     {
         gameActive = true;
-        transform.position = new Vector2(0,0);
+        //transform.position = new Vector2(0,0);
     }
 
     public void PauseGame()

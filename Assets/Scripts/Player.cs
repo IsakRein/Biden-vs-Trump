@@ -16,9 +16,11 @@ public class Player : MonoBehaviour
     [Range(0.0f, 20.0f)]
     public float lowJumpMultiplier = 2f;
 
-    public bool jumpAvaliable;
+    public int jumpCounter;
     private int frames_collision;
-    private int frames_jump;
+    private float seconds_jump;
+    private bool trigger_jump;
+
     public bool collisionDetected;
 
     private Vector2 lastKnownVelocity;
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
 
         frames_collision = 100;
-        frames_jump = 100;
+        seconds_jump = 100;
     }
 
 
@@ -56,12 +58,13 @@ public class Player : MonoBehaviour
 
             animator.SetFloat("Speed", vel.y);
 
-            if (jumpAvaliable)
+            if (jumpCounter < 2)
             {
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                 {
                     rb2d.velocity = (Vector3.up * jumpingSpeed);
-                    jumpAvaliable = false;
+                    Debug.Log(jumpCounter);
+                    jumpCounter++;
                 }
             }
 
@@ -70,23 +73,23 @@ public class Player : MonoBehaviour
                 rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
             }
 
-            else if (rb2d.velocity.y > 0 && !Input.GetKey("space") && Input.touchCount == 0)
-            {
-                rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-            }
+            //else if (rb2d.velocity.y > 0 && !Input.GetKey("space") && Input.touchCount == 0)
+            //{
+            //    rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
+            //}
             
             if (frames_collision == 1) { collisionDetected = true; } 
-            if (frames_jump == 4) { rb2d.velocity = (Vector3.up * jumpingSpeed); } 
+            if (seconds_jump > 0.0 && trigger_jump) { rb2d.velocity = (Vector3.up * jumpingSpeed); trigger_jump = false; } 
             
             frames_collision++;
-            frames_jump++;
+            seconds_jump += Time.deltaTime;
         }
     }
 
     public void StartGame()
     {
         gameActive = true;
-        jumpAvaliable = false;
+        jumpCounter = 2;
         collisionDetected = false;
         transform.position = new Vector2(-gameManager.horizontalSize/2 + 35f, 10f);
         rb2d.simulated = true;
@@ -121,27 +124,20 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("Enter");
-        
-        if (Input.GetKey("space")) 
+
+
+        if (col.gameObject.tag == "Death")
         {
-            frames_jump = 0;
+            animator.SetBool("Death", true);
         }
 
-        if (collisionDetected)
+        else if (Input.GetKey("space")) 
         {
-            if (col.transform.tag == "Level")
-            {
-                jumpAvaliable = true;
-            }
-
-            if (col.gameObject.tag == "Death")
-            {
-                animator.SetBool("Death", true);
-            }
-
-            frames_collision = 0;
-            collisionDetected = false;
+            seconds_jump = 0;
+            trigger_jump = true;
         }
+
+
     }
 
     
@@ -149,7 +145,7 @@ public class Player : MonoBehaviour
     {
         if (col.transform.tag == "Level")
         {
-            jumpAvaliable = true;
+            jumpCounter = 0;
         }
 
         if (col.gameObject.tag == "Death")
@@ -157,21 +153,12 @@ public class Player : MonoBehaviour
             animator.SetBool("Death", true);
         }
     }
-    
-    
+
     void OnCollisionExit2D(Collision2D col)
     {
-        Debug.Log("Exit");
-
-        if (collisionDetected)
+        if (col.transform.tag == "Level")
         {
-            if (col.transform.tag == "Level")
-            {
-                jumpAvaliable = false;
-            }
-
-            frames_collision = 0;
-            collisionDetected = false;
+            jumpCounter = 1;
         }
     }
 }
