@@ -12,7 +12,9 @@ public class Environment : MonoBehaviour
     public List<Transform> children = new List<Transform>();
     public List<Transform> childrenClones = new List<Transform>();
     private List<float> childrenSizes = new List<float>();
+    private List<float> childrenPosY = new List<float>();
     public List<float> childrenSpeeds = new List<float>();
+    public List<bool> childrenFollowCamera = new List<bool>();
 
 
     void Start()
@@ -44,7 +46,10 @@ public class Environment : MonoBehaviour
                 
                 if (childrenSpeeds.Count > i) 
                 { 
-                    child.position += new Vector3(-childrenSpeeds[i]*Time.deltaTime, 0f, 0f);
+                    float x = child.position.x - childrenSpeeds[i]*Time.deltaTime;
+                    float y;
+                    if (childrenFollowCamera[i]) { y = childrenPosY[i] + Camera.main.transform.position.y; } else { y = child.position.y; }
+                    child.position = new Vector3(x, y, 0f);
                 }
                 
                 if (childClone.position.x <= 0)
@@ -68,6 +73,7 @@ public class Environment : MonoBehaviour
         children.Clear();
         childrenClones.Clear();
         childrenSizes.Clear();
+        childrenPosY.Clear();
 
         foreach (Transform child in transform) 
         { 
@@ -86,6 +92,7 @@ public class Environment : MonoBehaviour
 
             float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
             childrenSizes.Add(currentSizeX); 
+            childrenPosY.Add(child.position.y);
             child.position = new Vector2((currentSizeX/2)-(gameManager.horizontalSize/2), child.position.y);
 
         } 

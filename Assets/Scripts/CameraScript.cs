@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CameraScript : MonoBehaviour
 {
     private GameManager gameManager;
@@ -15,8 +16,8 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        if (player.position.y > 30) {
-            transform.position = new Vector3(0, player.position.y-30, -10);
+        if (player.position.y > 45) {
+            transform.position = new Vector3(0, player.position.y - 45, -10);
         }
     }
 

@@ -131,15 +131,12 @@ public class Player : MonoBehaviour
             animator.SetBool("Death", true);
         }
 
-        else if (Input.GetKey("space")) 
+        else if (Input.GetKey("space") || Input.touchCount > 0) 
         {
             seconds_jump = 0;
             trigger_jump = true;
         }
-
-
     }
-
     
     void OnCollisionStay2D(Collision2D col)
     {
