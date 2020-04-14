@@ -74,6 +74,81 @@ TextureImporter:
   - first:
       213: -9012885301645523915
     second: BernieRunning_23
+  - first:
+      213: -4314644800345598799
+    second: BernieRunning_24
+  - first:
+      213: 8090114231358924338
+    second: BernieRunning_0
+  - first:
+      213: 4412821906355167574
+    second: BernieRunning_1
+  - first:
+      213: 2978506389625635678
+    second: BernieRunning_2
+  - first:
+      213: -4891934761086970501
+    second: BernieRunning_3
+  - first:
+      213: -2718490478423380316
+    second: BernieRunning_4
+  - first:
+      213: 6690968520929966557
+    second: BernieRunning_5
+  - first:
+      213: 4480225651455022676
+    second: BernieRunning_6
+  - first:
+      213: -5383414601576914708
+    second: BernieRunning_7
+  - first:
+      213: -3329133995940095702
+    second: BernieRunning_8
+  - first:
+      213: 2760115028310945570
+    second: BernieRunning_9
+  - first:
+      213: -6270709974019461254
+    second: BernieRunning_10
+  - first:
+      213: 6105884658745952857
+    second: BernieRunning_11
+  - first:
+      213: 6436449740746605862
+    second: BernieRunning_12
+  - first:
+      213: -7977792881887600889
+    second: BernieRunning_13
+  - first:
+      213: -3380925235712464874
+    second: BernieRunning_14
+  - first:
+      213: 1305699284894544463
+    second: BernieRunning_15
+  - first:
+      213: -2587457350005669458
+    second: BernieRunning_16
+  - first:
+      213: -7734129317414205971
+    second: BernieRunning_17
+  - first:
+      213: 8961939815670168778
+    second: BernieRunning_18
+  - first:
+      213: -5561606422748593434
+    second: BernieRunning_19
+  - first:
+      213: 4287585555556139346
+    second: BernieRunning_20
+  - first:
+      213: 3778488380323509816
+    second: BernieRunning_21
+  - first:
+      213: -4576452612404059838
+    second: BernieRunning_22
+  - first:
+      213: 7079259054282034314
+    second: BernieRunning_23
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,7 +192,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 22
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -188,8 +263,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,8 +272,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc85edeb4969201f0800000000000000
-      internalID: -1080135395013928756
+      spriteID: 2362b78b70cd54070800000000000000
+      internalID: 8090114231358924338
       vertices: []
       indices: 
       edges: []
@@ -207,10 +282,10 @@ TextureImporter:
       name: BernieRunning_1
       rect:
         serializedVersion: 2
-        x: 25
+        x: 26
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,8 +293,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53f90b61b78456f00800000000000000
-      internalID: 1109372576715546421
+      spriteID: 651ac59c42e7d3d30800000000000000
+      internalID: 4412821906355167574
       vertices: []
       indices: 
       edges: []
@@ -228,10 +303,10 @@ TextureImporter:
       name: BernieRunning_2
       rect:
         serializedVersion: 2
-        x: 50
+        x: 52
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,8 +314,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3bd8d827abb4f200800000000000000
-      internalID: 213001409012489022
+      spriteID: e530ed2d7c7c55920800000000000000
+      internalID: 2978506389625635678
       vertices: []
       indices: 
       edges: []
@@ -249,10 +324,10 @@ TextureImporter:
       name: BernieRunning_3
       rect:
         serializedVersion: 2
-        x: 75
+        x: 78
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,8 +335,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6373909272391860800000000000000
-      internalID: 7501082121995514733
+      spriteID: b75960dd04b5c1cb0800000000000000
+      internalID: -4891934761086970501
       vertices: []
       indices: 
       edges: []
@@ -270,10 +345,10 @@ TextureImporter:
       name: BernieRunning_4
       rect:
         serializedVersion: 2
-        x: 100
+        x: 104
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,8 +356,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4290a8e1bc94270a0800000000000000
-      internalID: -6885359743556515548
+      spriteID: 4aeea44205bf54ad0800000000000000
+      internalID: -2718490478423380316
       vertices: []
       indices: 
       edges: []
@@ -291,10 +366,10 @@ TextureImporter:
       name: BernieRunning_5
       rect:
         serializedVersion: 2
-        x: 125
+        x: 130
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,8 +377,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3310bc4c1c22daaf0800000000000000
-      internalID: -383612177630953165
+      spriteID: dd9f9556b681bdc50800000000000000
+      internalID: 6690968520929966557
       vertices: []
       indices: 
       edges: []
@@ -312,10 +387,10 @@ TextureImporter:
       name: BernieRunning_6
       rect:
         serializedVersion: 2
-        x: 150
+        x: 156
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,8 +398,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faee33bab5f333330800000000000000
-      internalID: 3689362182693449391
+      spriteID: 456d1942e75fc2e30800000000000000
+      internalID: 4480225651455022676
       vertices: []
       indices: 
       edges: []
@@ -333,10 +408,10 @@ TextureImporter:
       name: BernieRunning_7
       rect:
         serializedVersion: 2
-        x: 175
+        x: 182
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,8 +419,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02e7eb48862102a80800000000000000
-      internalID: -8493768657107780064
+      spriteID: ce06b5241f44a45b0800000000000000
+      internalID: -5383414601576914708
       vertices: []
       indices: 
       edges: []
@@ -354,10 +429,10 @@ TextureImporter:
       name: BernieRunning_8
       rect:
         serializedVersion: 2
-        x: 200
+        x: 208
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,8 +440,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 543e6cd6eb1dbc9b0800000000000000
-      internalID: -5058719140604878011
+      spriteID: a29505ae44a8cc1d0800000000000000
+      internalID: -3329133995940095702
       vertices: []
       indices: 
       edges: []
@@ -375,10 +450,10 @@ TextureImporter:
       name: BernieRunning_9
       rect:
         serializedVersion: 2
-        x: 225
+        x: 234
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,8 +461,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afa8851b0d814c6a0800000000000000
-      internalID: -6429987083370591494
+      spriteID: 22fe0b99ef5ed4620800000000000000
+      internalID: 2760115028310945570
       vertices: []
       indices: 
       edges: []
@@ -396,10 +471,10 @@ TextureImporter:
       name: BernieRunning_10
       rect:
         serializedVersion: 2
-        x: 250
+        x: 260
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,8 +482,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63edfa7818b3b6960800000000000000
-      internalID: 7596230624003743286
+      spriteID: a7f22159086f9f8a0800000000000000
+      internalID: -6270709974019461254
       vertices: []
       indices: 
       edges: []
@@ -417,10 +492,10 @@ TextureImporter:
       name: BernieRunning_11
       rect:
         serializedVersion: 2
-        x: 275
+        x: 286
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,8 +503,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f740c0923ac35ff0800000000000000
-      internalID: -48472852445247498
+      spriteID: 95a4f0c2fb57cb450800000000000000
+      internalID: 6105884658745952857
       vertices: []
       indices: 
       edges: []
@@ -438,10 +513,10 @@ TextureImporter:
       name: BernieRunning_12
       rect:
         serializedVersion: 2
-        x: 300
+        x: 312
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,8 +524,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e2cdde22013c7a50800000000000000
-      internalID: 6520140245971616486
+      spriteID: 6254bdbffecd25950800000000000000
+      internalID: 6436449740746605862
       vertices: []
       indices: 
       edges: []
@@ -459,10 +534,10 @@ TextureImporter:
       name: BernieRunning_13
       rect:
         serializedVersion: 2
-        x: 325
+        x: 338
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,8 +545,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 428ff8ac61eb88810800000000000000
-      internalID: 1767871858839910436
+      spriteID: 70f137f54af294190800000000000000
+      internalID: -7977792881887600889
       vertices: []
       indices: 
       edges: []
@@ -480,10 +555,10 @@ TextureImporter:
       name: BernieRunning_14
       rect:
         serializedVersion: 2
-        x: 350
+        x: 364
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,8 +566,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b599e061ca6920800000000000000
-      internalID: 2984410325066298112
+      spriteID: 6186439396a8411d0800000000000000
+      internalID: -3380925235712464874
       vertices: []
       indices: 
       edges: []
@@ -501,10 +576,10 @@ TextureImporter:
       name: BernieRunning_15
       rect:
         serializedVersion: 2
-        x: 375
+        x: 390
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,8 +587,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 447390aa6614ffa30800000000000000
-      internalID: 4251188482456237892
+      spriteID: f42fe9be496ce1210800000000000000
+      internalID: 1305699284894544463
       vertices: []
       indices: 
       edges: []
@@ -522,10 +597,10 @@ TextureImporter:
       name: BernieRunning_16
       rect:
         serializedVersion: 2
-        x: 400
+        x: 416
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -533,8 +608,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f7560705de537ec0800000000000000
-      internalID: -3570405810535770125
+      spriteID: ea14075cf31871cd0800000000000000
+      internalID: -2587457350005669458
       vertices: []
       indices: 
       edges: []
@@ -543,10 +618,10 @@ TextureImporter:
       name: BernieRunning_17
       rect:
         serializedVersion: 2
-        x: 425
+        x: 442
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,8 +629,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76e2ddf9e8ff62f80800000000000000
-      internalID: -8131531089138340249
+      spriteID: de5879cec5adaa490800000000000000
+      internalID: -7734129317414205971
       vertices: []
       indices: 
       edges: []
@@ -564,10 +639,10 @@ TextureImporter:
       name: BernieRunning_18
       rect:
         serializedVersion: 2
-        x: 450
+        x: 468
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,8 +650,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67b9c57cadbc74d10800000000000000
-      internalID: 2109879090954410870
+      spriteID: acc337ba7c43f5c70800000000000000
+      internalID: 8961939815670168778
       vertices: []
       indices: 
       edges: []
@@ -585,10 +660,10 @@ TextureImporter:
       name: BernieRunning_19
       rect:
         serializedVersion: 2
-        x: 475
+        x: 494
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,8 +671,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf13aeabaa383bb0800000000000000
-      internalID: -4956146880877486130
+      spriteID: 6e20a87dc6431d2b0800000000000000
+      internalID: -5561606422748593434
       vertices: []
       indices: 
       edges: []
@@ -606,10 +681,10 @@ TextureImporter:
       name: BernieRunning_20
       rect:
         serializedVersion: 2
-        x: 500
+        x: 520
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,8 +692,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a880d92fb5aaac1a0800000000000000
-      internalID: -6788426176418477942
+      spriteID: 251050f9850908b30800000000000000
+      internalID: 4287585555556139346
       vertices: []
       indices: 
       edges: []
@@ -627,10 +702,10 @@ TextureImporter:
       name: BernieRunning_21
       rect:
         serializedVersion: 2
-        x: 525
+        x: 546
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,8 +713,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92956f515e42416c0800000000000000
-      internalID: -4173670388331030231
+      spriteID: 836bf11a923ef6430800000000000000
+      internalID: 3778488380323509816
       vertices: []
       indices: 
       edges: []
@@ -648,10 +723,10 @@ TextureImporter:
       name: BernieRunning_22
       rect:
         serializedVersion: 2
-        x: 550
+        x: 572
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -659,8 +734,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00e211e06b66e4c70800000000000000
-      internalID: 8957209640992583168
+      spriteID: 2416f3a989c2d70c0800000000000000
+      internalID: -4576452612404059838
       vertices: []
       indices: 
       edges: []
@@ -669,10 +744,10 @@ TextureImporter:
       name: BernieRunning_23
       rect:
         serializedVersion: 2
-        x: 575
+        x: 598
         y: 0
-        width: 25
-        height: 25
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -680,8 +755,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 534441a029ccbe280800000000000000
-      internalID: -9012885301645523915
+      spriteID: a8cc2733a949e3260800000000000000
+      internalID: 7079259054282034314
       vertices: []
       indices: 
       edges: []

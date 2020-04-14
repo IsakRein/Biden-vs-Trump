@@ -467,7 +467,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 0.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &192001395
@@ -1792,7 +1792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 25
   jumpLength: 105
-  speed: 100
+  speed: 50
   fallMultiplier: 5
   jumpCounter: 0
   collisionDetected: 1
@@ -1817,7 +1817,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.04, y: 1.32}
+    oldSize: {x: 1.04, y: 1.16}
     newSize: {x: 0.8965517, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

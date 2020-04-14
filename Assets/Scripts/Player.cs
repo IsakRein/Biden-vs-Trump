@@ -33,9 +33,14 @@ public class Player : MonoBehaviour
 
     private Vector2 lastKnownVelocity;
 
+    [Header("Effects")]
     public GameObject waterSplash;
     public float waterSplashY;
-    
+    public GameObject landingSmoke;
+    public float landingSmokeY;
+
+    private bool hasJumped = true;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -56,7 +61,7 @@ public class Player : MonoBehaviour
         gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
         jumpingSpeed = gravity * t1;
 
-        Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
+       // Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
 
         //out: gravity, jumpForce
     }
@@ -83,8 +88,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                 {
-                    rb2d.velocity = (Vector3.up * jumpingSpeed);
-                    jumpCounter++;
+                    jump();
                 }
             }
 
@@ -94,7 +98,7 @@ public class Player : MonoBehaviour
             }
             
             if (frames_collision == 1) { collisionDetected = true; } 
-            if (seconds_jump > 0.0 && trigger_jump) { rb2d.velocity = (Vector3.up * jumpingSpeed); trigger_jump = false; } 
+            if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; } 
             
             frames_collision++;
             seconds_jump += Time.deltaTime;
@@ -139,22 +143,41 @@ public class Player : MonoBehaviour
     public int timeBeforeTop = 5;
     public int timeAfterTop;
 
+    void jump()
+    {
+        hasJumped = true;
+        rb2d.velocity = (Vector3.up * jumpingSpeed);
+        jumpCounter++;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("distance: " + (startDistance - levelManager.gameObject.transform.position.x));
+        // Debug.Log("distance: " + (startDistance - levelManager.gameObject.transform.position.x));
 
         if (col.gameObject.tag == "Death")
         {
             animator.SetBool("Death", true);
         }
 
-        else if (Input.GetKey("space") || Input.touchCount > 0) 
-        {
-            seconds_jump = 0;
-            trigger_jump = true;
+        else
+        { 
+            if (hasJumped)
+            {
+                GameObject landingSmokeInst = Instantiate(landingSmoke);
+
+                landingSmokeInst.transform.position = new Vector2(transform.position.x, transform.position.y + landingSmokeY);
+                landingSmokeInst.transform.SetParent(levelManager.transform);
+            }
+
+            if (Input.GetKey("space") || Input.touchCount > 0)
+            {
+                seconds_jump = 0;
+                trigger_jump = true;
+            }
         }
+        hasJumped = false;
     }
-    
+
     void OnCollisionStay2D(Collision2D col)
     {
         if (col.transform.tag == "Level")
