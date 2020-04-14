@@ -1047,7 +1047,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wireColor: {r: 1, g: 1, b: 1, a: 1}
-  UnitsSize: 10
+  UnitsSize: 6
   constraint: 1
   camera: {fileID: 588113835}
 --- !u!114 &588113838
@@ -2892,7 +2892,7 @@ Animator:
   m_GameObject: {fileID: 1819303280}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 06033116916f0d1408bf64af53734f17, type: 2}
+  m_Controller: {fileID: 9100000, guid: ac4faece09cdbc045b8ca9b5be870020, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

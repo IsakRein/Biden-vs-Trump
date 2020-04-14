@@ -1,20 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEditor;
 
 public class Player : MonoBehaviour
 {
     private GameManager gameManager;
     private bool gameActive;
+    private LevelManager levelManager;
 
     private Rigidbody2D rb2d;
     private Animator animator;
-    public float jumpingSpeed = 0;
-    public float gravity = -10f;
-    [Range(0.0f, 20.0f)]
+    
+    [Header("Jump mechanics")]
+    
+    public float jumpHeight;
+    public float jumpLength;
+    public float speed;
     public float fallMultiplier = 2.5f;
-    [Range(0.0f, 20.0f)]
-    public float lowJumpMultiplier = 2f;
+
+    private float jumpingSpeed = 0;
+    private float gravity = -10f;
+
+    [Header("Other")]
 
     public int jumpCounter;
     private int frames_collision;
@@ -26,18 +34,32 @@ public class Player : MonoBehaviour
     private Vector2 lastKnownVelocity;
 
     public GameObject waterSplash;
+    public float waterSplashY;
     
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        levelManager = GameObject.Find("Level").GetComponent<LevelManager>();
+        levelManager.levelScrollingSpeed = speed;
 
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
         frames_collision = 100;
         seconds_jump = 100;
-    }
 
+        //in:  height, length, speed, fallMultipler
+
+        float time = jumpLength/speed;
+        float t2 = time / (1 + Mathf.Sqrt(fallMultiplier));
+        float t1 = time - t2;
+
+        gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
+        jumpingSpeed = gravity * t1;
+
+        Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
+
+        //out: gravity, jumpForce
+    }
 
     void Update()
     {
@@ -46,12 +68,11 @@ public class Player : MonoBehaviour
             if (transform.position.y <= -50)
             {
                 waterSplash.SetActive(true);
-                waterSplash.transform.position = new Vector2(transform.position.x, -42);
+                waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
                 gameManager.Death();
             }
 
-
-            Physics2D.gravity = new Vector2(0, gravity);
+            Physics2D.gravity = new Vector2(0, -gravity);
 
             var vel = rb2d.velocity;
             var speed = vel.magnitude;
@@ -63,20 +84,14 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                 {
                     rb2d.velocity = (Vector3.up * jumpingSpeed);
-                    Debug.Log(jumpCounter);
                     jumpCounter++;
                 }
             }
 
             if (rb2d.velocity.y < 0)
             {
-                rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
+                rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;                
             }
-
-            //else if (rb2d.velocity.y > 0 && !Input.GetKey("space") && Input.touchCount == 0)
-            //{
-            //    rb2d.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-            //}
             
             if (frames_collision == 1) { collisionDetected = true; } 
             if (seconds_jump > 0.0 && trigger_jump) { rb2d.velocity = (Vector3.up * jumpingSpeed); trigger_jump = false; } 
@@ -97,7 +112,6 @@ public class Player : MonoBehaviour
         animator.enabled = true;
         animator.SetBool("Death", false);
         waterSplash.SetActive(false);
-
     }
 
     public void PauseGame()
@@ -121,11 +135,13 @@ public class Player : MonoBehaviour
         gameActive = false;
     }
 
+    public System.DateTime startTime;
+    public int timeBeforeTop = 5;
+    public int timeAfterTop;
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Enter");
-
+        Debug.Log("distance: " + (startDistance - levelManager.gameObject.transform.position.x));
 
         if (col.gameObject.tag == "Death")
         {
@@ -151,11 +167,14 @@ public class Player : MonoBehaviour
             animator.SetBool("Death", true);
         }
     }
+ 
+    float startDistance; 
 
     void OnCollisionExit2D(Collision2D col)
     {
         if (col.transform.tag == "Level")
-        {
+        {       
+            startDistance = levelManager.gameObject.transform.position.x;
             jumpCounter = 1;
         }
     }
