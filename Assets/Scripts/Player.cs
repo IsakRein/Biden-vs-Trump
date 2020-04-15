@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public GameObject waterSplash;
     public float waterSplashY;
     public GameObject landingSmoke;
+    public float landingSmokeX;
     public float landingSmokeY;
 
     private bool hasJumped = true;
@@ -45,7 +46,6 @@ public class Player : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelManager = GameObject.Find("Level").GetComponent<LevelManager>();
-        levelManager.levelScrollingSpeed = speed;
 
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -79,8 +79,10 @@ public class Player : MonoBehaviour
 
             Physics2D.gravity = new Vector2(0, -gravity);
 
+            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+
+
             var vel = rb2d.velocity;
-            var speed = vel.magnitude;
 
             animator.SetFloat("Speed", vel.y);
 
@@ -165,8 +167,7 @@ public class Player : MonoBehaviour
             {
                 GameObject landingSmokeInst = Instantiate(landingSmoke);
 
-                landingSmokeInst.transform.position = new Vector2(transform.position.x, transform.position.y + landingSmokeY);
-                landingSmokeInst.transform.SetParent(levelManager.transform);
+                landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);
             }
 
             if (Input.GetKey("space") || Input.touchCount > 0)

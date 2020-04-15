@@ -8361,10 +8361,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 519420032}
+  - component: {fileID: 519420033}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8465,6 +8465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a5290fecc5849858c1fee1dcf01c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xOffset: 75
+  yOffset: 45
 --- !u!1 &528119558
 GameObject:
   m_ObjectHideFlags: 0
@@ -12499,8 +12501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 25
-  jumpLength: 40
-  speed: 70
+  jumpLength: 50
+  speed: 100
   fallMultiplier: 2.5
   jumpCounter: 0
   collisionDetected: 1
@@ -12508,7 +12510,8 @@ MonoBehaviour:
   waterSplashY: -43.5
   landingSmoke: {fileID: 8230498718150462462, guid: bdb25596e93c7ee4482cab14e3464be2,
     type: 3}
-  landingSmokeY: -4.3
+  landingSmokeX: -2
+  landingSmokeY: -5.3
   timeBeforeTop: 0
   timeAfterTop: 0
 --- !u!61 &1168277891
@@ -12557,7 +12560,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 5
+  m_Constraints: 4
 --- !u!1 &1191327117
 GameObject:
   m_ObjectHideFlags: 0
