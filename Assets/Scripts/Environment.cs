@@ -16,6 +16,7 @@ public class Environment : MonoBehaviour
     public List<float> childrenSpeeds = new List<float>();
     public List<bool> childrenFollowCamera = new List<bool>();
 
+    public Transform camera;
 
     void Start()
     {
@@ -36,6 +37,8 @@ public class Environment : MonoBehaviour
 
     void Update()
     {
+        transform.position = new Vector2(transform.position.x, 0);
+
         if (gameActive) 
         {
             for (int i = 0; i < children.Count; i++)

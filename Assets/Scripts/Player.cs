@@ -6,7 +6,7 @@ using UnityEditor;
 public class Player : MonoBehaviour
 {
     private GameManager gameManager;
-    private bool gameActive;
+    public bool gameActive;
     private LevelManager levelManager;
 
     private Rigidbody2D rb2d;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     public float landingSmokeX;
     public float landingSmokeY;
 
-    private bool hasJumped = true;
+    private bool is_jumping = true;
 
     private void Start()
     {
@@ -105,6 +105,11 @@ public class Player : MonoBehaviour
             frames_collision++;
             seconds_jump += Time.deltaTime;
         }
+
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+        }
     }
 
     public void StartGame()
@@ -135,7 +140,7 @@ public class Player : MonoBehaviour
         animator.enabled = true;
         rb2d.velocity = lastKnownVelocity;
     }
-
+    
     public void Death()
     {
         gameActive = false;
@@ -147,7 +152,9 @@ public class Player : MonoBehaviour
 
     void jump()
     {
-        hasJumped = true;
+        is_jumping = true;
+        animator.SetBool("Jumping", true);
+
         rb2d.velocity = (Vector3.up * jumpingSpeed);
         jumpCounter++;
     }
@@ -163,7 +170,7 @@ public class Player : MonoBehaviour
 
         else
         { 
-            if (hasJumped)
+            if (is_jumping)
             {
                 GameObject landingSmokeInst = Instantiate(landingSmoke);
 
@@ -176,7 +183,9 @@ public class Player : MonoBehaviour
                 trigger_jump = true;
             }
         }
-        hasJumped = false;
+
+        is_jumping = false;
+        animator.SetBool("Jumping", false);
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -189,6 +198,9 @@ public class Player : MonoBehaviour
         if (col.gameObject.tag == "Death")
         {
             animator.SetBool("Death", true);
+            is_jumping = false;
+            animator.SetBool("Jumping", false);
+
         }
     }
  

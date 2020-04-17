@@ -8,6 +8,21 @@ TextureImporter:
   - first:
       213: 1449440091426103586
     second: BernieJumping_1
+  - first:
+      213: 9063187161293337724
+    second: BernieJumping_0
+  - first:
+      213: -3990530985364447941
+    second: BernieJumping_1
+  - first:
+      213: 1053189831972165620
+    second: BernieJumping_2
+  - first:
+      213: -6445145266104350271
+    second: BernieJumping_3
+  - first:
+      213: -584923103973201248
+    second: BernieJumping_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,8 +146,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1a1894cdb5eab840800000000000000
-      internalID: 5240753719608875549
+      spriteID: c7435c154b8e6cd70800000000000000
+      internalID: 9063187161293337724
       vertices: []
       indices: 
       edges: []
@@ -152,8 +167,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 221a9ac65127d1410800000000000000
-      internalID: 1449440091426103586
+      spriteID: b3d99282639ce98c0800000000000000
+      internalID: -3990530985364447941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BernieJumping_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f711c7729ead9e00800000000000000
+      internalID: 1053189831972165620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BernieJumping_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c94f00478e3e86a0800000000000000
+      internalID: -6445145266104350271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BernieJumping_4
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aa22c6398fe1e7f0800000000000000
+      internalID: -584923103973201248
       vertices: []
       indices: 
       edges: []
