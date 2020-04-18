@@ -6316,7 +6316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272213315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -541.49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2042712740}
@@ -12223,10 +12223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameActive: 0
-  jumpHeight: 25
-  jumpLength: 50
-  speed: 100
-  fallMultiplier: 2.5
+  jumpHeight: 30
+  jumpLength: 40
+  speed: 75
+  fallMultiplier: 6.86
   jumpCounter: 0
   collisionDetected: 1
   waterSplash: {fileID: 301485113}
@@ -12234,7 +12234,7 @@ MonoBehaviour:
   landingSmoke: {fileID: 8230498718150462462, guid: bdb25596e93c7ee4482cab14e3464be2,
     type: 3}
   landingSmokeX: -2
-  landingSmokeY: -5.3
+  landingSmokeY: -5.7
   timeBeforeTop: 0
   timeAfterTop: 0
 --- !u!61 &1168277891

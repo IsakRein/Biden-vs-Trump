@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
 
             rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
 
+            Debug.Log(rb2d.velocity);
 
             var vel = rb2d.velocity;
 
