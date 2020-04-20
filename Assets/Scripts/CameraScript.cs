@@ -23,7 +23,7 @@ public class CameraScript : MonoBehaviour
 
         if (player.position.y > yOffset)
         {
-            y = player.position.y + yOffset;
+            y = player.position.y - yOffset;
         }
 
         transform.position = new Vector3(x, y, -10);

@@ -55,7 +55,7 @@ public class Environment : MonoBehaviour
                     child.position = new Vector3(x, y, 0f);
                 }
                 
-                if (childClone.position.x <= 0)
+                if (childClone.localPosition.x <= 0)
                 {
                     GameObject.Destroy(child.gameObject);
                     children[i] = childrenClones[i];

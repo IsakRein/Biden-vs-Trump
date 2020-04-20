@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() 
     {
+        player.gameObject.SetActive(true);
         player.StartGame();
         environment.StartGame();
         levelManager.StartGame();

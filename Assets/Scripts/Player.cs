@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     public GameObject landingSmoke;
     public float landingSmokeX;
     public float landingSmokeY;
+    public GameObject explosion;
 
     private bool is_jumping = true;
 
@@ -66,6 +67,11 @@ public class Player : MonoBehaviour
         //out: gravity, jumpForce
     }
 
+    void FixedUpdate()
+    {
+        rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+    }
+
     void Update()
     {
         if (gameActive)
@@ -79,9 +85,6 @@ public class Player : MonoBehaviour
 
             Physics2D.gravity = new Vector2(0, -gravity);
 
-            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-
-            Debug.Log(rb2d.velocity);
 
             var vel = rb2d.velocity;
 
@@ -95,9 +98,13 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if (rb2d.velocity.y < 0)
+            if (rb2d.velocity.y < -0.2)
             {
-                rb2d.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;                
+                Physics2D.gravity = new Vector2(0, -gravity * fallMultiplier);                
+            }
+            else 
+            {
+                Physics2D.gravity = new Vector2(0, -gravity);
             }
             
             if (frames_collision == 1) { collisionDetected = true; } 
@@ -123,6 +130,7 @@ public class Player : MonoBehaviour
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true;
         animator.SetBool("Death", false);
+        animator.SetBool("HasLanded", false);
         waterSplash.SetActive(false);
     }
 
@@ -145,6 +153,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         gameActive = false;
+        gameObject.SetActive(false);
     }
 
     public System.DateTime startTime;
@@ -156,21 +165,27 @@ public class Player : MonoBehaviour
         is_jumping = true;
         animator.SetBool("Jumping", true);
 
+        startDistance = transform.position.x;
+
         rb2d.velocity = (Vector3.up * jumpingSpeed);
         jumpCounter++;
     }
 
+    void setHasLandedTrue() 
+    {
+        animator.SetBool("Has Landed", true);
+    }
+
+    void setHasLandedFalse() 
+    {
+        animator.SetBool("Has Landed", false);
+    }
+
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        // Debug.Log("distance: " + (startDistance - levelManager.gameObject.transform.position.x));
-
-        if (col.gameObject.tag == "Death")
+        if (col.gameObject.tag == "Level")
         {
-            animator.SetBool("Death", true);
-        }
-
-        else
-        { 
             if (is_jumping)
             {
                 GameObject landingSmokeInst = Instantiate(landingSmoke);
@@ -184,6 +199,7 @@ public class Player : MonoBehaviour
                 trigger_jump = true;
             }
         }
+        Debug.Log("distance: " + (transform.position.x - startDistance));
 
         is_jumping = false;
         animator.SetBool("Jumping", false);
@@ -198,20 +214,23 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "Death")
         {
+            explosion.SetActive(true);
+            explosion.transform.position = transform.position;
+            gameManager.Death();
             animator.SetBool("Death", true);
             is_jumping = false;
             animator.SetBool("Jumping", false);
-
         }
     }
  
     float startDistance; 
 
     void OnCollisionExit2D(Collision2D col)
-    {
+    {        
+        animator.SetBool("Jump", true);
+
         if (col.transform.tag == "Level")
         {       
-            startDistance = levelManager.gameObject.transform.position.x;
             jumpCounter = 1;
         }
     }
