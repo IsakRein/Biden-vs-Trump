@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
         jumpingSpeed = gravity * t1;
 
-       // Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
+       Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
 
         //out: gravity, jumpForce
     }
@@ -70,6 +70,16 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+        animator.SetFloat("Speed", rb2d.velocity.y);
+
+        if (rb2d.velocity.y < 0)
+        {
+            Physics2D.gravity = new Vector2(0, -gravity * fallMultiplier);
+        }
+        else
+        {
+            Physics2D.gravity = new Vector2(0, -gravity);
+        }
     }
 
     void Update()
@@ -83,13 +93,6 @@ public class Player : MonoBehaviour
                 gameManager.Death();
             }
 
-            Physics2D.gravity = new Vector2(0, -gravity);
-
-
-            var vel = rb2d.velocity;
-
-            animator.SetFloat("Speed", vel.y);
-
             if (jumpCounter < 2)
             {
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
@@ -98,20 +101,13 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if (rb2d.velocity.y < -0.2)
-            {
-                Physics2D.gravity = new Vector2(0, -gravity * fallMultiplier);                
-            }
-            else 
-            {
-                Physics2D.gravity = new Vector2(0, -gravity);
-            }
-            
             if (frames_collision == 1) { collisionDetected = true; } 
             if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; } 
             
             frames_collision++;
             seconds_jump += Time.deltaTime;
+
+
         }
 
         else
@@ -167,7 +163,7 @@ public class Player : MonoBehaviour
 
         startDistance = transform.position.x;
 
-        rb2d.velocity = (Vector3.up * jumpingSpeed);
+        rb2d.velocity = new Vector2(speed, jumpingSpeed);
         jumpCounter++;
     }
 
@@ -199,7 +195,8 @@ public class Player : MonoBehaviour
                 trigger_jump = true;
             }
         }
-        Debug.Log("distance: " + (transform.position.x - startDistance));
+        
+        Debug.Log("distance: " + Mathf.Round((transform.position.x - startDistance) * 100)/ 100);
 
         is_jumping = false;
         animator.SetBool("Jumping", false);
