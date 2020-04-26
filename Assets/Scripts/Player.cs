@@ -209,8 +209,8 @@ public class Player : MonoBehaviour
         Debug.Log("Delta X 2: " + (rb2d.position.x - startDistance));
         //------
 
-        GameObject landingSmokeInst = Instantiate(landingSmoke);
-        landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);   
+        // GameObject landingSmokeInst = Instantiate(landingSmoke);
+        // landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);   
         
         is_jumping = false;
         animator.SetBool("Jumping", false);
