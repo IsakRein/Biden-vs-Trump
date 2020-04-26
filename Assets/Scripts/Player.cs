@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     
     public float jumpHeight;
     public float jumpLength;
-    public float speed;
+    public float velocityX;
+    public float velocityY = 0;
+
     public float fallMultiplier = 2.5f;
 
     private float jumpingSpeed = 0;
@@ -41,7 +43,8 @@ public class Player : MonoBehaviour
     public float landingSmokeY;
     public GameObject explosion;
 
-    private bool is_jumping = true;
+    public bool is_jumping = false;
+    public bool is_airbound = false;
 
     private void Start()
     {
@@ -55,31 +58,16 @@ public class Player : MonoBehaviour
 
         //in:  height, length, speed, fallMultipler
 
-        float time = jumpLength/speed;
+        float time = jumpLength/velocityX;
         float t2 = time / (1 + Mathf.Sqrt(fallMultiplier));
         float t1 = time - t2;
 
         gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
         jumpingSpeed = gravity * t1;
 
-       Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
+        Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
 
         //out: gravity, jumpForce
-    }
-
-    void FixedUpdate()
-    {
-        rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-        animator.SetFloat("Speed", rb2d.velocity.y);
-
-        if (rb2d.velocity.y < 0)
-        {
-            Physics2D.gravity = new Vector2(0, -gravity * fallMultiplier);
-        }
-        else
-        {
-            Physics2D.gravity = new Vector2(0, -gravity);
-        }
     }
 
     void Update()
@@ -106,13 +94,6 @@ public class Player : MonoBehaviour
             
             frames_collision++;
             seconds_jump += Time.deltaTime;
-
-
-        }
-
-        else
-        {
-            rb2d.velocity = new Vector2(0, 0);
         }
     }
 
@@ -153,18 +134,88 @@ public class Player : MonoBehaviour
     }
 
     public System.DateTime startTime;
-    public int timeBeforeTop = 5;
-    public int timeAfterTop;
+
+    float startDistance; 
+    float currentGravity;
+    float lastFrameTraveled;
+    
+    void FixedUpdate()
+    {
+        if (velocityY > 0) {  currentGravity = gravity; }
+        else { currentGravity = gravity * fallMultiplier; }
+
+        if (is_airbound) { /*Debug.Log("Delta X: " + (rb2d.position.x - startDistance));*/ velocityY -= currentGravity * Time.fixedDeltaTime; }
+        else { velocityY = 0; }
+
+        animator.SetFloat("Speed", velocityY);
+        transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
+
+        if (collisionEntered2D) 
+        {
+            collisionEntered2D = false;
+
+            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
+
+            transform.position = ((new Vector2(real_travel_x, rb2d.position.y)));
+            //Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
+            //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
+
+
+            is_airbound = false;
+
+            if (collisionEntered2Dcol.gameObject.tag == "Level")
+            {   
+                if (is_jumping) 
+                {   
+                    jump_end();
+                }
+            
+                if (Input.GetKey("space") || Input.touchCount > 0)
+                {
+                    jump();
+                }
+            }
+
+            if (collisionEntered2Dcol.gameObject.tag == "Death")
+            {
+                explosion.SetActive(true);
+                explosion.transform.position = transform.position;
+                gameManager.Death();
+                animator.SetBool("Death", true);
+                is_jumping = false;
+                animator.SetBool("Jumping", false);
+            }
+        }
+        lastFrameTraveled = rb2d.position.x;
+    }
 
     void jump()
     {
+        //-temp-
+        startDistance = rb2d.position.x;
+        //------
+
+        velocityY = jumpingSpeed;
         is_jumping = true;
+        is_airbound = true;
         animator.SetBool("Jumping", true);
 
-        startDistance = transform.position.x;
-
-        rb2d.velocity = new Vector2(speed, jumpingSpeed);
         jumpCounter++;
+    }
+
+    void jump_end()
+    {      
+        //-temp-
+        Debug.Log("Delta X 2: " + (rb2d.position.x - startDistance));
+        //------
+
+        GameObject landingSmokeInst = Instantiate(landingSmoke);
+        landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);   
+        
+        is_jumping = false;
+        animator.SetBool("Jumping", false);
+
+        jumpCounter = 0;
     }
 
     void setHasLandedTrue() 
@@ -177,58 +228,25 @@ public class Player : MonoBehaviour
         animator.SetBool("Has Landed", false);
     }
 
+    private bool collisionEntered2D;
+    private Collision2D collisionEntered2Dcol;
 
     void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Level")
-        {
-            if (is_jumping)
-            {
-                GameObject landingSmokeInst = Instantiate(landingSmoke);
-
-                landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);
-            }
-
-            if (Input.GetKey("space") || Input.touchCount > 0)
-            {
-                seconds_jump = 0;
-                trigger_jump = true;
-            }
-        }
-        
-        Debug.Log("distance: " + Mathf.Round((transform.position.x - startDistance) * 100)/ 100);
-
-        is_jumping = false;
-        animator.SetBool("Jumping", false);
-    }
-
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.transform.tag == "Level")
-        {
-            jumpCounter = 0;
-        }
-
-        if (col.gameObject.tag == "Death")
-        {
-            explosion.SetActive(true);
-            explosion.transform.position = transform.position;
-            gameManager.Death();
-            animator.SetBool("Death", true);
-            is_jumping = false;
-            animator.SetBool("Jumping", false);
-        }
-    }
- 
-    float startDistance; 
-
-    void OnCollisionExit2D(Collision2D col)
     {        
-        animator.SetBool("Jump", true);
+        collisionEntered2D = true;
+        collisionEntered2Dcol = col;
+        collision_count += 1;
+    }
 
-        if (col.transform.tag == "Level")
-        {       
-            jumpCounter = 1;
+    public int collision_count = 0;
+
+    void OnCollisionExit2D(Collision2D collisionInfo)
+    {
+        collision_count -= 1;
+
+        if (collision_count == 0) 
+        {
+            is_airbound = true;
         }
     }
 }

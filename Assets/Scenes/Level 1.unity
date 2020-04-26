@@ -14801,7 +14801,6 @@ GameObject:
   - component: {fileID: 1168277887}
   - component: {fileID: 1168277892}
   - component: {fileID: 1168277891}
-  - component: {fileID: 1168277893}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -14909,7 +14908,8 @@ MonoBehaviour:
   gameActive: 0
   jumpHeight: 25
   jumpLength: 50
-  speed: 100
+  velocityX: 100
+  velocityY: 0
   fallMultiplier: 3
   jumpCounter: 0
   collisionDetected: 1
@@ -14917,11 +14917,12 @@ MonoBehaviour:
   waterSplashY: -43.5
   landingSmoke: {fileID: 8230498718150462462, guid: bdb25596e93c7ee4482cab14e3464be2,
     type: 3}
-  landingSmokeX: -1
-  landingSmokeY: -8
+  landingSmokeX: 2
+  landingSmokeY: -6.7
   explosion: {fileID: 842593269}
-  timeBeforeTop: 0
-  timeAfterTop: 0
+  is_jumping: 1
+  is_airbound: 1
+  collision_count: 0
 --- !u!61 &1168277891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14935,7 +14936,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.046090603}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14946,7 +14947,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.73, y: 0.6834612}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &1168277892
 Rigidbody2D:
@@ -14969,22 +14970,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &1168277893
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168277886}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03000002, y: -0.07661276}
-  serializedVersion: 2
-  m_Radius: 0.42257985
 --- !u!1 &1175743085
 GameObject:
   m_ObjectHideFlags: 0
