@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 74333718}
   m_Layer: 0
   m_Name: Ground_Middle (34)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8980,7 +8980,7 @@ GameObject:
   - component: {fileID: 401371630}
   m_Layer: 0
   m_Name: Ground_Middle (35)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9734,7 +9734,7 @@ GameObject:
   - component: {fileID: 468817681}
   m_Layer: 0
   m_Name: Ground_Middle (28)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9843,7 +9843,7 @@ GameObject:
   - component: {fileID: 479886922}
   m_Layer: 0
   m_Name: Ground_Middle (31)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11131,7 +11131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643928714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17, y: -58.8, z: 28.388962}
+  m_LocalPosition: {x: -0.17, y: -62.35, z: 28.388962}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 340906226}
@@ -11637,7 +11637,7 @@ GameObject:
   - component: {fileID: 731445059}
   m_Layer: 0
   m_Name: Ground_Middle (36)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12805,7 +12805,7 @@ GameObject:
   - component: {fileID: 830399724}
   m_Layer: 0
   m_Name: Ground_Middle (30)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12987,7 +12987,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &842593272
@@ -13888,7 +13888,7 @@ GameObject:
   - component: {fileID: 964201887}
   m_Layer: 0
   m_Name: Ground_Middle (29)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15813,10 +15813,12 @@ MonoBehaviour:
   collisionDetected: 1
   waterSplash: {fileID: 301485113}
   waterSplashY: -43.5
-  landingSmoke: {fileID: 8230498718150462462, guid: bdb25596e93c7ee4482cab14e3464be2,
-    type: 3}
-  landingSmokeX: 2
-  landingSmokeY: -6.7
+  smoke_impacts:
+  - {fileID: 3044470438215095668, guid: 52965fa2c1d564698900dce0f6744911, type: 3}
+  - {fileID: 9093139065110582911, guid: 4194baab9621347ef8acdf973443c82d, type: 3}
+  - {fileID: 2394191784460638794, guid: 3d1526348a42e4260b066146d6332997, type: 3}
+  smoke_impact_offset_X: 0
+  smoke_impact_offset_Y: -5.5
   explosion: {fileID: 842593269}
   is_jumping: 1
   is_airbound: 1
@@ -16598,7 +16600,7 @@ GameObject:
   - component: {fileID: 1228519834}
   m_Layer: 0
   m_Name: Ground_Middle (33)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18610,7 +18612,7 @@ GameObject:
   - component: {fileID: 1407745991}
   m_Layer: 0
   m_Name: Ground_Middle (32)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21862,7 +21864,7 @@ GameObject:
   - component: {fileID: 1860588575}
   m_Layer: 0
   m_Name: Ground_Middle (27)
-  m_TagString: Level
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

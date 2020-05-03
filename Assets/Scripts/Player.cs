@@ -38,9 +38,10 @@ public class Player : MonoBehaviour
     [Header("Effects")]
     public GameObject waterSplash;
     public float waterSplashY;
-    public GameObject landingSmoke;
-    public float landingSmokeX;
-    public float landingSmokeY;
+    
+    public List<GameObject> smoke_impacts = new List<GameObject>();
+    public float smoke_impact_offset_X;
+    public float smoke_impact_offset_Y;
     public GameObject explosion;
 
     public bool is_jumping = false;
@@ -65,8 +66,7 @@ public class Player : MonoBehaviour
         gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
         jumpingSpeed = gravity * t1;
 
-        Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
-
+        // Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
         //out: gravity, jumpForce
     }
 
@@ -195,6 +195,11 @@ public class Player : MonoBehaviour
         startDistance = rb2d.position.x;
         //------
 
+        if (is_airbound) 
+        {
+            trigger_smoke_impact();
+        }
+
         velocityY = jumpingSpeed;
         is_jumping = true;
         is_airbound = true;
@@ -205,17 +210,27 @@ public class Player : MonoBehaviour
 
     void jump_end()
     {      
-        //-temp-
-        Debug.Log("Delta X 2: " + (rb2d.position.x - startDistance));
-        //------
+        trigger_smoke_impact();
 
-        // GameObject landingSmokeInst = Instantiate(landingSmoke);
-        // landingSmokeInst.transform.position = new Vector2(transform.position.x + landingSmokeX, transform.position.y + landingSmokeY);   
-        
         is_jumping = false;
         animator.SetBool("Jumping", false);
 
         jumpCounter = 0;
+    }
+
+    private int smoke_impact_last_num = 0;
+
+    void trigger_smoke_impact() 
+    {
+        int num = smoke_impact_last_num;
+        while (num == smoke_impact_last_num) 
+        {
+            num = Random.Range(0, smoke_impacts.Count);
+        }
+        smoke_impact_last_num = num;
+
+        GameObject smoke_impact = Instantiate(smoke_impacts[num]);
+        smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + smoke_impact_offset_Y);   
     }
 
     void setHasLandedTrue() 

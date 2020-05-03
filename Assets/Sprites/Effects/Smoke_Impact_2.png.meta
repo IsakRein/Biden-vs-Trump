@@ -1,52 +1,46 @@
 fileFormatVersion: 2
-guid: 5bce40e8769570b47b22d394ddfc1e3b
+guid: af0b85e41960b4a1d987ad8b3e6e5fd0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3919779002189068522
-    second: Ball_0
+      213: -3136184148942595849
+    second: Smoke_Impact_2_0
   - first:
-      213: -7165607403067095034
-    second: Ball_1
+      213: 7200258906302135073
+    second: Smoke_Impact_2_1
   - first:
-      213: -8356673873878969867
-    second: Ball_2
+      213: 6466861864207935272
+    second: Smoke_Impact_2_2
   - first:
-      213: 6780432118162690794
-    second: Ball_3
+      213: -6485088860505232103
+    second: Smoke_Impact_2_3
   - first:
-      213: -8171976943531403563
-    second: Ball_4
+      213: -8734248838397218689
+    second: Smoke_Impact_2_4
   - first:
-      213: 6769358374632784235
-    second: Ball_5
+      213: -6902982099492919171
+    second: Smoke_Impact_2_5
   - first:
-      213: 3071410288479471596
-    second: Ball_6
+      213: 4142199181333249529
+    second: Smoke_Impact_2_6
   - first:
-      213: -8551270486153782291
-    second: Ball_7
+      213: 5098671155080428435
+    second: Smoke_Impact_2_7
   - first:
-      213: 7058993847101550666
-    second: Ball_8
+      213: -170951181748360876
+    second: Smoke_Impact_2_8
   - first:
-      213: -7862623280703602857
-    second: Ball_9
+      213: 7411305475378657333
+    second: Smoke_Impact_2_9
   - first:
-      213: 672678781673025634
-    second: Ball_10
+      213: 7737550836613081668
+    second: Smoke_Impact_2_10
   - first:
-      213: 2105916074434856313
-    second: Ball_11
+      213: -2700853827403521650
+    second: Smoke_Impact_2_11
   - first:
-      213: 6587953687348734223
-    second: Ball_12
-  - first:
-      213: -5630501016920906998
-    second: Ball_13
-  - first:
-      213: -4161947846286767293
-    second: Ball_14
+      213: -5278259978065884837
+    second: Smoke_Impact_2_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -90,9 +84,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -156,13 +150,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ball_0
+      name: Smoke_Impact_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6174c70f3c52a99c0800000000000000
-      internalID: -3919779002189068522
+      spriteID: 7f8d01cf1290a74d0800000000000000
+      internalID: -3136184148942595849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_1
+      name: Smoke_Impact_2_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 608c64c2806ae8c90800000000000000
-      internalID: -7165607403067095034
+      spriteID: 12b3bf0a3557ce360800000000000000
+      internalID: 7200258906302135073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_2
+      name: Smoke_Impact_2_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f118a32361270c80800000000000000
-      internalID: -8356673873878969867
+      spriteID: 82762a34a98eeb950800000000000000
+      internalID: 6466861864207935272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_3
+      name: Smoke_Impact_2_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae29cb2561fe81e50800000000000000
-      internalID: 6780432118162690794
+      spriteID: 91d2eb47a065006a0800000000000000
+      internalID: -6485088860505232103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_4
+      name: Smoke_Impact_2_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,20 +248,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d6d020544e479e80800000000000000
-      internalID: -8171976943531403563
+      spriteID: f70377f15f6b9c680800000000000000
+      internalID: -8734248838397218689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_5
+      name: Smoke_Impact_2_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b618d4d739791fd50800000000000000
-      internalID: 6769358374632784235
+      spriteID: d7828d4aa5ea330a0800000000000000
+      internalID: -6902982099492919171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_6
+      name: Smoke_Impact_2_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,20 +290,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce78c446267df9a20800000000000000
-      internalID: 3071410288479471596
+      spriteID: 9fd3848853c0c7930800000000000000
+      internalID: 4142199181333249529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_7
+      name: Smoke_Impact_2_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,20 +311,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb9586acc8c35980800000000000000
-      internalID: -8551270486153782291
+      spriteID: 39b7911d66e12c640800000000000000
+      internalID: 5098671155080428435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_8
+      name: Smoke_Impact_2_8
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,20 +332,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a40f728f08596f160800000000000000
-      internalID: 7058993847101550666
+      spriteID: 459a4f15ec8a0adf0800000000000000
+      internalID: -170951181748360876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_9
+      name: Smoke_Impact_2_9
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,20 +353,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75ff1feb8c952e290800000000000000
-      internalID: -7862623280703602857
+      spriteID: 5383ad5201f3ad660800000000000000
+      internalID: 7411305475378657333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_10
+      name: Smoke_Impact_2_10
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,20 +374,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2603095b9c5d55900800000000000000
-      internalID: 672678781673025634
+      spriteID: 44a69d79d7d416b60800000000000000
+      internalID: 7737550836613081668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_11
+      name: Smoke_Impact_2_11
       rect:
         serializedVersion: 2
         x: 352
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -401,20 +395,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97589771387b93d10800000000000000
-      internalID: 2105916074434856313
+      spriteID: e81eb53f0c3a48ad0800000000000000
+      internalID: -2700853827403521650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_12
+      name: Smoke_Impact_2_12
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 32
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -422,50 +416,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f09652369fc1d6b50800000000000000
-      internalID: 6587953687348734223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_13
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0324f228217cd1b0800000000000000
-      internalID: -5630501016920906998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ball_14
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34b00681c7acd36c0800000000000000
-      internalID: -4161947846286767293
+      spriteID: b59c83fe38adfb6b0800000000000000
+      internalID: -5278259978065884837
       vertices: []
       indices: 
       edges: []

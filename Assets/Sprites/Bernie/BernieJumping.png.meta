@@ -9,12 +9,6 @@ TextureImporter:
       213: 1449440091426103586
     second: BernieJumping_1
   - first:
-      213: 9063187161293337724
-    second: BernieJumping_0
-  - first:
-      213: -3990530985364447941
-    second: BernieJumping_1
-  - first:
       213: 1053189831972165620
     second: BernieJumping_2
   - first:
@@ -146,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7435c154b8e6cd70800000000000000
-      internalID: 9063187161293337724
+      spriteID: d1a1894cdb5eab840800000000000000
+      internalID: 5240753719608875549
       vertices: []
       indices: 
       edges: []
@@ -167,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3d99282639ce98c0800000000000000
-      internalID: -3990530985364447941
+      spriteID: 221a9ac65127d1410800000000000000
+      internalID: 1449440091426103586
       vertices: []
       indices: 
       edges: []
