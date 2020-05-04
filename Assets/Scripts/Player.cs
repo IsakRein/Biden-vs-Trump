@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
-        transform.position = new Vector2(-gameManager.horizontalSize/2 + 35f, 10f);
+        transform.position = new Vector3(35f, 10f, 1f);
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true;
@@ -149,6 +149,7 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("Speed", velocityY);
         transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
 
         if (collisionEntered2D) 
         {
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
 
             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
 
-            transform.position = ((new Vector2(real_travel_x, rb2d.position.y)));
+            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
             //Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
             //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
 
@@ -220,16 +221,12 @@ public class Player : MonoBehaviour
 
     private int smoke_impact_last_num = 0;
 
-    void trigger_smoke_impact() 
+    void trigger_smoke_impact()
     {
-        int num = smoke_impact_last_num;
-        while (num == smoke_impact_last_num) 
-        {
-            num = Random.Range(0, smoke_impacts.Count);
-        }
-        smoke_impact_last_num = num;
+        if (smoke_impact_last_num == smoke_impacts.Count - 1) { smoke_impact_last_num = 0; }
+        else { smoke_impact_last_num++; }
 
-        GameObject smoke_impact = Instantiate(smoke_impacts[num]);
+        GameObject smoke_impact = Instantiate(smoke_impacts[smoke_impact_last_num]);
         smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + smoke_impact_offset_Y);   
     }
 
