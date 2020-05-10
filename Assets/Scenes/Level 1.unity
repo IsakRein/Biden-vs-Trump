@@ -79704,7 +79704,7 @@ GameObject:
   - component: {fileID: 1510617359}
   - component: {fileID: 1510617358}
   m_Layer: 0
-  m_Name: 120BPM
+  m_Name: NatureSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102115,7 +102115,7 @@ GameObject:
   - component: {fileID: 2002985629}
   - component: {fileID: 2002985628}
   m_Layer: 0
-  m_Name: 120BPM (1)
+  m_Name: Beat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
