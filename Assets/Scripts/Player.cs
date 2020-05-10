@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
 
             transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
-            //Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
+            Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
             //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
 
 
@@ -206,6 +206,8 @@ public class Player : MonoBehaviour
         is_airbound = true;
         animator.SetBool("Jumping", true);
 
+        Debug.Log("Triggered Jump!");
+
         jumpCounter++;
     }
 
@@ -244,9 +246,12 @@ public class Player : MonoBehaviour
     private Collision2D collisionEntered2Dcol;
 
     void OnCollisionEnter2D(Collision2D col)
-    {        
-        collisionEntered2D = true;
-        collisionEntered2Dcol = col;
+    {
+        if (collision_count == 0)
+        {
+            collisionEntered2D = true;
+            collisionEntered2Dcol = col;
+        }
         collision_count += 1;
     }
 
@@ -259,6 +264,7 @@ public class Player : MonoBehaviour
         if (collision_count == 0) 
         {
             is_airbound = true;
+            setHasLandedFalse();
         }
     }
 }
