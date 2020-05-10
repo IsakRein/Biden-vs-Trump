@@ -50,5 +50,7 @@ public class GameManager : MonoBehaviour
         player.Death();
         environment.Death();
         levelManager.Death();
+
+        Invoke("StartGame", 1);
     }
 }

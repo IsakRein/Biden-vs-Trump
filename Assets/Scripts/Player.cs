@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class Player : MonoBehaviour
 {
+    public Vector3 startVector = new Vector3(1370f, 10f, 1f);
+
     private GameManager gameManager;
     public bool gameActive;
     private LevelManager levelManager;
@@ -37,12 +39,12 @@ public class Player : MonoBehaviour
 
     [Header("Effects")]
     public GameObject waterSplash;
+    public GameObject explosion;
     public float waterSplashY;
     
     public List<GameObject> smoke_impacts = new List<GameObject>();
     public float smoke_impact_offset_X;
     public float smoke_impact_offset_Y;
-    public GameObject explosion;
 
     public bool is_jumping = false;
     public bool is_airbound = false;
@@ -94,6 +96,13 @@ public class Player : MonoBehaviour
             
             frames_collision++;
             seconds_jump += Time.deltaTime;
+
+            if (rb2d.position.x == lastFrameTraveled) 
+            {
+                death_explosion();
+            }
+            
+            lastFrameTraveled = rb2d.position.x;
         }
     }
 
@@ -102,13 +111,16 @@ public class Player : MonoBehaviour
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
-        //transform.position = new Vector3(35f, 10f, 1f);
+        transform.position = startVector;
+        jumpCounter = 0;
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true;
         animator.SetBool("Death", false);
         animator.SetBool("HasLanded", false);
         waterSplash.SetActive(false);
+        is_jumping = true;
+        is_airbound = true;
     }
 
     public void PauseGame()
@@ -161,7 +173,6 @@ public class Player : MonoBehaviour
             Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
             //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
 
-
             is_airbound = false;
 
             if (collisionEntered2Dcol.gameObject.tag == "Level")
@@ -176,18 +187,7 @@ public class Player : MonoBehaviour
                     jump();
                 }
             }
-
-            if (collisionEntered2Dcol.gameObject.tag == "Death")
-            {
-                explosion.SetActive(true);
-                explosion.transform.position = transform.position;
-                gameManager.Death();
-                animator.SetBool("Death", true);
-                is_jumping = false;
-                animator.SetBool("Jumping", false);
-            }
         }
-        lastFrameTraveled = rb2d.position.x;
     }
 
     void jump()
@@ -221,6 +221,16 @@ public class Player : MonoBehaviour
         jumpCounter = 0;
     }
 
+    void death_explosion() 
+    {
+        GameObject explosion_inst = Instantiate(explosion);
+        explosion_inst.transform.position = transform.position;
+        gameManager.Death();
+        animator.SetBool("Death", true);
+        is_jumping = false;
+        animator.SetBool("Jumping", false);
+    }
+
     private int smoke_impact_last_num = 0;
 
     void trigger_smoke_impact()
@@ -247,6 +257,11 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (col.gameObject.tag == "Death")
+        {
+            death_explosion();
+        }
+        
         if (collision_count == 0)
         {
             collisionEntered2D = true;
@@ -254,6 +269,7 @@ public class Player : MonoBehaviour
         }
         collision_count += 1;
     }
+
 
     public int collision_count = 0;
 
