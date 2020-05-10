@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
-        transform.position = new Vector3(35f, 10f, 1f);
+        //transform.position = new Vector3(35f, 10f, 1f);
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true;
