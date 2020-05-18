@@ -21,20 +21,25 @@ public class Environment : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
 
-    public void CustomStart() 
-    {          
-        while (transform.childCount > 0) 
+        while (transform.childCount > 0)
         {
             Transform child = transform.GetChild(0);
             originalChildren.Add(child.gameObject);
             child.transform.parent = GameObject.Find("Environment Original").transform;
             child.gameObject.SetActive(false);
-
         }
     }
 
+    public void CustomStart()
+    {
+        while (transform.childCount > 0)
+        {
+            Transform child = transform.GetChild(0);
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+    
     void Update()
     {
         transform.position = new Vector2(transform.position.x, 0);
@@ -61,6 +66,7 @@ public class Environment : MonoBehaviour
                     children[i] = childrenClones[i];
                     originalChildren[i] = childrenClones[i].gameObject;
                     childClone = CreateClone(childrenClones[i]);
+                    childClone.name = "1";
                     childrenClones[i] = childClone;
                 }
 
@@ -71,7 +77,6 @@ public class Environment : MonoBehaviour
 
     public void StartGame() 
     {
-        
         gameActive = true;
 
         children.Clear();
@@ -104,6 +109,7 @@ public class Environment : MonoBehaviour
         foreach (Transform child in children) 
         {
             Transform childClone = CreateClone(child);
+            childClone.name = "1";
             childrenClones.Add(childClone);
         }
     }
