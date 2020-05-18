@@ -117,7 +117,6 @@ public class Player : MonoBehaviour
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true;
         animator.SetBool("Death", false);
-        animator.SetBool("HasLanded", false);
         waterSplash.SetActive(false);
         is_jumping = true;
         is_airbound = true;
@@ -170,13 +169,14 @@ public class Player : MonoBehaviour
             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
 
             transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
-            Debug.Log("Position after move: " + (rb2d.position.x-startDistance));
             //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
 
             is_airbound = false;
 
             if (collisionEntered2Dcol.gameObject.tag == "Level")
             {   
+                trigger_smoke_impact();
+
                 if (is_jumping) 
                 {   
                     jump_end();
@@ -196,24 +196,16 @@ public class Player : MonoBehaviour
         startDistance = rb2d.position.x;
         //------
 
-        if (is_airbound) 
-        {
-            trigger_smoke_impact();
-        }
-
         velocityY = jumpingSpeed;
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
-
-        Debug.Log("Triggered Jump!");
 
         jumpCounter++;
     }
 
     void jump_end()
     {      
-        trigger_smoke_impact();
 
         is_jumping = false;
         animator.SetBool("Jumping", false);
@@ -281,6 +273,25 @@ public class Player : MonoBehaviour
         {
             is_airbound = true;
             setHasLandedFalse();
+        }
+    }
+    
+    private int prev_jump_counter;
+
+    void OnTriggerEnter2D(Collider2D trig)
+    {
+        if (trig.tag == "add_jump_square") 
+        {
+            prev_jump_counter = jumpCounter;
+            jumpCounter = 1;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D trig)
+    {
+        if (trig.tag == "add_jump_square") 
+        {
+            jumpCounter = prev_jump_counter;
         }
     }
 }

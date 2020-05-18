@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+     
 public class Environment : MonoBehaviour
 {
     private GameManager gameManager;
@@ -21,7 +21,6 @@ public class Environment : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
     }
 
     public void CustomStart() 
@@ -32,6 +31,7 @@ public class Environment : MonoBehaviour
             originalChildren.Add(child.gameObject);
             child.transform.parent = GameObject.Find("Environment Original").transform;
             child.gameObject.SetActive(false);
+
         }
     }
 
@@ -71,6 +71,7 @@ public class Environment : MonoBehaviour
 
     public void StartGame() 
     {
+        
         gameActive = true;
 
         children.Clear();

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Level
   - Death
+  - add_jump_square
   layers:
   - Default
   - TransparentFX

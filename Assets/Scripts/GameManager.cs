@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public float verticalSize;
     public float horizontalSize;
     
-
+    public GameObject level;
+  
     void Start()
     {
         Application.targetFrameRate = 300;
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
         player.StartGame();
         environment.StartGame();
         levelManager.StartGame();
+        
+        level.SetActive(false);
+        level.SetActive(true);
     }
 
     public void PauseGame() 
