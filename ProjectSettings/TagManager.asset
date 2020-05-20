@@ -7,6 +7,9 @@ TagManager:
   - Level
   - Death
   - add_jump_square
+  - jetpack
+  - jetpack_stop
+  - gravity_switch
   layers:
   - Default
   - TransparentFX

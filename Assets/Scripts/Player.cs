@@ -8,12 +8,21 @@ public class Player : MonoBehaviour
     public Vector3 startVector = new Vector3(1370f, 10f, 1f);
 
     private GameManager gameManager;
-    public bool gameActive;
+    private bool gameActive;
     private LevelManager levelManager;
 
     private Rigidbody2D rb2d;
     private Animator animator;
+
+    private int gravity_direction;
     
+    [Header("Jetpack")]
+
+    public bool jetpack_active;
+    public float jetpack_speed;
+    public float jetpack_max_speed;
+    public GameObject jetpack;
+
     [Header("Jump mechanics")]
     
     public float jumpHeight;
@@ -32,9 +41,7 @@ public class Player : MonoBehaviour
     private int frames_collision;
     private float seconds_jump;
     private bool trigger_jump;
-
     public bool collisionDetected;
-
     private Vector2 lastKnownVelocity;
 
     [Header("Effects")]
@@ -49,7 +56,20 @@ public class Player : MonoBehaviour
     public bool is_jumping = false;
     public bool is_airbound = false;
 
-    private void Start()
+
+    [Header("Unsorted trash")]
+
+    public System.DateTime startTime;
+    private float startDistance; 
+    private float currentGravity;
+    private float lastFrameTraveled;
+    private int smoke_impact_last_num = 0;
+    private bool collisionEntered2D;
+    private Collision2D collisionEntered2Dcol;
+    public int collision_count = 0;
+    private int prev_jump_counter;
+
+    private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelManager = GameObject.Find("Level").GetComponent<LevelManager>();
@@ -83,26 +103,99 @@ public class Player : MonoBehaviour
                 gameManager.Death();
             }
 
-            if (jumpCounter < 2)
-            {
+            if (jetpack_active) 
+            {     
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                 {
-                    jump();
+                    if (jumpCounter < 1) { jump(); Debug.Log("Jump"); }
+                    // else { velocityY = 0; }
+                }
+
+                if (Input.GetKey("space") || (Input.touchCount > 0)) 
+                {
+                    jetpack_fly();
+                }
+                else {
+                    jetpack_fall();
                 }
             }
+
+            else {
+                if (jumpCounter < 2)
+                {
+                    if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+                    {
+                        jump();
+                    }
+                } 
+            }
+            
 
             if (frames_collision == 1) { collisionDetected = true; } 
             if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; } 
             
             frames_collision++;
             seconds_jump += Time.deltaTime;
-
-            if (rb2d.position.x == lastFrameTraveled) 
-            {
-                death_explosion();
-            }
-            
             lastFrameTraveled = rb2d.position.x;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (is_airbound)
+        {
+            if (jetpack_active) 
+            {
+                if (velocityY > 0) {  currentGravity = gravity; }
+                else { currentGravity = gravity * fallMultiplier; }
+            }
+            else {
+                if (velocityY * gravity_direction > 0) {  currentGravity = gravity * gravity_direction; }
+                else { currentGravity = gravity * fallMultiplier * gravity_direction; }
+                velocityY -= currentGravity * Time.fixedDeltaTime; 
+            }
+        }
+        else { velocityY = 0; }
+
+        if (jetpack_active) 
+        { animator.SetFloat("Speed", 100); }
+        else { animator.SetFloat("Speed", velocityY); }
+        transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+
+        if (collisionEntered2D) 
+        {
+            collisionEntered2D = false;
+
+            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
+            
+            Debug.Log(collisionEntered2Dcol.contacts[0].normal.y * gravity_direction);
+
+            if (collisionEntered2Dcol.contacts[0].normal.y * gravity_direction == 1)  
+            { 
+                transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
+                //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
+
+                is_airbound = false;
+
+                if (collisionEntered2Dcol.gameObject.tag == "Level")
+                {   
+                    trigger_smoke_impact();
+
+                    if (is_jumping) 
+                    {   
+                        jump_end();
+                    }
+                
+                    if (Input.GetKey("space") || Input.touchCount > 0)
+                    {
+                        jump();
+                    }
+                }
+            }
+            else {
+                velocityY = 0;
+            }
         }
     }
 
@@ -120,6 +213,8 @@ public class Player : MonoBehaviour
         waterSplash.SetActive(false);
         is_jumping = true;
         is_airbound = true;
+        jetpack_active = false;
+        gravity_direction = 1;
     }
 
     public void PauseGame()
@@ -143,60 +238,12 @@ public class Player : MonoBehaviour
         gameActive = false;
         gameObject.SetActive(false);
     }
-
-    public System.DateTime startTime;
-
-    float startDistance; 
-    float currentGravity;
-    float lastFrameTraveled;
     
-    void FixedUpdate()
-    {
-        if (velocityY > 0) {  currentGravity = gravity; }
-        else { currentGravity = gravity * fallMultiplier; }
-
-        if (is_airbound) { /*Debug.Log("Delta X: " + (rb2d.position.x - startDistance));*/ velocityY -= currentGravity * Time.fixedDeltaTime; }
-        else { velocityY = 0; }
-
-        animator.SetFloat("Speed", velocityY);
-        transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
-        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
-
-        if (collisionEntered2D) 
-        {
-            collisionEntered2D = false;
-
-            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
-
-            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
-            //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
-
-            is_airbound = false;
-
-            if (collisionEntered2Dcol.gameObject.tag == "Level")
-            {   
-                trigger_smoke_impact();
-
-                if (is_jumping) 
-                {   
-                    jump_end();
-                }
-            
-                if (Input.GetKey("space") || Input.touchCount > 0)
-                {
-                    jump();
-                }
-            }
-        }
-    }
-
     void jump()
     {
-        //-temp-
         startDistance = rb2d.position.x;
-        //------
 
-        velocityY = jumpingSpeed;
+        velocityY = gravity_direction * jumpingSpeed;
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
@@ -204,9 +251,32 @@ public class Player : MonoBehaviour
         jumpCounter++;
     }
 
+    void jetpack_fly() 
+    {
+        if (velocityY < jetpack_max_speed)
+        {
+            velocityY += jetpack_speed * Time.deltaTime;
+        }
+        else 
+        {
+            velocityY = jetpack_max_speed + 3f;
+        }
+    }
+
+    void jetpack_fall() 
+    {
+        if (velocityY > -jetpack_max_speed)
+        {
+            velocityY -= jetpack_speed * Time.deltaTime;
+        }
+        else 
+        {
+            velocityY = -jetpack_max_speed - 3f;
+        }
+    }
+
     void jump_end()
     {      
-
         is_jumping = false;
         animator.SetBool("Jumping", false);
 
@@ -222,9 +292,7 @@ public class Player : MonoBehaviour
         is_jumping = false;
         animator.SetBool("Jumping", false);
     }
-
-    private int smoke_impact_last_num = 0;
-
+ 
     void trigger_smoke_impact()
     {
         if (smoke_impact_last_num == smoke_impacts.Count - 1) { smoke_impact_last_num = 0; }
@@ -243,17 +311,12 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("Has Landed", false);
     }
-
-    private bool collisionEntered2D;
-    private Collision2D collisionEntered2Dcol;
-
+   
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Death")
-        {
-            death_explosion();
-        }
-        
+        if (col.gameObject.tag == "Death") { death_explosion(); }
+        // if (col.contacts[0].normal.x != 0)  { Debug.Log(col.contacts[0].normal); death_explosion(); }
+
         if (collision_count == 0)
         {
             collisionEntered2D = true;
@@ -261,9 +324,6 @@ public class Player : MonoBehaviour
         }
         collision_count += 1;
     }
-
-
-    public int collision_count = 0;
 
     void OnCollisionExit2D(Collision2D collisionInfo)
     {
@@ -276,8 +336,6 @@ public class Player : MonoBehaviour
         }
     }
     
-    private int prev_jump_counter;
-
     void OnTriggerEnter2D(Collider2D trig)
     {
         if (trig.tag == "add_jump_square") 
@@ -285,13 +343,21 @@ public class Player : MonoBehaviour
             prev_jump_counter = jumpCounter;
             jumpCounter = 1;
         }
+
+        if (trig.tag == "jetpack") { jetpack_active = true; jetpack.SetActive(true); }
+        if (trig.tag == "jetpack_stop") { jetpack_active = false; jetpack.SetActive(false); }
+        if (trig.tag == "gravity_switch") {
+            gravity_direction = -1;
+            transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
+        }
     }
 
     void OnTriggerExit2D(Collider2D trig)
     {
-        if (trig.tag == "add_jump_square") 
-        {
-            jumpCounter = prev_jump_counter;
-        }
+        if (trig.tag == "add_jump_square")  { jumpCounter = prev_jump_counter;}
+        if (trig.tag == "gravity_switch") { 
+            gravity_direction = 1;
+            transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
+        }    
     }
 }
