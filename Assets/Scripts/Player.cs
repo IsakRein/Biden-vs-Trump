@@ -167,9 +167,7 @@ public class Player : MonoBehaviour
         {
             collisionEntered2D = false;
 
-            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;
-            
-            Debug.Log(collisionEntered2Dcol.contacts[0].normal.y * gravity_direction);
+            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;   
 
             if (collisionEntered2Dcol.contacts[0].normal.y * gravity_direction == 1)  
             { 
@@ -204,6 +202,7 @@ public class Player : MonoBehaviour
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
+        collision_count = 0;
         transform.position = startVector;
         jumpCounter = 0;
         rb2d.simulated = true;
@@ -299,7 +298,8 @@ public class Player : MonoBehaviour
         else { smoke_impact_last_num++; }
 
         GameObject smoke_impact = Instantiate(smoke_impacts[smoke_impact_last_num]);
-        smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + smoke_impact_offset_Y);   
+        smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + (smoke_impact_offset_Y * gravity_direction));   
+        smoke_impact.transform.localScale = new Vector3(smoke_impact.transform.localScale.x, smoke_impact.transform.localScale.y * gravity_direction, smoke_impact.transform.localScale.z);
     }
 
     void setHasLandedTrue() 
@@ -315,14 +315,32 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Death") { death_explosion(); }
-        // if (col.contacts[0].normal.x != 0)  { Debug.Log(col.contacts[0].normal); death_explosion(); }
+        if (col.contacts.Length > 0) {
+            foreach (var item in col.contacts)
+            {
+                if (item.normal == new Vector2(-1, 0)) { Debug.Log(item.normal); death_explosion(); }
+                
+                if (item.normal == new Vector2(0, -1) )
+                {
+                    velocityY = 0;
+                }
 
-        if (collision_count == 0)
-        {
-            collisionEntered2D = true;
-            collisionEntered2Dcol = col;
+                if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1)) 
+                {
+                    if (collision_count > 0 ) 
+                    {
+                        death_explosion();
+                    }
+                }
+            }
+            
+            if (collision_count == 0)
+            {
+                collisionEntered2D = true;
+                collisionEntered2Dcol = col;
+            }
+            collision_count += 1;
         }
-        collision_count += 1;
     }
 
     void OnCollisionExit2D(Collision2D collisionInfo)
