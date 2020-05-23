@@ -54,10 +54,13 @@ public class Environment : MonoBehaviour
                 
                 if (childrenSpeeds.Count > i) 
                 { 
-                    float x = child.position.x - childrenSpeeds[i]*Time.deltaTime;
+                    float x = child.localPosition.x - childrenSpeeds[i]*Time.deltaTime;
                     float y;
-                    if (childrenFollowCamera[i]) { y = childrenPosY[i] + Camera.main.transform.position.y; } else { y = child.position.y; }
-                    child.position = new Vector3(x, y, 0f);
+
+                    if (childrenFollowCamera[i]) { y = childrenPosY[i] + Camera.main.transform.position.y; }
+                    else { y = child.localPosition.y; }
+
+                    child.localPosition = new Vector3(x, y, 0f);
                 }
                 
                 if (childClone.localPosition.x <= 0)
@@ -70,7 +73,7 @@ public class Environment : MonoBehaviour
                     childrenClones[i] = childClone;
                 }
 
-                childClone.transform.position = new Vector2(child.position.x + currentSizeX - 0.1f, child.position.y);
+                childClone.transform.localPosition = new Vector2(child.localPosition.x + currentSizeX - 0.1f, child.localPosition.y);
             }
         }
     }

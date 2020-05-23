@@ -6,37 +6,28 @@ using UnityEditor;
 public class Player : MonoBehaviour
 {
     public Vector3 startVector = new Vector3(1370f, 10f, 1f);
-
     private GameManager gameManager;
     private bool gameActive;
     private LevelManager levelManager;
-
     private Rigidbody2D rb2d;
     private Animator animator;
-
     private int gravity_direction;
     
     [Header("Jetpack")]
-
     public bool jetpack_active;
     public float jetpack_speed;
     public float jetpack_max_speed;
-    public GameObject jetpack;
 
-    [Header("Jump mechanics")]
-    
+    [Header("Jump mechanics")]   
     public float jumpHeight;
     public float jumpLength;
     public float velocityX;
     public float velocityY = 0;
-
     public float fallMultiplier = 2.5f;
-
     private float jumpingSpeed = 0;
     private float gravity = -10f;
 
     [Header("Other")]
-
     public int jumpCounter;
     private int frames_collision;
     private float seconds_jump;
@@ -48,17 +39,13 @@ public class Player : MonoBehaviour
     public GameObject waterSplash;
     public GameObject explosion;
     public float waterSplashY;
-    
     public List<GameObject> smoke_impacts = new List<GameObject>();
     public float smoke_impact_offset_X;
     public float smoke_impact_offset_Y;
-
     public bool is_jumping = false;
     public bool is_airbound = false;
 
-
     [Header("Unsorted trash")]
-
     public System.DateTime startTime;
     private float startDistance; 
     private float currentGravity;
@@ -68,6 +55,8 @@ public class Player : MonoBehaviour
     private Collision2D collisionEntered2Dcol;
     public int collision_count = 0;
     private int prev_jump_counter;
+    private bool play_smoke_impact;
+    public Animator camera_animator;
 
     private void Awake()
     {
@@ -96,22 +85,17 @@ public class Player : MonoBehaviour
     {
         if (gameActive)
         {
-            if (transform.position.y <= -50)
+            if (jetpack_active)
             {
-                waterSplash.SetActive(true);
-                waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
-                gameManager.Death();
-            }
-
-            if (jetpack_active) 
-            {     
                 if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                 {
-                    if (jumpCounter < 1) { jump(); Debug.Log("Jump"); }
+                    if (jumpCounter < 1) {
+                        jump(); Debug.Log("Jump");
+                    }
                     // else { velocityY = 0; }
                 }
 
-                if (Input.GetKey("space") || (Input.touchCount > 0)) 
+                if (Input.GetKey("space") || (Input.touchCount > 0))
                 {
                     jetpack_fly();
                 }
@@ -121,19 +105,26 @@ public class Player : MonoBehaviour
             }
 
             else {
+                if (transform.position.y <= -50)
+                {
+                    waterSplash.SetActive(true);
+                    waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
+                    gameManager.Death();
+                }
+
                 if (jumpCounter < 2)
                 {
                     if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                     {
                         jump();
                     }
-                } 
+                }
             }
-            
 
-            if (frames_collision == 1) { collisionDetected = true; } 
-            if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; } 
-            
+
+            if (frames_collision == 1) { collisionDetected = true; }
+            if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; }
+
             frames_collision++;
             seconds_jump += Time.deltaTime;
             lastFrameTraveled = rb2d.position.x;
@@ -144,22 +135,18 @@ public class Player : MonoBehaviour
     {
         if (is_airbound)
         {
-            if (jetpack_active) 
+            if (velocityY * gravity_direction > 0) { currentGravity = gravity * gravity_direction; }
+            else { currentGravity = gravity * fallMultiplier * gravity_direction; }
+
+            if (!jetpack_active) 
             {
-                if (velocityY > 0) {  currentGravity = gravity; }
-                else { currentGravity = gravity * fallMultiplier; }
-            }
-            else {
-                if (velocityY * gravity_direction > 0) {  currentGravity = gravity * gravity_direction; }
-                else { currentGravity = gravity * fallMultiplier * gravity_direction; }
                 velocityY -= currentGravity * Time.fixedDeltaTime; 
             }
         }
-        else { velocityY = 0; }
 
-        if (jetpack_active) 
-        { animator.SetFloat("Speed", 100); }
-        else { animator.SetFloat("Speed", velocityY); }
+        else { velocityY = 0; }
+        animator.SetFloat("Speed", velocityY);
+
         transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
 
@@ -169,27 +156,24 @@ public class Player : MonoBehaviour
 
             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;   
 
-            if (collisionEntered2Dcol.contacts[0].normal.y * gravity_direction == 1)  
-            { 
-                transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
-                //Debug.Log("Delta X 3: "  + (real_travel_x - startDistance));
+            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
 
-                is_airbound = false;
+            is_airbound = false;
 
-                if (collisionEntered2Dcol.gameObject.tag == "Level")
+            if (collisionEntered2Dcol.gameObject.tag == "Level")
+            {   
+                trigger_smoke_impact();
+
+                if (is_jumping) 
                 {   
-                    trigger_smoke_impact();
-
-                    if (is_jumping) 
-                    {   
-                        jump_end();
-                    }
-                
-                    if (Input.GetKey("space") || Input.touchCount > 0)
-                    {
-                        jump();
-                    }
+                    jump_end();
                 }
+                
+                if (Input.GetKey("space") || Input.touchCount > 0)
+                {
+                    jump();
+                }
+                
             }
             else {
                 velocityY = 0;
@@ -207,13 +191,15 @@ public class Player : MonoBehaviour
         jumpCounter = 0;
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
-        animator.enabled = true;
+        animator.enabled = true; 
         animator.SetBool("Death", false);
         waterSplash.SetActive(false);
         is_jumping = true;
         is_airbound = true;
         jetpack_active = false;
         gravity_direction = 1;
+        play_smoke_impact = true;
+        camera_animator.SetTrigger("start");
     }
 
     public void PauseGame()
@@ -241,12 +227,10 @@ public class Player : MonoBehaviour
     void jump()
     {
         startDistance = rb2d.position.x;
-
         velocityY = gravity_direction * jumpingSpeed;
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
-
         jumpCounter++;
     }
 
@@ -264,14 +248,17 @@ public class Player : MonoBehaviour
 
     void jetpack_fall() 
     {
-        if (velocityY > -jetpack_max_speed)
-        {
-            velocityY -= jetpack_speed * Time.deltaTime;
-        }
-        else 
-        {
-            velocityY = -jetpack_max_speed - 3f;
-        }
+        //if (velocityY > -jetpack_max_speed)
+        //{
+        //    velocityY -= jetpack_speed * Time.deltaTime;
+        //}
+        //else 
+        //{
+        //    velocityY = -jetpack_max_speed - 3f;
+        //}
+
+        velocityY -= currentGravity * Time.deltaTime;
+
     }
 
     void jump_end()
@@ -294,46 +281,52 @@ public class Player : MonoBehaviour
  
     void trigger_smoke_impact()
     {
-        if (smoke_impact_last_num == smoke_impacts.Count - 1) { smoke_impact_last_num = 0; }
-        else { smoke_impact_last_num++; }
+        if (play_smoke_impact)
+        {
+            if (smoke_impact_last_num == smoke_impacts.Count - 1) { smoke_impact_last_num = 0; }
+            else { smoke_impact_last_num++; }
 
-        GameObject smoke_impact = Instantiate(smoke_impacts[smoke_impact_last_num]);
-        smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + (smoke_impact_offset_Y * gravity_direction));   
-        smoke_impact.transform.localScale = new Vector3(smoke_impact.transform.localScale.x, smoke_impact.transform.localScale.y * gravity_direction, smoke_impact.transform.localScale.z);
+            GameObject smoke_impact = Instantiate(smoke_impacts[smoke_impact_last_num]);
+            smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + (smoke_impact_offset_Y * gravity_direction));
+            smoke_impact.transform.localScale = new Vector3(smoke_impact.transform.localScale.x, smoke_impact.transform.localScale.y * gravity_direction, smoke_impact.transform.localScale.z);
+            play_smoke_impact = false;
+            StartCoroutine(ResetSmokeImpact());
+        }
     }
 
-    void setHasLandedTrue() 
+    IEnumerator ResetSmokeImpact()
     {
-        animator.SetBool("Has Landed", true);
+        yield return new WaitForSeconds(.1f);
+        
+        play_smoke_impact = true;
     }
 
-    void setHasLandedFalse() 
-    {
-        animator.SetBool("Has Landed", false);
-    }
-   
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Death") { death_explosion(); }
-        if (col.contacts.Length > 0) {
+        else
+        {
             foreach (var item in col.contacts)
             {
-                if (item.normal == new Vector2(-1, 0)) { Debug.Log(item.normal); death_explosion(); }
-                
-                if (item.normal == new Vector2(0, -1) )
+                if (item.normal == new Vector2(-1, 0))
+                {
+                    death_explosion();
+                }
+
+                if (item.normal == new Vector2(0, -1))
                 {
                     velocityY = 0;
                 }
 
-                if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1)) 
+                if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
                 {
-                    if (collision_count > 0 ) 
+                    if (collision_count > 1)
                     {
                         death_explosion();
                     }
                 }
             }
-            
+
             if (collision_count == 0)
             {
                 collisionEntered2D = true;
@@ -350,7 +343,6 @@ public class Player : MonoBehaviour
         if (collision_count == 0) 
         {
             is_airbound = true;
-            setHasLandedFalse();
         }
     }
     
@@ -362,8 +354,19 @@ public class Player : MonoBehaviour
             jumpCounter = 1;
         }
 
-        if (trig.tag == "jetpack") { jetpack_active = true; jetpack.SetActive(true); }
-        if (trig.tag == "jetpack_stop") { jetpack_active = false; jetpack.SetActive(false); }
+        if (trig.tag == "jetpack") {
+
+            jetpack_active = true;
+            camera_animator.SetTrigger("zoom_out");
+            animator.SetBool("Jetpack", true);
+        }
+
+        if (trig.tag == "jetpack_stop") {
+            jetpack_active = false;
+            camera_animator.SetTrigger("zoom_in");
+            animator.SetBool("Jetpack", false);
+        }
+
         if (trig.tag == "gravity_switch") {
             gravity_direction = -1;
             transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
