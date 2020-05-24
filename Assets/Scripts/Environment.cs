@@ -15,7 +15,6 @@ public class Environment : MonoBehaviour
     private List<float> childrenPosY = new List<float>();
     public List<float> childrenSpeeds = new List<float>();
     public List<bool> childrenFollowCamera = new List<bool>();
-
     public Transform camera;
 
     void Start()
@@ -67,7 +66,6 @@ public class Environment : MonoBehaviour
                 {
                     GameObject.Destroy(child.gameObject);
                     children[i] = childrenClones[i];
-                    originalChildren[i] = childrenClones[i].gameObject;
                     childClone = CreateClone(childrenClones[i]);
                     childClone.name = "1";
                     childrenClones[i] = childClone;
@@ -106,7 +104,6 @@ public class Environment : MonoBehaviour
             childrenSizes.Add(currentSizeX); 
             childrenPosY.Add(child.position.y);
             child.position = new Vector2((currentSizeX/2)-(gameManager.horizontalSize/2), child.position.y);
-
         } 
 
         foreach (Transform child in children) 

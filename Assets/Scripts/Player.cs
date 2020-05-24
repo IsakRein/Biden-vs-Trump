@@ -154,9 +154,9 @@ public class Player : MonoBehaviour
         {
             collisionEntered2D = false;
 
-            float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;   
+/*             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;   
 
-            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f)));
+            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f))); */
 
             is_airbound = false;
 
@@ -265,6 +265,9 @@ public class Player : MonoBehaviour
     {      
         is_jumping = false;
         animator.SetBool("Jumping", false);
+
+        Debug.Log("Error: " + ((rb2d.position.x - startDistance) - jumpLength));
+
 
         jumpCounter = 0;
     }
