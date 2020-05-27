@@ -13,11 +13,6 @@ public class Player : MonoBehaviour
     private Animator animator;
     private int gravity_direction;
     
-    [Header("Jetpack")]
-    public bool jetpack_active;
-    public float jetpack_speed;
-    public float jetpack_max_speed;
-
     [Header("Jump mechanics")]   
     public float jumpHeight;
     public float jumpLength;
@@ -26,14 +21,11 @@ public class Player : MonoBehaviour
     public float fallMultiplier = 2.5f;
     private float jumpingSpeed = 0;
     private float gravity = -10f;
-
-    [Header("Other")]
-    public int jumpCounter;
-    private int frames_collision;
-    private float seconds_jump;
-    private bool trigger_jump;
-    public bool collisionDetected;
-    private Vector2 lastKnownVelocity;
+    
+    [Header("Jetpack")]
+    public bool jetpack_active;
+    public float jetpack_speed;
+    public float jetpack_max_speed;
 
     [Header("Effects")]
     public GameObject waterSplash;
@@ -44,6 +36,16 @@ public class Player : MonoBehaviour
     public float smoke_impact_offset_Y;
     public bool is_jumping = false;
     public bool is_airbound = false;
+    public float max_offset_ground_x;
+
+    [Header("Other")]
+    public int jumpCounter;
+    private int frames_collision;
+    private float seconds_jump;
+    private bool trigger_jump;
+    public bool collisionDetected;
+    private Vector2 lastKnownVelocity;
+
 
     [Header("Unsorted trash")]
     public System.DateTime startTime;
@@ -109,14 +111,14 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                     {
-                        jump();
+                        jump(jumpingSpeed);
                     }
                 }
             }
 
 
             if (frames_collision == 1) { collisionDetected = true; }
-            if (seconds_jump > 0.0 && trigger_jump) { jump(); trigger_jump = false; }
+            if (seconds_jump > 0.0 && trigger_jump) { jump(jumpingSpeed); trigger_jump = false; }
 
             frames_collision++;
             seconds_jump += Time.deltaTime;
@@ -142,36 +144,6 @@ public class Player : MonoBehaviour
 
         transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
-
-        if (collisionEntered2D) 
-        {
-            collisionEntered2D = false;
-
-/*             float real_travel_x = lastFrameTraveled + velocityX * Time.fixedDeltaTime;   
-
-            transform.position = ((new Vector3(real_travel_x, rb2d.position.y, 1f))); */
-
-            is_airbound = false;
-
-            if (collisionEntered2Dcol.gameObject.tag == "Level")
-            {   
-                trigger_smoke_impact();
-
-                if (is_jumping) 
-                {   
-                    jump_end();
-                }
-                
-                if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active)
-                {
-                    jump();
-                }
-                
-            }
-            else {
-                velocityY = 0;
-            }
-        }
     }
 
     public void StartGame()
@@ -217,10 +189,10 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    void jump()
+    void jump(float _jumpingSpeed)
     {
         startDistance = rb2d.position.x;
-        velocityY = gravity_direction * jumpingSpeed;
+        velocityY = gravity_direction * _jumpingSpeed;
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
@@ -262,8 +234,7 @@ public class Player : MonoBehaviour
         is_jumping = false;
         animator.SetBool("Jumping", false);
 
-        Debug.Log("Error: " + ((rb2d.position.x - startDistance) - jumpLength));
-
+        // Debug.Log("Error: " + ((rb2d.position.x - startDistance) - jumpLength));
 
         jumpCounter = 0;
     }
@@ -302,19 +273,41 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Death") { death_explosion(); }
+        collision_count++;
+
+        if (col.gameObject.tag == "Death") { 
+            death_explosion(); 
+        }
         else
         {
             foreach (var item in col.contacts)
             {
+                // Collision right
                 if (item.normal == new Vector2(-1, 0))
                 {
                     death_explosion();
                 }
 
+                // Collision top
                 if (item.normal == new Vector2(0, -1))
                 {
                     velocityY = 0;
+                }
+
+                // Collision bottom
+                if (item.normal == new Vector2(0, 1)) {
+                    is_airbound = false;
+                    
+                    // Smoke
+                    if (transform.position.x + max_offset_ground_x > col.collider.bounds.min.x 
+                    && transform.position.x < col.collider.bounds.max.x + max_offset_ground_x) 
+                    { trigger_smoke_impact(); }
+                    
+                    // Stop jumping
+                    if (is_jumping) { jump_end(); }
+                    
+                    // Jumping again
+                    if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active) { jump(jumpingSpeed); }
                 }
 
                 if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
@@ -326,16 +319,30 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if (collision_count == 0)
-            {
-                collisionEntered2D = true;
-                collisionEntered2Dcol = col;
+
+            if (col.gameObject.tag == "Level")
+            {   
+                
             }
-            collision_count += 1;
+            
+            else {
+                velocityY = 0;
+            }
         }
     }
 
-    void OnCollisionExit2D(Collision2D collisionInfo)
+    void OnCollisionStay2D(Collision2D col)
+    {
+        foreach (var item in col.contacts)
+        {
+            if (item.normal == new Vector2(0, -1))
+            {
+                velocityY = 0;
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
     {
         collision_count -= 1;
 
@@ -369,6 +376,10 @@ public class Player : MonoBehaviour
         if (trig.tag == "gravity_switch") {
             gravity_direction = -1;
             transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
+        }
+
+        if (trig.tag == "boost_up") {
+            jump(jumpingSpeed*2);
         }
     }
 

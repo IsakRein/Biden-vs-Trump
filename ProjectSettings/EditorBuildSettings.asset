@@ -11,10 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Mechanics Test.unity
     guid: d5f920f780c734f25833236459a25014
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 2428ca31317e5194c9b4e8831c5a6b3f
   - enabled: 0
     path: Assets/Scenes/Level 2.unity
     guid: 06c923011210242dabdfc02e5e99b50c
+  - enabled: 0
+    path: Assets/Scenes/Level 4.unity
+    guid: c2591eb8407054050a3a513aeaafd83a
+  - enabled: 0
+    path: Assets/Scenes/Level 3.unity
+    guid: e08ab9156df77475f8cc82c8469d1e3e
   m_configObjects: {}

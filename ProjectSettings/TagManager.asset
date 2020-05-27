@@ -10,6 +10,7 @@ TagManager:
   - jetpack
   - jetpack_stop
   - gravity_switch
+  - boost_up
   layers:
   - Default
   - TransparentFX
