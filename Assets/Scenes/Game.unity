@@ -10173,6 +10173,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10277,6 +10278,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 75
   yOffset: 45
+--- !u!95 &519420034
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f28d6588cd49a048bbafdc7673747a2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &541926989
 GameObject:
   m_ObjectHideFlags: 0
@@ -15827,7 +15847,7 @@ MonoBehaviour:
   jumpCounter: 0
   collisionDetected: 1
   collision_count: 0
-  camera_animator: {fileID: 0}
+  camera_animator: {fileID: 519420034}
 --- !u!61 &1168277891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17183,7 +17203,7 @@ MonoBehaviour:
   levelManager: {fileID: 272213317}
   verticalSize: 0
   horizontalSize: 0
-  level: {fileID: 0}
+  level: {fileID: 272213315}
 --- !u!4 &1271593860
 Transform:
   m_ObjectHideFlags: 0

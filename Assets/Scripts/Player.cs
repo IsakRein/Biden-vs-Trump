@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public float jumpLength;
     public float velocityX;
     public float velocityY = 0;
-    public float fallMultiplier = 2.5f;
+    public float fall_multiplier = 2.5f;
     private float jumpingSpeed = 0;
     private float gravity = -10f;
     
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public bool jetpack_active;
     public float jetpack_speed;
     public float jetpack_max_speed;
+    public float jetpack_fall_multiplier = 2.5f;
 
     [Header("Effects")]
     public GameObject waterSplash;
@@ -73,10 +74,10 @@ public class Player : MonoBehaviour
         //in:  height, length, speed, fallMultipler
 
         float time = jumpLength/velocityX;
-        float t2 = time / (1 + Mathf.Sqrt(fallMultiplier));
+        float t2 = time / (1 + Mathf.Sqrt(fall_multiplier));
         float t1 = time - t2;
 
-        gravity = (2 * jumpHeight) / (fallMultiplier * t2*t2);
+        gravity = (2 * jumpHeight) / (fall_multiplier * t2*t2);
         jumpingSpeed = gravity * t1;
 
         // Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
@@ -131,7 +132,8 @@ public class Player : MonoBehaviour
         if (is_airbound)
         {
             if (velocityY * gravity_direction > 0) { currentGravity = gravity * gravity_direction; }
-            else { currentGravity = gravity * fallMultiplier * gravity_direction; }
+            else if (jetpack_active) { currentGravity = gravity * jetpack_fall_multiplier * gravity_direction; }
+            else { currentGravity = gravity * fall_multiplier * gravity_direction; }
 
             if (!jetpack_active) 
             {
@@ -164,7 +166,13 @@ public class Player : MonoBehaviour
         jetpack_active = false;
         gravity_direction = 1;
         play_smoke_impact = true;
-        camera_animator.SetTrigger("start");
+        camera_animator.SetBool("zoomed_out", false);
+        camera_animator.Play("camera_main", 0, 0.0f);
+
+        animator.SetBool("Jumping", false);
+        animator.SetBool("Has Landed", false);
+        animator.SetBool("Jetpack", false);
+        animator.SetBool("is_airbound", true);
     }
 
     public void PauseGame()
@@ -196,6 +204,7 @@ public class Player : MonoBehaviour
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
+        animator.SetBool("is_airbound", true);
         jumpCounter++;
     }
 
@@ -204,6 +213,7 @@ public class Player : MonoBehaviour
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
+        animator.SetBool("is_airbound", true);
         if (velocityY < jetpack_max_speed)
         {
             velocityY += jetpack_speed * Time.deltaTime;
@@ -249,7 +259,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Jumping", false);
     }
  
-    void trigger_smoke_impact()
+    void trigger_smoke_impact(float _smoke_impact_offset_X)
     {
         if (play_smoke_impact)
         {
@@ -257,7 +267,7 @@ public class Player : MonoBehaviour
             else { smoke_impact_last_num++; }
 
             GameObject smoke_impact = Instantiate(smoke_impacts[smoke_impact_last_num]);
-            smoke_impact.transform.position = new Vector2(transform.position.x + smoke_impact_offset_X, transform.position.y + (smoke_impact_offset_Y * gravity_direction));
+            smoke_impact.transform.position = new Vector2(_smoke_impact_offset_X, transform.position.y + (smoke_impact_offset_Y * gravity_direction));
             smoke_impact.transform.localScale = new Vector3(smoke_impact.transform.localScale.x, smoke_impact.transform.localScale.y * gravity_direction, smoke_impact.transform.localScale.z);
             play_smoke_impact = false;
             StartCoroutine(ResetSmokeImpact());
@@ -297,12 +307,15 @@ public class Player : MonoBehaviour
                 // Collision bottom
                 if (item.normal == new Vector2(0, 1)) {
                     is_airbound = false;
-                    
+                    animator.SetBool("is_airbound", false);
+
                     // Smoke
-                    if (transform.position.x + max_offset_ground_x > col.collider.bounds.min.x 
-                    && transform.position.x < col.collider.bounds.max.x + max_offset_ground_x) 
-                    { trigger_smoke_impact(); }
-                    
+                    if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
+                    { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
+                    else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
+                    { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
+                    else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
+
                     // Stop jumping
                     if (is_jumping) { jump_end(); }
                     
@@ -317,16 +330,6 @@ public class Player : MonoBehaviour
                         death_explosion();
                     }
                 }
-            }
-
-
-            if (col.gameObject.tag == "Level")
-            {   
-                
-            }
-            
-            else {
-                velocityY = 0;
             }
         }
     }
@@ -349,6 +352,7 @@ public class Player : MonoBehaviour
         if (collision_count == 0) 
         {
             is_airbound = true;
+            animator.SetBool("is_airbound", true);
         }
     }
     
@@ -363,13 +367,13 @@ public class Player : MonoBehaviour
         if (trig.tag == "jetpack") {
 
             jetpack_active = true;
-            camera_animator.SetTrigger("zoom_out");
+            camera_animator.SetBool("zoomed_out", true);
             animator.SetBool("Jetpack", true);
         }
 
         if (trig.tag == "jetpack_stop") {
             jetpack_active = false;
-            camera_animator.SetTrigger("zoom_in");
+            camera_animator.SetBool("zoomed_out", false);
             animator.SetBool("Jetpack", false);
         }
 
