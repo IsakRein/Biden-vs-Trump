@@ -3083,12 +3083,12 @@ PrefabInstance:
     - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
         type: 3}
       propertyPath: jetpack_max_speed
-      value: 137.62
+      value: 168.3
       objectReference: {fileID: 0}
     - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
         type: 3}
       propertyPath: jetpack_speed
-      value: 144.56
+      value: 444.2
       objectReference: {fileID: 0}
     - target: {fileID: 5037178170799159211, guid: 6b4edee3beed94c07a340f843b720916,
         type: 3}

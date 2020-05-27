@@ -87,13 +87,6 @@ public class Player : MonoBehaviour
         {
             if (jetpack_active)
             {
-                if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-                {
-                    if (jumpCounter < 1) {
-                        jump(); Debug.Log("Jump");
-                    }
-                    // else { velocityY = 0; }
-                }
 
                 if (Input.GetKey("space") || (Input.touchCount > 0))
                 {
@@ -169,7 +162,7 @@ public class Player : MonoBehaviour
                     jump_end();
                 }
                 
-                if (Input.GetKey("space") || Input.touchCount > 0)
+                if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active)
                 {
                     jump();
                 }
@@ -236,6 +229,9 @@ public class Player : MonoBehaviour
 
     void jetpack_fly() 
     {
+        is_jumping = true;
+        is_airbound = true;
+        animator.SetBool("Jumping", true);
         if (velocityY < jetpack_max_speed)
         {
             velocityY += jetpack_speed * Time.deltaTime;
