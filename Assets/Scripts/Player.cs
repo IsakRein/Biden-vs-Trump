@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private int prev_jump_counter;
     private bool play_smoke_impact;
     public Animator camera_animator;
+    public bool is_dead;
 
     private void Awake()
     {
@@ -166,6 +167,7 @@ public class Player : MonoBehaviour
         jetpack_active = false;
         gravity_direction = 1;
         play_smoke_impact = true;
+        is_dead = false;
         camera_animator.SetBool("zoomed_out", false);
         camera_animator.Play("camera_main", 0, 0.0f);
 
@@ -257,6 +259,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Death", true);
         is_jumping = false;
         animator.SetBool("Jumping", false);
+        is_dead = true;
     }
  
     void trigger_smoke_impact(float _smoke_impact_offset_X)
@@ -274,60 +277,58 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator ResetSmokeImpact()
-    {
-        yield return new WaitForSeconds(.1f);
-        
-        play_smoke_impact = true;
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         collision_count++;
 
-        if (col.gameObject.tag == "Death") { 
-            death_explosion(); 
-        }
-        else
+        if (!is_dead) 
         {
-            foreach (var item in col.contacts)
+            if (col.gameObject.tag == "Death") 
+            { 
+                death_explosion(); 
+            }
+            
+            else
             {
-                // Collision right
-                if (item.normal == new Vector2(-1, 0))
+                foreach (var item in col.contacts)
                 {
-                    death_explosion();
-                }
-
-                // Collision top
-                if (item.normal == new Vector2(0, -1))
-                {
-                    velocityY = 0;
-                }
-
-                // Collision bottom
-                if (item.normal == new Vector2(0, 1)) {
-                    is_airbound = false;
-                    animator.SetBool("is_airbound", false);
-
-                    // Smoke
-                    if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
-                    { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
-                    else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
-                    { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
-                    else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
-
-                    // Stop jumping
-                    if (is_jumping) { jump_end(); }
-                    
-                    // Jumping again
-                    if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active) { jump(jumpingSpeed); }
-                }
-
-                if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
-                {
-                    if (collision_count > 1)
+                    // Collision right
+                    if (item.normal == new Vector2(-1, 0))
                     {
                         death_explosion();
+                    }
+
+                    // Collision top
+                    if (item.normal == new Vector2(0, -1))
+                    {
+                        velocityY = 0;
+                    }
+
+                    // Collision bottom
+                    if (item.normal == new Vector2(0, 1)) {
+                        is_airbound = false;
+                        animator.SetBool("is_airbound", false);
+
+                        // Smoke
+                        if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
+                        { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
+                        else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
+                        { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
+                        else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
+
+                        // Stop jumping
+                        if (is_jumping) { jump_end(); }
+                        
+                        // Jumping again
+                        if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active) { jump(jumpingSpeed); }
+                    }
+
+                    if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
+                    {
+                        if (collision_count > 1)
+                        {
+                            death_explosion();
+                        }
                     }
                 }
             }
@@ -389,10 +390,25 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D trig)
     {
-        if (trig.tag == "add_jump_square")  { jumpCounter = prev_jump_counter;}
+        if (trig.tag == "add_jump_square")  { RemoveExtraJump(prev_jump_counter); }
         if (trig.tag == "gravity_switch") { 
             gravity_direction = 1;
             transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
         }    
     }
+
+    IEnumerator ResetSmokeImpact()
+    {
+        yield return new WaitForSeconds(.1f);
+        
+        play_smoke_impact = true;
+    }
+
+    IEnumerator RemoveExtraJump(int _prev_jump_counter)
+    {
+        yield return new WaitForSeconds(.1f);
+        
+        jumpCounter = _prev_jump_counter;
+    }
+    
 }

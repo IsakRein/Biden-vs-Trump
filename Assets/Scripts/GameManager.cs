@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
     {
         player.gameObject.SetActive(true);
         player.StartGame();
-        environment.StartGame();
         levelManager.StartGame();
         
         level.SetActive(false);
         level.SetActive(true);
+
+        environment.StartGame();
     }
 
     public void PauseGame() 
