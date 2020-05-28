@@ -20,11 +20,13 @@ public class Environment : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        childrenSizes.Clear();
 
         while (transform.childCount > 0)
         {
             Transform child = transform.GetChild(0);
             originalChildren.Add(child.gameObject);
+            childrenSizes.Add(child.GetComponent<SpriteRenderer>().bounds.size.x); 
             child.transform.parent = GameObject.Find("Environment Original").transform;
             child.gameObject.SetActive(false);
         }
@@ -39,6 +41,39 @@ public class Environment : MonoBehaviour
         }
     }
     
+    public void StartGame() 
+    {
+        gameActive = true;
+
+        children.Clear();
+        childrenClones.Clear();
+        childrenPosY.Clear();
+
+        foreach (Transform child in transform) 
+        { 
+            Destroy(child.gameObject);
+        }
+
+        foreach (GameObject originalChild in originalChildren) 
+        {
+            GameObject childObj = Instantiate(originalChild, transform);
+            childObj.SetActive(true);
+            Transform child = childObj.transform;
+            
+            child.name = originalChild.name;
+            children.Add(child);
+            childrenPosY.Add(child.position.y);
+            child.localPosition = new Vector2(0, child.localPosition.y);
+        } 
+
+        foreach (Transform child in children) 
+        {
+            Transform childClone = CreateClone(child);
+            childClone.name = "1";
+            childrenClones.Add(childClone);
+        }
+    }
+  
     void Update()
     {
         transform.position = new Vector2(transform.position.x, 0);
@@ -76,44 +111,7 @@ public class Environment : MonoBehaviour
         }
     }
 
-    public void StartGame() 
-    {
-        gameActive = true;
-
-        children.Clear();
-        childrenClones.Clear();
-        childrenSizes.Clear();
-        childrenPosY.Clear();
-
-        foreach (Transform child in transform) 
-        { 
-            Destroy(child.gameObject);
-        }
-
-        foreach (GameObject originalChild in originalChildren) 
-        {
-            GameObject childObj = Instantiate(originalChild, transform);
-            childObj.SetActive(true);
-            Transform child = childObj.transform;
-            
-            child.name = originalChild.name;
-
-            children.Add(child);
-
-            float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
-            childrenSizes.Add(currentSizeX); 
-            childrenPosY.Add(child.position.y);
-            child.position = new Vector2((currentSizeX/2)-(gameManager.horizontalSize/2), child.position.y);
-        } 
-
-        foreach (Transform child in children) 
-        {
-            Transform childClone = CreateClone(child);
-            childClone.name = "1";
-            childrenClones.Add(childClone);
-        }
-    }
-
+ 
     public void PauseGame() 
     {
         gameActive = false;
@@ -131,6 +129,8 @@ public class Environment : MonoBehaviour
 
     Transform CreateClone(Transform child) 
     {
+        Debug.Log("Creating Clone");
+
         float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
         GameObject childClone = Instantiate(child.gameObject, transform);
         childClone.transform.position = new Vector2(child.position.x + currentSizeX, child.position.y);

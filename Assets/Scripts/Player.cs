@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     public float jetpack_max_speed;
     public float jetpack_fall_multiplier = 2.5f;
 
+    [Header("Boost Up")]
+    public float boost_up_multiplier;
+
     [Header("Effects")]
     public GameObject waterSplash;
     public GameObject explosion;
@@ -104,8 +107,8 @@ public class Player : MonoBehaviour
             else {
                 if (transform.position.y <= -50)
                 {
-                    waterSplash.SetActive(true);
-                    waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
+                    // waterSplash.SetActive(true);
+                    // waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
                     gameManager.Death();
                 }
 
@@ -365,26 +368,30 @@ public class Player : MonoBehaviour
             jumpCounter = 1;
         }
 
-        if (trig.tag == "jetpack") {
+        if (trig.tag == "jetpack") 
+        {
 
             jetpack_active = true;
             camera_animator.SetBool("zoomed_out", true);
             animator.SetBool("Jetpack", true);
         }
 
-        if (trig.tag == "jetpack_stop") {
+        if (trig.tag == "jetpack_stop") 
+        {
             jetpack_active = false;
             camera_animator.SetBool("zoomed_out", false);
             animator.SetBool("Jetpack", false);
         }
 
-        if (trig.tag == "gravity_switch") {
+        if (trig.tag == "gravity_switch") 
+        {
             gravity_direction = -1;
             transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
         }
 
         if (trig.tag == "boost_up") {
-            jump(jumpingSpeed*2);
+            jump(jumpingSpeed*boost_up_multiplier);
+            jumpCounter = 1;
         }
     }
 

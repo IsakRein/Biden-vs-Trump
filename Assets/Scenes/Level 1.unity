@@ -34316,6 +34316,7 @@ MonoBehaviour:
   jetpack_speed: 0
   jetpack_max_speed: 0
   jetpack_fall_multiplier: 2.5
+  boost_up_multiplier: 0
   waterSplash: {fileID: 301485113}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
     type: 3}
@@ -34333,6 +34334,7 @@ MonoBehaviour:
   collisionDetected: 1
   collision_count: 0
   camera_animator: {fileID: 519420034}
+  is_dead: 0
 --- !u!61 &1168277891
 BoxCollider2D:
   m_ObjectHideFlags: 0

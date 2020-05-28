@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5037178170799159214}
   - component: {fileID: 5037178170799159212}
   - component: {fileID: 5037178170799159213}
+  - component: {fileID: 153950951}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -48,18 +49,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea08c648273162489a172f2909eafea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startVector: {x: 0, y: 47.15, z: 1}
-  jetpack_active: 0
-  jetpack_speed: 750
-  jetpack_max_speed: 100
-  jetpack: {fileID: 0}
+  startVector: {x: 0, y: 0, z: 1}
   jumpHeight: 30
   jumpLength: 60
   velocityX: 120
   velocityY: 0
-  fallMultiplier: 3
-  jumpCounter: 0
-  collisionDetected: 1
+  fall_multiplier: 2.5
+  jetpack_active: 0
+  jetpack_speed: 1000
+  jetpack_max_speed: 100
+  jetpack_fall_multiplier: 0.6
+  boost_up_multiplier: 1.5
   waterSplash: {fileID: 0}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
     type: 3}
@@ -72,8 +72,12 @@ MonoBehaviour:
   smoke_impact_offset_Y: -5.5
   is_jumping: 1
   is_airbound: 1
+  max_offset_ground_x: 0
+  jumpCounter: 0
+  collisionDetected: 1
   collision_count: 0
   camera_animator: {fileID: 0}
+  is_dead: 0
 --- !u!212 &5037178170799159210
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -285,3 +289,29 @@ EdgeCollider2D:
   - {x: 0.3, y: -0.5}
   - {x: -0.15, y: -0.5}
   - {x: -0.15, y: 0.18}
+--- !u!61 &153950951
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037178170799159124}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0029099733, y: 0.350655}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 1.04}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32413986, y: 0.33868998}
+  m_EdgeRadius: 0
