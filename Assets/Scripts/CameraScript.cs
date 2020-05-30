@@ -7,6 +7,7 @@ public class CameraScript : MonoBehaviour
 {
     private GameManager gameManager;
     private Transform player;
+    private Player playerScript;
     public float xOffset;
     public float yOffset;
 
@@ -14,6 +15,7 @@ public class CameraScript : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.Find("Player").transform;
+        playerScript = player.gameObject.GetComponent<Player>();
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class CameraScript : MonoBehaviour
         float x = player.position.x + xOffset;
         float y = 0;
 
-        if (player.position.y > yOffset)
+        if (player.position.y > yOffset && !playerScript.jetpack_active)
         {
             y = player.position.y - yOffset;
         }

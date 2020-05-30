@@ -129,8 +129,6 @@ public class Environment : MonoBehaviour
 
     Transform CreateClone(Transform child) 
     {
-        Debug.Log("Creating Clone");
-
         float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
         GameObject childClone = Instantiate(child.gameObject, transform);
         childClone.transform.position = new Vector2(child.position.x + currentSizeX, child.position.y);
