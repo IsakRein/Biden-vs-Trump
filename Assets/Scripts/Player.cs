@@ -370,7 +370,6 @@ public class Player : MonoBehaviour
 
         if (trig.tag == "jetpack") 
         {
-
             jetpack_active = true;
             camera_animator.SetBool("zoomed_out", true);
             animator.SetBool("Jetpack", true);
