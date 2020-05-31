@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
             }
 
             else {
-                if (transform.position.y <= -50)
+                if (transform.position.y <= -150)
                 {
                     // waterSplash.SetActive(true);
                     // waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
