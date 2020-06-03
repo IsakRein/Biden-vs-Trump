@@ -79,17 +79,12 @@ public class Player : MonoBehaviour
         frames_collision = 100;
         seconds_jump = 100;
 
-        //in:  height, length, speed, fallMultipler
-
         float time = jumpLength/velocityX;
         float t2 = time / (1 + Mathf.Sqrt(fall_multiplier));
         float t1 = time - t2;
 
         gravity = (2 * jumpHeight) / (fall_multiplier * t2*t2);
         jumpingSpeed = gravity * t1;
-
-        // Debug.Log(t1 + " " + t2 + " " + gravity + " " + jumpingSpeed);
-        //out: gravity, jumpForce
     }
 
     void Update()
@@ -98,7 +93,6 @@ public class Player : MonoBehaviour
         {
             if (jetpack_active)
             {
-
                 if (Input.GetKey("space") || (Input.touchCount > 0))
                 {
                     jetpack_fly();
@@ -111,8 +105,6 @@ public class Player : MonoBehaviour
             else {
                 if (transform.position.y <= -150)
                 {
-                    // waterSplash.SetActive(true);
-                    // waterSplash.transform.position = new Vector2(transform.position.x, waterSplashY);
                     gameManager.Death();
                 }
 
@@ -158,7 +150,7 @@ public class Player : MonoBehaviour
         }
 
         else { velocityY = 0; }
-        animator.SetFloat("Speed", velocityY);
+        animator.SetFloat("Speed", velocityY * gravity_direction);
 
         transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
