@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimationAutoDestroy.cs" />
+    <Compile Include="Assets\Scripts\Bird.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Environment.cs" />
     <Compile Include="Assets\Scripts\Follower.cs" />

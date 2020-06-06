@@ -129,8 +129,6 @@ public class Player : MonoBehaviour
 
     void SwitchGravity(int direction)
     {
-        Debug.Log(direction);
-
         gravity_direction = direction;
         transform.localScale = new Vector3(transform.localScale.x, direction * Mathf.Abs(transform.localScale.y), transform.localScale.z);
     }

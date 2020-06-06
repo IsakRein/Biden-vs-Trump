@@ -18,6 +18,10 @@ public class LevelManager : MonoBehaviour
     public void StartGame() 
     {
         gameActive = true;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
         //transform.position = new Vector2(0,0);
     }
 
