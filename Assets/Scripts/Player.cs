@@ -284,6 +284,8 @@ public class Player : MonoBehaviour
     {
         collision_count++;
 
+        Debug.Log("Entered");
+
         if (!is_dead) 
         {
             if (col.gameObject.tag == "Death") 

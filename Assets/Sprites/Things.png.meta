@@ -7,7 +7,10 @@ TextureImporter:
     second: spike_small
   - first:
       213: -5294178002952207976
-    second: stack_large
+    second: spike
+  - first:
+      213: -9115116177176989987
+    second: Water
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -138,7 +141,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stack_large
+      name: spike
       rect:
         serializedVersion: 2
         x: 0
@@ -154,6 +157,27 @@ TextureImporter:
       bones: []
       spriteID: 891c854f72d4786b0800000000000000
       internalID: -5294178002952207976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 196
+        width: 75
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddee2fc712a908180800000000000000
+      internalID: -9115116177176989987
       vertices: []
       indices: 
       edges: []

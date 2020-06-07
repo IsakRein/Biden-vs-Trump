@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         float x = player.position.x + xOffset;
-        float y = 10;
+        float y = 0;
 
         if (player.position.y > yOffset && !playerScript.jetpack_active)
         {
