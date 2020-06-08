@@ -24,8 +24,8 @@ public class Bird : MonoBehaviour
             animator.SetBool("fly_away", true);
 
             float direction = transform.localScale.x / Mathf.Abs(transform.localScale.x);
-            float accX = Random.Range(direction * -0.5f, direction * -0.7f);
-            float accY = Random.Range(0.5f, 1.3f);
+            float accX = Random.Range(direction * -0.2f, direction * -0.3f);
+            float accY = Random.Range(0.2f, 1f);
 
             StartCoroutine(Fly_Away(accX, accY));
         }

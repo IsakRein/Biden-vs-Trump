@@ -1,0 +1,712 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tra",
+				"Transform()\tTransform()"
+			],
+			[
+				"transo",
+				"transform\tTransform"
+			],
+			[
+				"toa",
+				"totalFuel"
+			],
+			[
+				"total",
+				"totalFuel"
+			],
+			[
+				"Met",
+				"MetaData"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"data",
+				"dataLine"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"con",
+				"convTime"
+			],
+			[
+				"lengt",
+				"Array.length"
+			],
+			[
+				"J",
+				"JSON"
+			],
+			[
+				"pa",
+				"pack"
+			],
+			[
+				"Vect",
+				"Vector3"
+			],
+			[
+				"for",
+				"foreach\tForEach"
+			],
+			[
+				"Displ",
+				"DisplayPack"
+			],
+			[
+				"scrollRe",
+				"scrollRectTransform"
+			],
+			[
+				"Execute",
+				"ExecuteInEditMode"
+			],
+			[
+				"vect",
+				"Vector3"
+			],
+			[
+				"ve",
+				"Vector3"
+			],
+			[
+				"Anim",
+				"Animator"
+			],
+			[
+				"Rigi",
+				"Rigidbody2D"
+			],
+			[
+				"game",
+				"GameManager"
+			],
+			[
+				"Ey",
+				"Eyes3"
+			],
+			[
+				"eye",
+				"Eyes"
+			],
+			[
+				"goalAnima",
+				"goalAnimationSpeed"
+			],
+			[
+				"goal",
+				"GoalScript"
+			],
+			[
+				"goa",
+				"goalPosition"
+			],
+			[
+				"Go",
+				"GoalAnimation"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"backgro",
+				"background-color"
+			],
+			[
+				"pd",
+				"padding-top"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"t",
+				"top"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"border-top",
+				"border-top-width"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"border",
+				"border-width"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"mr",
+				"margin-left"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"fo",
+				"font-weight"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "",
+			"file": "Assets/Samples/2D",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"file": "Pixel",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"file": "Perfect/2.0.4/Sample",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack insta",
+				"Package Control: Install Package"
+			],
+			[
+				"set python",
+				"Set Syntax: Python"
+			],
+			[
+				"set java",
+				"Set Syntax: Java"
+			],
+			[
+				"set json",
+				"Set Syntax: JSON"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"package controll instal",
+				"Package Control: Install Package"
+			],
+			[
+				"material",
+				"Material Theme: Configuration"
+			],
+			[
+				"m",
+				"Material Theme: Extras"
+			],
+			[
+				"mater",
+				"Material Theme: Configuration"
+			],
+			[
+				"set syntax pla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"set syntax py",
+				"Set Syntax: Python"
+			],
+			[
+				"setsy",
+				"Preferences: Settings – Syntax Specific"
+			],
+			[
+				"package control instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Repository"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Local Dependency"
+			],
+			[
+				"active",
+				"ayu: Activate theme"
+			],
+			[
+				"activate",
+				"Material Theme: Activate theme"
+			],
+			[
+				"acti",
+				"ayu: Activate theme"
+			],
+			[
+				"",
+				"Material Theme: Activate theme"
+			],
+			[
+				"package ",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 534.0
+	},
+	"console":
+	{
+		"height": 225.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Unity/BernieGame/Assets/Scripts"
+	],
+	"file_history":
+	[
+		"/C/Unity/BernieGame/Scenes",
+		"/C/Unity/BernieGame/and",
+		"/C/Unity/BernieGame/Extras/Scenes/Scripts/CameraManager.cs",
+		"/C/Unity/BernieGame/Assets/Scripts/GameManager.cs",
+		"/C/Unity/BernieGame/Extras/Unity.2D.PixelPerfect.Samples.asmdef",
+		"/C/Unity/BernieGame/Assets/Scripts/Bird.cs",
+		"/C/Unity/BernieGame/Assets/Samples/2D",
+		"/C/Unity/BernieGame/Pixel",
+		"/C/Unity/BernieGame/Perfect/2.0.4/Sample",
+		"/C/Unity/BernieGame/Assets/Scripts/test.py",
+		"/C/Unity/BernieGame/Assets/Scripts/test.json",
+		"/C/Unity/BernieGame/Assets/Scripts/Player.cs",
+		"/C/Unity/BernieGame/Assets/Scripts/Mechanics/Mechanics_Camera.cs",
+		"/C/Unity/BernieGame/Assets/Scripts/Player.cs\"",
+		"/C/Unity/BernieGame/0",
+		"/D/Downloads/Package Control.sublime-package",
+		"/D/Durden/Scripts/DataProcessor.py",
+		"/D/Durden/Scripts/Toolbox.py",
+		"/D/Durden/Scripts/Downloader.py",
+		"/D/Durden/.gitignore",
+		"/D/Durden/Data/2020_03_18.txt",
+		"/D/Durden/Scripts/ToolBox.py",
+		"/D/Durden/Scripts/DataProcessor",
+		"/D/Durden/Scripts/GenerationManager.py",
+		"/D/Advent Of Code/Day 2-1",
+		"/D/Advent Of Code/Day 1-1.py",
+		"/D/Advent Of Code/Day 1-2",
+		"/D/DurdenStockDownloader/client13.js",
+		"/D/Durden/AI/All(x8)/2020_02_19/ThreeSoldiers(RECREATED)/Results/94.txt",
+		"/D/Durden/Data2/2020_01_20/5234-865200.txt",
+		"/D/Durden/AI/All(x8)/2020_02_27/Settings/1.txt",
+		"/D/DurdenStockDownloader/Data/2020_01_27/5234-865200.txt",
+		"/D/Durden/Data2/2020_02_11/5234-865200.txt",
+		"/D/DurdenStockDownloader/MetaData/stock_ids.txt",
+		"/D/Durden/AI/TopAktier/Hammer/Results/1.txt",
+		"/D/DurdenStockDownloader/MetaData/etp_ids.txt",
+		"/D/DurdenStockDownloader/test1.js",
+		"/D/DurdenStockDownloader/client12.js",
+		"/D/Durden/AI/TopAktier/Hammer/Settings/1.txt",
+		"/D/DurdenStockDownloader/DataManager.py",
+		"/D/DurdenStockDownloader/Data/2019_12_11/5234-865200.txt",
+		"/D/DurdenStockDownloader/client12b.js",
+		"/D/DurdenStockDownloader/Data/2019_10_25/5234-865200.txt",
+		"/D/DurdenStockDownloader/refineData.js",
+		"/D/DurdenStockDownloader/Data/2019_10_30/5234-865200.txt",
+		"/D/DurdenStockDownloader/Data/2019_10_28/5234-865200.txt",
+		"/D/DurdenStockDownloader/RefinedData/5234/2019_10_25/Sell.txt",
+		"/D/DurdenStockDownloader/Data/2019_10_26/5234-865200.txt",
+		"/D/DurdenStockDownloader/nodetest.js",
+		"/D/Games/Red Dead Redemption 2/levels_1.rpf",
+		"/D/DurdenStockDownloader/Data/2019_11_5/5234-865200.txt",
+		"/D/DurdenStockDownloader/RefinedData/2019_10_25.json",
+		"/D/DurdenStockDownloader/2019_10_25.json",
+		"/D/DurdenStockDownloader/Data/2019_10_24/5234-5301.txt",
+		"/D/DurdenStockDownloader/Data/860492-865200.txt",
+		"/D/DurdenStockDownloader/Data/2019_10_25/860492-865200.txt",
+		"/D/DurdenStockDownloader/Data/5234-5301.txt",
+		"/D/DurdenStockDownloader/Data/517828-568304.txt",
+		"/D/DurdenStockDownloader/Data/238408-362016.txt",
+		"/D/DurdenStockDownloader/Downloader.py",
+		"/D/Durden/client13.js",
+		"/D/Durden/avanzaidn.txt",
+		"/D/Durden/client12.js",
+		"/D/Durden/Job2/18813.bat",
+		"/D/slask.py",
+		"/D/Durden/Job2/13477.cmd",
+		"/D/Durden/hej_dubblat.bat",
+		"/D/Durden/test.js",
+		"/D/Durden/client11.js",
+		"/C/Users/isakr/AppData/Local/Temp/Temp1_wordpress-4.9.4.zip/wordpress/wp-activate.php",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/GameManager.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/Not Used/NavScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/LevelScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/Player.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/PackScroll.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/LevelTextScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/LevelSelectScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/GoBack.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/GoalScript.cs",
+		"/D/Unity/FPS test/Assets/SmoothMouseLook.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/PopUpScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/unity-ui-extensions/Scripts/Layout/ScrollSnap.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/GravitySwitchAnim.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/NavScript.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/DisableGameObject.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/GravitySwitchAnim.cs.meta",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/InfoPopUp.cs",
+		"/D/Unity/Gravity-Madness/Assets/InfoPopUp.cs",
+		"/D/Unity/Gravity-Madness/Assets/Shaders/Blur.shader",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/EyeScript2.cs",
+		"/D/Unity/Gravity-Madness/Assets/Standard Assets/Effects/ImageEffects/Scripts/MotionBlur.cs",
+		"/D/Unity/Tetris/Assets/Tetris Template/Scripts/UI/InGameUI.cs",
+		"/D/Unity/Tetris/Assets/Tetris Template/Scripts/Managers/UIManager.cs",
+		"/D/Unity/Gravity-Madness/Assets/GravitySwitchAnim.cs",
+		"/D/Unity/Gravity-Madness/Assets/Scripts/DontGoThroughThings.cs",
+		"/D/Unity/Roll-A-Ball/Assets/Scripts/PlayerController.cs",
+		"/C/Users/Public/Desktop/Google Chrome.lnk",
+		"/D/Gameo.com/V. 0.0.2/webroot/index.php",
+		"/D/Gameo.com/V. 0.0.1/index.html",
+		"/D/Gameo.com/V. 0.0.2/webroot/indexOriginal.php",
+		"/D/Gameo.com/V. 0.0.1/css/customized.css",
+		"/D/Gameo.com/V. 0.0.1/about.html",
+		"/D/Downloads/solid/theme/about.html",
+		"/D/Gameo.com/V. 0.0.1/css/bootstrap.css",
+		"/C/Users/isakr/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/Gameo.com/V. 0.0.1/css/bootstrap.min.css.map",
+		"/D/Gameo.com/V. 0.0.1/css/bootstrap.min.css",
+		"/D/Gameo.com/V. 0.0.1/css/bootstrap-theme.css",
+		"/D/Gameo.com/V. 0.0.1/assets/img/browser.png",
+		"/D/Gameo.com/V. 0.0.1/contact.html",
+		"/D/Gameo.com/V. 0.0.1/blog.html",
+		"/D/Gameo.com/V. 0.0.1/single-project.html",
+		"/D/Gameo.com/V. 0.0.1/single-post.html",
+		"/D/Gameo.com/V. 0.0.1/portfolio.html"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 148.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"level",
+			"x",
+			"a"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Samples/2D",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Pixel",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Perfect/2.0.4/Sample",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 49.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 510.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "BernieGame.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pl",
+				"Player.cs"
+			],
+			[
+				"play",
+				"Player.cs"
+			],
+			[
+				"",
+				"0"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 344.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

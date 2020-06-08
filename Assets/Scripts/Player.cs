@@ -282,6 +282,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        
         collision_count++;
 
         Debug.Log("Entered");

@@ -59,3 +59,6 @@ public class GameManager : MonoBehaviour
         Invoke("StartGame", 1);
     }
 }
+
+
+
