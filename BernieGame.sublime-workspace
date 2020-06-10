@@ -192,35 +192,11 @@
 	"buffers":
 	[
 		{
-			"contents": "",
-			"file": "Assets/Samples/2D",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "Assets/Scripts/Environment.cs",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "",
-			"file": "Pixel",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "",
-			"file": "Perfect/2.0.4/Sample",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 0,
+				"buffer_size": 4244,
+				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		}
@@ -366,15 +342,15 @@
 	],
 	"file_history":
 	[
+		"/C/Unity/BernieGame/Perfect/2.0.4/Sample",
+		"/C/Unity/BernieGame/Assets/Samples/2D",
+		"/C/Unity/BernieGame/Pixel",
 		"/C/Unity/BernieGame/Scenes",
 		"/C/Unity/BernieGame/and",
 		"/C/Unity/BernieGame/Extras/Scenes/Scripts/CameraManager.cs",
 		"/C/Unity/BernieGame/Assets/Scripts/GameManager.cs",
 		"/C/Unity/BernieGame/Extras/Unity.2D.PixelPerfect.Samples.asmdef",
 		"/C/Unity/BernieGame/Assets/Scripts/Bird.cs",
-		"/C/Unity/BernieGame/Assets/Samples/2D",
-		"/C/Unity/BernieGame/Pixel",
-		"/C/Unity/BernieGame/Perfect/2.0.4/Sample",
 		"/C/Unity/BernieGame/Assets/Scripts/test.py",
 		"/C/Unity/BernieGame/Assets/Scripts/test.json",
 		"/C/Unity/BernieGame/Assets/Scripts/Player.cs",
@@ -483,7 +459,7 @@
 	],
 	"find":
 	{
-		"height": 49.0
+		"height": 33.0
 	},
 	"find_in_files":
 	{
@@ -517,16 +493,16 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Samples/2D",
-					"semi_transient": false,
+					"file": "Assets/Scripts/Environment.cs",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 4244,
 						"regions":
 						{
 						},
@@ -539,63 +515,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Pixel",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Perfect/2.0.4/Sample",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
