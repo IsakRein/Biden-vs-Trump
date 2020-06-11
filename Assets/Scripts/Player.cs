@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public float smoke_impact_offset_Y;
     public bool is_jumping = false;
     public bool is_airbound = false;
-    public float max_offset_ground_x;
+    public float max_offset_ground_x; 
 
     [Header("Other")]
     public int jumpCounter;
@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
     private bool trigger_jump;
     public bool collisionDetected;
     private Vector2 lastKnownVelocity;
-
 
     [Header("Unsorted trash")]
     public System.DateTime startTime;
