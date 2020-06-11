@@ -191,6 +191,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Assets/Scripts/Environment.cs",
+			"settings":
+			{
+				"buffer_size": 4244,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -219,14 +228,6 @@
 		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"ack",
-				"Package Control: Install Package"
-			],
-			[
-				"pack",
-				"Package Control: Create Package File"
-			],
 			[
 				"pack insta",
 				"Package Control: Install Package"
@@ -337,7 +338,7 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/isakreinholdsson/Projects/Unity/BernieGame/Assets/Scripts"
+		"/C/Unity/BernieGame/Assets/Scripts"
 	],
 	"file_history":
 	[
@@ -492,8 +493,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/Environment.cs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 4244,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
