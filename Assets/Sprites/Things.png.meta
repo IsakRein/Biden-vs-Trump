@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: -9115116177176989987
     second: Water
+  - first:
+      213: 1951897410446215173
+    second: Water Middle
+  - first:
+      213: 1528039357131093124
+    second: Water Right
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -167,7 +173,28 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 196
-        width: 75
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddee2fc712a908180800000000000000
+      internalID: -9115116177176989987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water Middle
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 196
+        width: 45
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -176,8 +203,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddee2fc712a908180800000000000000
-      internalID: -9115116177176989987
+      spriteID: 508c6ab6a58861b10800000000000000
+      internalID: 1951897410446215173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water Right
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 196
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4847d9c03bfa43510800000000000000
+      internalID: 1528039357131093124
       vertices: []
       indices: 
       edges: []

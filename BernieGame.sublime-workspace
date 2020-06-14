@@ -192,10 +192,36 @@
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/Environment.cs",
+			"file": "Assets/Scripts/GameManager.cs",
 			"settings":
 			{
-				"buffer_size": 4244,
+				"buffer_size": 1283,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Parallax.cs",
+			"settings":
+			{
+				"buffer_size": 297,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Player.cs",
+			"settings":
+			{
+				"buffer_size": 13192,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/AnimationAutoDestroy.cs",
+			"settings":
+			{
+				"buffer_size": 264,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
@@ -228,6 +254,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pack insgt",
+				"Package Control: Install Package"
+			],
 			[
 				"pack insta",
 				"Package Control: Install Package"
@@ -493,16 +523,16 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Environment.cs",
-					"semi_transient": true,
+					"file": "Assets/Scripts/GameManager.cs",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4244,
+						"buffer_size": 1283,
 						"regions":
 						{
 						},
@@ -515,15 +545,103 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 660.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Parallax.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								229,
+								229
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"278,279": "; expected"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/Player.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8471,
+								8471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5653.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Scripts/AnimationAutoDestroy.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								159,
+								177
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -570,7 +688,7 @@
 	},
 	"output.variable_get":
 	{
-		"height": 0.0
+		"height": 146.0
 	},
 	"pinned_build_system": "Packages/Python/Python.sublime-build",
 	"project": "BernieGame.sublime-project",

@@ -13,6 +13,7 @@ TagManager:
   - boost_up
   - gravity_switch_regular
   - no_double_jump
+  - water
   layers:
   - Default
   - TransparentFX
