@@ -166,7 +166,6 @@ public class Player : MonoBehaviour
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true; 
-        animator.SetBool("Death", false);
         waterSplash.SetActive(false);
         is_jumping = true;
         is_airbound = true;
@@ -283,8 +282,6 @@ public class Player : MonoBehaviour
     {
         
         collision_count++;
-
-        Debug.Log("Entered");
 
         if (!is_dead) 
         {
