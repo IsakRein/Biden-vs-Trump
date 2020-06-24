@@ -328,12 +328,10 @@ public class Player : MonoBehaviour
 
                         if (ray_left.collider != null && ray_right.collider != null)
                         {
-                            Debug.Log("Both");
                             trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); 
                         }
                         else if (ray_right.collider == null && ray_left.collider != null)
                         {   
-                            Debug.Log("Only left");
                             Vector2 start_point = right_ray_start + (-Vector2.up * 2f);
 
                             RaycastHit2D ray_right_to_left = Physics2D.Raycast(start_point, Vector2.left, feet_right-feet_left);
@@ -342,7 +340,6 @@ public class Player : MonoBehaviour
                         }
                         else if (ray_left.collider == null && ray_right.collider != null)
                         {
-                            Debug.Log("Only right");
                             Vector2 start_point = left_ray_start + (-Vector2.up * 2f);                   
                    
                             RaycastHit2D ray_left_to_right = Physics2D.Raycast(start_point, Vector2.right, feet_right-feet_left);
