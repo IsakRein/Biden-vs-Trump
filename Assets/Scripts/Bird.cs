@@ -25,17 +25,17 @@ public class Bird : MonoBehaviour
 
             float direction = transform.localScale.x / Mathf.Abs(transform.localScale.x);
             float accX = Random.Range(direction * -0.2f, direction * -0.3f);
-            float accY = Random.Range(0.2f, 1f);
+            float accY = Random.Range(0.5f, 1.5f);
 
-            StartCoroutine(Fly_Away(accX, accY));
+            StartCoroutine(Fly_Away(accX, accY, direction));
         }
     }
 
 
-    private IEnumerator Fly_Away(float accX, float accY)
+    private IEnumerator Fly_Away(float accX, float accY, float direction)
     {
-        float speedX = 0;
-        float speedY = 0;
+        float speedX = direction * -10;
+        float speedY = 15;
 
 
         while (transform.localPosition.y < 250f)

@@ -12,11 +12,14 @@ public class Text : MonoBehaviour
 
     public string text;
 
-    void Update()
+    void Start() 
     {
         inlineText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         outlineText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+    }
 
+    void Update()
+    {
         inlineText.SetText(text);      
         outlineText.SetText(text);      
     }

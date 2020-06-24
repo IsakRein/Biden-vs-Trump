@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -54,6 +55,9 @@ public class Player : MonoBehaviour
     public bool collisionDetected;
     private Vector2 lastKnownVelocity;
 
+    [Header("UI")]
+    public Text progress_text;
+
     [Header("Unsorted trash")]
     public System.DateTime startTime;
     private float startDistance; 
@@ -67,6 +71,8 @@ public class Player : MonoBehaviour
     private bool play_smoke_impact;
     public Animator camera_animator;
     public bool is_dead;
+
+    public BoxCollider2D feet_collider; 
 
     private void Awake()
     {
@@ -90,6 +96,8 @@ public class Player : MonoBehaviour
     {
         if (gameActive)
         {
+            progress_text.text = (((int)(transform.position.x/108)).ToString() + "%");
+
             if (jetpack_active)
             {
                 if (Input.GetKey("space") || (Input.touchCount > 0))
@@ -152,8 +160,6 @@ public class Player : MonoBehaviour
         transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
-
-
 
     public void StartGame()
     {
@@ -279,8 +285,7 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col)
-    {
-        
+    {   
         collision_count++;
 
         if (!is_dead) 
@@ -311,12 +316,45 @@ public class Player : MonoBehaviour
                         is_airbound = false;
                         animator.SetBool("is_airbound", false);
 
+                        float feet_left = feet_collider.bounds.min.x;
+                        float feet_right = feet_collider.bounds.max.x;
+                        float feet_bottom = feet_collider.bounds.min.y;
+
+                        Vector2 left_ray_start = new Vector2(feet_left+0.1f, feet_bottom + 1f);
+                        Vector2 right_ray_start = new Vector2(feet_right-0.1f, feet_bottom + 1f);
+
+                        RaycastHit2D ray_left = Physics2D.Raycast(left_ray_start, -Vector2.up, 2f);
+                        RaycastHit2D ray_right = Physics2D.Raycast(right_ray_start, -Vector2.up, 2f);
+
+                        if (ray_left.collider != null && ray_right.collider != null)
+                        {
+                            Debug.Log("Both");
+                            trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); 
+                        }
+                        else if (ray_right.collider == null && ray_left.collider != null)
+                        {   
+                            Debug.Log("Only left");
+                            Vector2 start_point = right_ray_start + (-Vector2.up * 2f);
+
+                            RaycastHit2D ray_right_to_left = Physics2D.Raycast(start_point, Vector2.left, feet_right-feet_left);
+                            trigger_smoke_impact(ray_right_to_left.point.x + max_offset_ground_x);
+                            
+                        }
+                        else if (ray_left.collider == null && ray_right.collider != null)
+                        {
+                            Debug.Log("Only right");
+                            Vector2 start_point = left_ray_start + (-Vector2.up * 2f);                   
+                   
+                            RaycastHit2D ray_left_to_right = Physics2D.Raycast(start_point, Vector2.right, feet_right-feet_left);
+                            trigger_smoke_impact(ray_left_to_right.point.x - max_offset_ground_x);
+                        }
+
                         // Smoke
-                        if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
-                        { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
-                        else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
-                        { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
-                        else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
+                        // if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
+                        // { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
+                        // else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
+                        // { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
+                        // else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
 
                         // Stop jumping
                         if (is_jumping) { jump_end(); }
