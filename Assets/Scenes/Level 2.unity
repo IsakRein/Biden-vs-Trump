@@ -39302,7 +39302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1925585710
 Transform:
   m_ObjectHideFlags: 0
@@ -44072,6 +44072,11 @@ PrefabInstance:
       propertyPath: camera_animator
       value: 
       objectReference: {fileID: 519420034}
+    - target: {fileID: 7745802233813817209, guid: cc9b853d4ca7546c58e191dbb90fa9fb,
+        type: 3}
+      propertyPath: jetpack_speed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7745802233813817210, guid: cc9b853d4ca7546c58e191dbb90fa9fb,
         type: 3}
       propertyPath: m_LocalPosition.x

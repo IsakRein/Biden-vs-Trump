@@ -28611,36 +28611,6 @@ PrefabInstance:
       propertyPath: camera_animator
       value: 
       objectReference: {fileID: 519420034}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: jetpack_max_speed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: jetpack_speed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: startVector.x
-      value: 4905
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: jetpack_fall_multiplier
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: startVector.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5037178170799159208, guid: 6b4edee3beed94c07a340f843b720916,
-        type: 3}
-      propertyPath: boost_up_multiplier
-      value: 1.75
-      objectReference: {fileID: 0}
     - target: {fileID: 5037178170799159210, guid: 6b4edee3beed94c07a340f843b720916,
         type: 3}
       propertyPath: m_Sprite
