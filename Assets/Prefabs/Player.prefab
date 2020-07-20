@@ -64,7 +64,7 @@ MonoBehaviour:
   jetpack_speed: 1000
   jetpack_max_speed: 100
   jetpack_fall_multiplier: 0.6
-  boost_up_multiplier: 0
+  boost_up_multiplier: 1.75
   waterSplash: {fileID: 0}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
     type: 3}

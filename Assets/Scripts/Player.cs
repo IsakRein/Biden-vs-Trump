@@ -394,8 +394,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
     void OnTriggerEnter2D(Collider2D trig)
     {
 
@@ -421,7 +419,7 @@ public class Player : MonoBehaviour
 
         if (trig.tag == "boost_up")
         {
-            jump(jumpingSpeed*boost_up_multiplier);
+            jump(jumpingSpeed*boost_up_multiplier*gravity_direction);
             jumpCounter = 1;
         }
 

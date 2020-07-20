@@ -9,6 +9,7 @@ public class CameraScript : MonoBehaviour
     private Player playerScript;
     public float xOffset;
     public float yOffset;
+    public float yOffsetDown;
     private float x_position;
     float verticalSize;
     float horizontalSize;
@@ -36,6 +37,10 @@ public class CameraScript : MonoBehaviour
         if (player.position.y > yOffset && !playerScript.jetpack_active)
         {
             y = player.position.y - yOffset;
+        }
+        else if (player.position.y < yOffsetDown && !playerScript.jetpack_active)
+        {
+            y = player.position.y - yOffsetDown;
         }
 
         transform.position = new Vector3(x, y, -10);
