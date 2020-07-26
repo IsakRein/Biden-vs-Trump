@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
     {
         startDistance = rb2d.position.x;
         velocityY = gravity_direction * _jumpingSpeed;
+        Debug.Log(velocityY);
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
@@ -376,7 +377,7 @@ public class Player : MonoBehaviour
     {
         foreach (var item in col.contacts)
         {
-            if (item.normal == new Vector2(0, -1))
+            if (item.normal == new Vector2(0, -1*gravity_direction))
             {
                 velocityY = 0;
             }
@@ -419,7 +420,7 @@ public class Player : MonoBehaviour
 
         if (trig.tag == "boost_up")
         {
-            jump(jumpingSpeed*boost_up_multiplier*gravity_direction);
+            jump(jumpingSpeed*boost_up_multiplier);
             jumpCounter = 1;
         }
 

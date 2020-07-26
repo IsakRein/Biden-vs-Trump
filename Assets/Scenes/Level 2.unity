@@ -21162,6 +21162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 40
   yOffset: 30
+  yOffsetDown: -20
 --- !u!95 &519420034
 Animator:
   serializedVersion: 3

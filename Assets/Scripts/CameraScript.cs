@@ -23,7 +23,7 @@ public class CameraScript : MonoBehaviour
 		verticalSize = (float) (Camera.main.orthographicSize * 2.0);
 		horizontalSize = verticalSize * Screen.width / Screen.height;
         x_position = -horizontalSize/2 + xOffset;
-    }
+    } 
 
     void Update()
     {
