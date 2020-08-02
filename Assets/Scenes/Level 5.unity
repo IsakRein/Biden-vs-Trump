@@ -613,7 +613,7 @@ Transform:
   m_LocalScale: {x: 128, y: 128, z: 1}
   m_Children: []
   m_Father: {fileID: 340906226}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &87538670
 SpriteRenderer:
@@ -2517,10 +2517,10 @@ Transform:
   - {fileID: 90561253}
   - {fileID: 1506114338}
   - {fileID: 518103395}
-  - {fileID: 87538669}
-  - {fileID: 1995875581}
   - {fileID: 783195783}
   - {fileID: 1659309995}
+  - {fileID: 87538669}
+  - {fileID: 1995875581}
   m_Father: {fileID: 519420032}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2545,10 +2545,11 @@ MonoBehaviour:
   - 10
   - 10
   - 0
-  - 20
+  - 0
+  - 0
   - 37.5
   - 40
-  childrenFollowCamera: 00000000000000
+  childrenFollowCamera: 0000000000000000
   camera: {fileID: 519420032}
   lastX: 0
 --- !u!1 &375065782
@@ -6424,7 +6425,7 @@ Transform:
   m_LocalScale: {x: 100.1984, y: -114.109436, z: 0.76}
   m_Children: []
   m_Father: {fileID: 340906226}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &783195784
 SpriteRenderer:
@@ -14571,7 +14572,7 @@ Transform:
   m_LocalScale: {x: 100.1984, y: -114.109436, z: 0.76}
   m_Children: []
   m_Father: {fileID: 340906226}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1659309996
 SpriteRenderer:
@@ -63843,7 +63844,7 @@ Transform:
   m_LocalScale: {x: 128, y: 128, z: 1}
   m_Children: []
   m_Father: {fileID: 340906226}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1995875582
 SpriteRenderer:
@@ -64528,6 +64529,12 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 0a04b60f53b56b04399a7f0d93ae0da2, type: 2}
+    - target: {fileID: 2111522929780751629, guid: 79c5a1b6dc45446b69ae60df0cea66cc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5f40d6bcbe26f204989c61a1f0bde00a,
+        type: 3}
     - target: {fileID: 2111522929780751631, guid: 79c5a1b6dc45446b69ae60df0cea66cc,
         type: 3}
       propertyPath: m_IsActive
