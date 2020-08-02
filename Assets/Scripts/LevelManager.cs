@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private GameManager gameManager;
     private bool gameActive;
-
-    public float levelScrollingSpeed;
-
-
-    void Start()
-    {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
 
     public void StartGame() 
     {

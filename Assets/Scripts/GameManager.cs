@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     
     public GameObject level;
   
+    public bool customStartBool = true;
+
     void Start()
     {
         Application.targetFrameRate = 300;
@@ -21,7 +23,12 @@ public class GameManager : MonoBehaviour
 
         environment.CustomStart();
 
-        StartGame();
+        environment.StartGame();
+
+        if (customStartBool) 
+        {
+            StartGame();
+        }
     }
 
     public void StartGame() 

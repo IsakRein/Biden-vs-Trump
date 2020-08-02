@@ -4,7 +4,7 @@ using UnityEngine;
      
 public class Environment : MonoBehaviour
 {
-    private GameManager gameManager;
+    public GameManager gameManager;
     private bool gameActive;
 
     public List<GameObject> originalChildren = new List<GameObject>();
@@ -17,9 +17,10 @@ public class Environment : MonoBehaviour
     public List<bool> childrenFollowCamera = new List<bool>();
     public Transform camera;
 
+    public float lastX = 0;
+
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         childrenSizes.Clear();
 
         while (transform.childCount > 0)
@@ -72,11 +73,15 @@ public class Environment : MonoBehaviour
             childClone.name = "1";
             childrenClones.Add(childClone);
         }
+
+        lastX = 0;
     }
   
     void Update()
     {
         transform.position = new Vector2(transform.position.x, 0);
+
+        float camera_ratio = -((lastX - transform.position.x) / (120 * Time.deltaTime));
 
         if (gameActive) 
         {
@@ -88,7 +93,7 @@ public class Environment : MonoBehaviour
                 
                 if (childrenSpeeds.Count > i) 
                 { 
-                    float x = child.localPosition.x - childrenSpeeds[i]*Time.deltaTime;
+                    float x = child.localPosition.x - childrenSpeeds[i] * Time.deltaTime * camera_ratio;
                     float y;
 
                     if (childrenFollowCamera[i]) { y = childrenPosY[i] + Camera.main.transform.position.y; }
@@ -108,7 +113,12 @@ public class Environment : MonoBehaviour
 
                 childClone.transform.localPosition = new Vector2(child.localPosition.x + currentSizeX - 0.1f, child.localPosition.y);
             }
+            lastX = transform.position.x;
         }
+    }
+
+    void LateUpdate()
+    {
     }
 
  

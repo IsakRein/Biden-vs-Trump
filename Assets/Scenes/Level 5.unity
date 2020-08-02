@@ -2536,6 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3cb3f8d67a78428d87227bbf9d7e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   originalChildren: []
   children: []
   childrenClones: []
@@ -2549,6 +2550,7 @@ MonoBehaviour:
   - 40
   childrenFollowCamera: 00000000000000
   camera: {fileID: 519420032}
+  lastX: 0
 --- !u!1 &375065782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,6 +2773,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &386862682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7745802233813817210, guid: cc9b853d4ca7546c58e191dbb90fa9fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 80297943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &387785044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,6 +4042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a5290fecc5849858c1fee1dcf01c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1271593859}
+  player: {fileID: 386862682}
   xOffset: 40
   yOffset: 30
   yOffsetDown: -18
@@ -13762,7 +13772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f534d3e0fc227438dbe8de267c2bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelScrollingSpeed: 100
 --- !u!4 &1572062929
 Transform:
   m_ObjectHideFlags: 0

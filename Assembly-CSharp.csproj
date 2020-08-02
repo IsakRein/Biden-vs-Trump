@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Follower.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Level_6_Camera.cs" />
      <Compile Include="Assets\Scripts\Mechanics\Mechanics_Camera.cs" />
      <Compile Include="Assets\Scripts\Mechanics\Mechanics_Player.cs" />
      <Compile Include="Assets\Scripts\Parallax.cs" />

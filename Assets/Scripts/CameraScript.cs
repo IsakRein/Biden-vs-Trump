@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    private GameManager gameManager;
-    private Transform player;
+    public GameManager gameManager;
+    public Transform player;
     private Player playerScript;
     public float xOffset;
     public float yOffset;
@@ -13,11 +13,10 @@ public class CameraScript : MonoBehaviour
     private float x_position;
     float verticalSize;
     float horizontalSize;
-    
+     
+
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        player = GameObject.Find("Player").transform;
         playerScript = player.gameObject.GetComponent<Player>();
 	
 		verticalSize = (float) (Camera.main.orthographicSize * 2.0);
@@ -42,6 +41,7 @@ public class CameraScript : MonoBehaviour
         {
             y = player.position.y - yOffsetDown;
         }
+
 
         transform.position = new Vector3(x, y, -10);
     }

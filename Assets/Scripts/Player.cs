@@ -219,7 +219,6 @@ public class Player : MonoBehaviour
     {
         startDistance = rb2d.position.x;
         velocityY = gravity_direction * _jumpingSpeed;
-        Debug.Log(velocityY);
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
