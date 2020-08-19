@@ -5,25 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Mechanics Test.unity
-    guid: d5f920f780c734f25833236459a25014
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/UI_ChooseFighter.unity
+    guid: adff59d8cec964a068122680926d3ed8
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2428ca31317e5194c9b4e8831c5a6b3f
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/Level 3 Layout.unity
-    guid: e08ab9156df77475f8cc82c8469d1e3e
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 00b94321be90644e1b74067df3e33e39
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 26a2864e01b864be19b3de4abf6b6c5e
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 403ec80336692486e9ca5d93528b0cc1
   - enabled: 1
     path: Assets/Scenes/Level 5.unity
     guid: 65d2b2259d0d44dc78e11fd557d1791d
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: 1ec641ccd1c9c4eb68193e422ec47834
+  - enabled: 1
+    path: Assets/Scenes/UI_ChooseLevel.unity
+    guid: 3104bf7af96a1402cbd9f351e1b24040
   m_configObjects: {}

@@ -18850,7 +18850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f534d3e0fc227438dbe8de267c2bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelScrollingSpeed: 100
 --- !u!1 &244442373
 GameObject:
   m_ObjectHideFlags: 0
@@ -20036,6 +20035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3cb3f8d67a78428d87227bbf9d7e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   originalChildren: []
   children: []
   childrenClones: []
@@ -20048,6 +20048,7 @@ MonoBehaviour:
   - 40
   childrenFollowCamera: 000000000000
   camera: {fileID: 519420032}
+  lastX: 0
 --- !u!1 &343705862
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
-using TMPro;
 
 public class Player : MonoBehaviour
 {
