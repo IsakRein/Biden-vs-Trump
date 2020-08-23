@@ -35,7 +35,6 @@ public class HorizontalMove : MonoBehaviour
             panels.offsetMin = lerp_vector;
             panels.offsetMax = lerp_vector;
 
-            Debug.Log("Active!");
             yield return null;
         }
 

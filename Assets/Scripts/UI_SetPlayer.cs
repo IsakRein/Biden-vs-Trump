@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SetPlayer : MonoBehaviour
+public class UI_SetPlayer : MonoBehaviour
 {
     public string selected_player;
 
