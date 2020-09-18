@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "174631727468",
+    "firebase_url": "https://bidenvstrump-56b45.firebaseio.com",
+    "project_id": "bidenvstrump-56b45",
+    "storage_bucket": "bidenvstrump-56b45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174631727468:android:958fe351e3c93847f78349",
+        "android_client_info": {
+          "package_name": "com.KickflipDigitalAB.BidenVsTrump"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174631727468-ot2cs5kde1ljkuali0jdt5urea3g3sp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNPAKMrfBCpoJekVWxKpYY3oHKU3XuwtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174631727468-ot2cs5kde1ljkuali0jdt5urea3g3sp0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KickflipDigitalAB.BidenVsTrump"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

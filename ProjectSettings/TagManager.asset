@@ -14,6 +14,7 @@ TagManager:
   - gravity_switch_regular
   - no_double_jump
   - water
+  - Main
   layers:
   - Default
   - TransparentFX

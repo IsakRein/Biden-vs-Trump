@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDVxVE7HeWLfR7xLiMBGWFHgqSSIRlwKQU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>174631727468</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.KickflipDigitalAB.BidenVsTrump</string>
+	<key>PROJECT_ID</key>
+	<string>bidenvstrump-56b45</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bidenvstrump-56b45.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:174631727468:ios:a4a9bfb5858b58a7f78349</string>
+	<key>DATABASE_URL</key>
+	<string>https://bidenvstrump-56b45.firebaseio.com</string>
+</dict>
+</plist>

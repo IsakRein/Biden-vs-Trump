@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.google.firebase.auth": "6.15.2",
+    "com.google.firebase.database": "6.15.2",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
@@ -49,5 +51,14 @@
       "revision": "master",
       "hash": "18cae2921070fc149efc3e9a0b410df35309db73"
     }
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Game Package Registry by Google",
+      "url": "https://unityregistry-pa.googleapis.com",
+      "scopes": [
+        "com.google"
+      ]
+    }
+  ]
 }
