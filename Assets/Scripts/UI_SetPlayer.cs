@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_SetPlayer : MonoBehaviour
 {
     public string selected_player;
+    public Main main;
 
     void Start()
     {

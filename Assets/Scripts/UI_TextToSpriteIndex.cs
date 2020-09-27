@@ -14,6 +14,11 @@ public class UI_TextToSpriteIndex : MonoBehaviour
         setObjectText();
     }
 
+    public void setMargin(float left, float right)
+    {
+        textObject.margin = new Vector4(left, 4.314225f, right, 3.137621f);
+    }
+
     public void updateFromDict(string newMessage) 
     {
         message = (string)newMessage;
@@ -38,9 +43,19 @@ public class UI_TextToSpriteIndex : MonoBehaviour
                 finalString += " ";
             }
             
-            else {
+            else {                
                 if (48 <= characterIndex && characterIndex <= 57) { newIndex = characterIndex - 22; }
-                else { newIndex = characterIndex - 65; }
+                else if (65 <= characterIndex && characterIndex <= 90 ) { newIndex = characterIndex - 65; }
+                else {
+                    switch (characterIndex)
+                    {
+                        case 37: newIndex = 36; break;
+                        case 58: newIndex = 37; break;
+                        case 45: newIndex = 38; break;
+                        default: newIndex = 0; break;
+                    }
+                }
+                
                 finalString += "<sprite index=" + newIndex + ">";
             }    
             

@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_ChooseFighter.unity
     guid: adff59d8cec964a068122680926d3ed8
   - enabled: 1
+    path: Assets/Scenes/UI_InfoScreen.unity
+    guid: ba46a1d62e915524e88e29e54f65f074
+  - enabled: 1
+    path: Assets/Scenes/UI_ChooseLevel.unity
+    guid: 3104bf7af96a1402cbd9f351e1b24040
+  - enabled: 1
+    path: Assets/Scenes/UI_Settings.unity
+    guid: 9a010cf0554294e2c8a9b8503d054b69
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2428ca31317e5194c9b4e8831c5a6b3f
   - enabled: 1
@@ -29,10 +38,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 6.unity
     guid: 1ec641ccd1c9c4eb68193e422ec47834
-  - enabled: 1
-    path: Assets/Scenes/UI_ChooseLevel.unity
-    guid: 3104bf7af96a1402cbd9f351e1b24040
-  - enabled: 1
-    path: Assets/Scenes/UI_InfoScreen.unity
-    guid: ba46a1d62e915524e88e29e54f65f074
   m_configObjects: {}

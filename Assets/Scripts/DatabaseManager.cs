@@ -6,27 +6,122 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Firebase.Extensions;
 using UnityEngine;
-using UnityEditor;   
+using UnityEditor;
 using UnityEngine.Events;
 
 
 public class DatabaseManager : MonoBehaviour
-{   
+{
     public Main main;
     public UI_OpenScene openScene;
-
+    DatabaseReference reference;
 
     void Awake()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => 
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
-            if (task.Exception != null) {
+            if (task.Exception != null)
+            {
                 Debug.LogError($"Failed to initialize firebase with {task.Exception}");
                 main.success = false;
                 main.loaded = true;
             }
             LoadData();
+            AddToValue("trump_level_6");
         });
+
+        createPlayerPrefs();
+    }
+
+    void Update()
+    {
+        if (main.loaded)
+        {
+            if (main.success)
+            {
+                setPlayerPrefs();
+            }
+            else
+            {
+                loadPlayerPrefs();
+            }
+            openScene.OpenScene("UI_ChooseFighter");
+        }
+    }
+
+
+    void setPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("biden_level_1", main.biden_level_1);
+        PlayerPrefs.SetInt("biden_level_2", main.biden_level_2);
+        PlayerPrefs.SetInt("biden_level_3", main.biden_level_3);
+        PlayerPrefs.SetInt("biden_level_4", main.biden_level_4);
+        PlayerPrefs.SetInt("biden_level_5", main.biden_level_5);
+        PlayerPrefs.SetInt("biden_level_6", main.biden_level_6);
+        PlayerPrefs.SetInt("biden_player_count", main.biden_player_count);
+        PlayerPrefs.SetInt("trump_level_1", main.trump_level_1);
+        PlayerPrefs.SetInt("trump_level_2", main.trump_level_2);
+        PlayerPrefs.SetInt("trump_level_3", main.trump_level_3);
+        PlayerPrefs.SetInt("trump_level_4", main.trump_level_4);
+        PlayerPrefs.SetInt("trump_level_5", main.trump_level_5);
+        PlayerPrefs.SetInt("trump_level_6", main.trump_level_6);
+        PlayerPrefs.SetInt("trump_player_count", main.trump_player_count);
+    }
+
+    void loadPlayerPrefs()
+    {
+        main.biden_level_1 = PlayerPrefs.GetInt("biden_level_1");
+        main.biden_level_2 = PlayerPrefs.GetInt("biden_level_2");
+        main.biden_level_3 = PlayerPrefs.GetInt("biden_level_3");
+        main.biden_level_4 = PlayerPrefs.GetInt("biden_level_4");
+        main.biden_level_5 = PlayerPrefs.GetInt("biden_level_5");
+        main.biden_level_6 = PlayerPrefs.GetInt("biden_level_6");
+        main.biden_player_count = PlayerPrefs.GetInt("biden_player_count");
+        main.trump_level_1 = PlayerPrefs.GetInt("trump_level_1");
+        main.trump_level_2 = PlayerPrefs.GetInt("trump_level_2");
+        main.trump_level_3 = PlayerPrefs.GetInt("trump_level_3");
+        main.trump_level_4 = PlayerPrefs.GetInt("trump_level_4");
+        main.trump_level_5 = PlayerPrefs.GetInt("trump_level_5");
+        main.trump_level_6 = PlayerPrefs.GetInt("trump_level_6");
+        main.trump_player_count = PlayerPrefs.GetInt("trump_player_count");
+    }
+
+    void createPlayerPrefs()
+    {
+		//General
+		if (!PlayerPrefs.HasKey("last_scene")) { PlayerPrefs.SetString("last_scene", "Level 3"); }
+
+
+        //Settings
+        if (!PlayerPrefs.HasKey("settings_sound")) { PlayerPrefs.SetInt("settings_sound", 1); }
+        if (!PlayerPrefs.HasKey("settings_music")) { PlayerPrefs.SetInt("settings_music", 1); }
+        if (!PlayerPrefs.HasKey("settings_vibration")) { PlayerPrefs.SetInt("settings_vibration", 1); }
+
+        //Scores
+        if (!PlayerPrefs.HasKey("level_1_score")) { PlayerPrefs.SetFloat("level_1_score", 0.0f); }
+        if (!PlayerPrefs.HasKey("level_2_score")) { PlayerPrefs.SetFloat("level_2_score", 0.0f); }
+        if (!PlayerPrefs.HasKey("level_3_score")) { PlayerPrefs.SetFloat("level_3_score", 0.0f); }
+        if (!PlayerPrefs.HasKey("level_4_score")) { PlayerPrefs.SetFloat("level_4_score", 0.0f); }
+        if (!PlayerPrefs.HasKey("level_5_score")) { PlayerPrefs.SetFloat("level_5_score", 0.0f); }
+        if (!PlayerPrefs.HasKey("level_6_score")) { PlayerPrefs.SetFloat("level_6_score", 0.0f); }
+
+        //Stats
+        if (!PlayerPrefs.HasKey("biden_level_1")) { PlayerPrefs.SetInt("biden_level_1", 0); }
+        if (!PlayerPrefs.HasKey("biden_level_2")) { PlayerPrefs.SetInt("biden_level_2", 0); }
+        if (!PlayerPrefs.HasKey("biden_level_3")) { PlayerPrefs.SetInt("biden_level_3", 0); }
+        if (!PlayerPrefs.HasKey("biden_level_4")) { PlayerPrefs.SetInt("biden_level_4", 0); }
+        if (!PlayerPrefs.HasKey("biden_level_5")) { PlayerPrefs.SetInt("biden_level_5", 0); }
+        if (!PlayerPrefs.HasKey("biden_level_6")) { PlayerPrefs.SetInt("biden_level_6", 0); }
+        if (!PlayerPrefs.HasKey("biden_player_count")) { PlayerPrefs.SetInt("biden_player_count", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_1")) { PlayerPrefs.SetInt("trump_level_1", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_2")) { PlayerPrefs.SetInt("trump_level_2", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_3")) { PlayerPrefs.SetInt("trump_level_3", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_4")) { PlayerPrefs.SetInt("trump_level_4", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_5")) { PlayerPrefs.SetInt("trump_level_5", 0); }
+        if (!PlayerPrefs.HasKey("trump_level_6")) { PlayerPrefs.SetInt("trump_level_6", 0); }
+        if (!PlayerPrefs.HasKey("trump_player_count")) { PlayerPrefs.SetInt("trump_player_count", 0); }
+
+        PlayerPrefs.Save();
     }
 
     public void LoadData()
@@ -35,9 +130,8 @@ public class DatabaseManager : MonoBehaviour
         FirebaseApp.DefaultInstance.SetEditorP12FileName("bidenvstrump-56b45-4572a189b33e.p12");
         FirebaseApp.DefaultInstance.SetEditorServiceAccountEmail("unity-762@bidenvstrump-56b45.iam.gserviceaccount.com");
         FirebaseApp.DefaultInstance.SetEditorP12Password("notasecret");
-        DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-        Debug.Log("1");
+        reference = FirebaseDatabase.DefaultInstance.RootReference;
+        main.reference = reference;
 
         var task1 = reference.GetValueAsync().ContinueWith(task =>
         {
@@ -70,62 +164,22 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    void Create_Local_Data() 
+    public void AddToValue(string key)
     {
-      if (!PlayerPrefs.HasKey("biden_level_1"))       { PlayerPrefs.SetInt("biden_level_1", 0); }
-      if (!PlayerPrefs.HasKey("biden_level_2"))       { PlayerPrefs.SetInt("biden_level_2", 0); }
-      if (!PlayerPrefs.HasKey("biden_level_3"))       { PlayerPrefs.SetInt("biden_level_3", 0); }
-      if (!PlayerPrefs.HasKey("biden_level_4"))       { PlayerPrefs.SetInt("biden_level_4", 0); }
-      if (!PlayerPrefs.HasKey("biden_level_5"))       { PlayerPrefs.SetInt("biden_level_5", 0); }
-      if (!PlayerPrefs.HasKey("biden_level_6"))       { PlayerPrefs.SetInt("biden_level_6", 0); }
-      if (!PlayerPrefs.HasKey("biden_player_count"))  { PlayerPrefs.SetInt("biden_player_count", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_1"))       { PlayerPrefs.SetInt("trump_level_1", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_2"))       { PlayerPrefs.SetInt("trump_level_2", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_3"))       { PlayerPrefs.SetInt("trump_level_3", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_4"))       { PlayerPrefs.SetInt("trump_level_4", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_5"))       { PlayerPrefs.SetInt("trump_level_5", 0); }
-      if (!PlayerPrefs.HasKey("trump_level_6"))       { PlayerPrefs.SetInt("trump_level_6", 0); }
-      if (!PlayerPrefs.HasKey("trump_player_count"))  { PlayerPrefs.SetInt("trump_player_count", 0); }
-    }
+        DatabaseReference data_reference = reference.Child(key);
 
-    void Update()
-    {
-      if (main.loaded) {
-        if (main.success) {
-          PlayerPrefs.SetInt("biden_level_1", main.biden_level_1);
-          PlayerPrefs.SetInt("biden_level_2", main.biden_level_2);
-          PlayerPrefs.SetInt("biden_level_3", main.biden_level_3);
-          PlayerPrefs.SetInt("biden_level_4", main.biden_level_4);
-          PlayerPrefs.SetInt("biden_level_5", main.biden_level_5);
-          PlayerPrefs.SetInt("biden_level_6", main.biden_level_6);
-          PlayerPrefs.SetInt("biden_player_count", main.biden_player_count);
-          PlayerPrefs.SetInt("trump_level_1", main.trump_level_1);
-          PlayerPrefs.SetInt("trump_level_2", main.trump_level_2);
-          PlayerPrefs.SetInt("trump_level_3", main.trump_level_3);
-          PlayerPrefs.SetInt("trump_level_4", main.trump_level_4);
-          PlayerPrefs.SetInt("trump_level_5", main.trump_level_5);
-          PlayerPrefs.SetInt("trump_level_6", main.trump_level_6);
-          PlayerPrefs.SetInt("trump_player_count", main.trump_player_count);
-        }
-        else {
-          Create_Local_Data();
+        data_reference.RunTransaction(data =>
+        {
+            if (data.Value == null)
+            {
+                data.Value = PlayerPrefs.GetInt(key) + 1;
+            }
+            else
+            {
+                data.Value = int.Parse(data.Value.ToString()) + 1;
+            }
 
-          main.biden_level_1 = PlayerPrefs.GetInt("biden_level_1", main.biden_level_1);
-          main.biden_level_2 = PlayerPrefs.GetInt("biden_level_2", main.biden_level_2);
-          main.biden_level_3 = PlayerPrefs.GetInt("biden_level_3", main.biden_level_3);
-          main.biden_level_4 = PlayerPrefs.GetInt("biden_level_4", main.biden_level_4);
-          main.biden_level_5 = PlayerPrefs.GetInt("biden_level_5", main.biden_level_5);
-          main.biden_level_6 = PlayerPrefs.GetInt("biden_level_6", main.biden_level_6);
-          main.biden_player_count = PlayerPrefs.GetInt("biden_player_count", main.biden_player_count);
-          main.trump_level_1 = PlayerPrefs.GetInt("trump_level_1", main.trump_level_1);
-          main.trump_level_2 = PlayerPrefs.GetInt("trump_level_2", main.trump_level_2);
-          main.trump_level_3 = PlayerPrefs.GetInt("trump_level_3", main.trump_level_3);
-          main.trump_level_4 = PlayerPrefs.GetInt("trump_level_4", main.trump_level_4);
-          main.trump_level_5 = PlayerPrefs.GetInt("trump_level_5", main.trump_level_5);
-          main.trump_level_6 = PlayerPrefs.GetInt("trump_level_6", main.trump_level_6);
-          main.trump_player_count = PlayerPrefs.GetInt("trump_player_count", main.trump_player_count);
-        }
-        openScene.OpenScene("UI_ChooseFighter");
-      }
+            return TransactionResult.Success(data);
+        });
     }
 }

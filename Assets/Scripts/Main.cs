@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Firebase;
+using Firebase.Database;
 
 public class Main : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class Main : MonoBehaviour
     public bool loaded;
     public bool success;
 
+    public DatabaseReference reference;
+
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Main");
@@ -34,5 +38,20 @@ public class Main : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    void AddToValue(string key)
+    {
+        DatabaseReference data_reference = reference.Child(key);
 
+        data_reference.RunTransaction(data =>
+        {
+            if (data.Value == null) {
+              data.Value = PlayerPrefs.GetInt(key) + 1;
+            }
+            else {
+              data.Value = int.Parse(data.Value.ToString()) + 1;
+            }
+
+            return TransactionResult.Success(data);
+        });
+    }
 }
