@@ -52,11 +52,18 @@ public class UI_TextToSpriteIndex : MonoBehaviour
                         case 37: newIndex = 36; break;
                         case 58: newIndex = 37; break;
                         case 45: newIndex = 38; break;
-                        default: newIndex = 0; break;
+                        case 33: newIndex = 39; break;
+                        case 43: newIndex = 40; break;
+                        case 47: newIndex = 41; break;
+                        default: newIndex = -1; break;
                     }
                 }
-                
-                finalString += "<sprite index=" + newIndex + ">";
+                if (newIndex == -1) {
+                    finalString += upperCaseInput[i];
+                }
+                else {
+                    finalString += "<sprite index=" + newIndex + ">";
+                }
             }    
             
         }

@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd.apps.googleusercontent.com</string>
+	<string>174631727468-pvc127uqp3dqvop2g2to0vhngabeacon.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd</string>
+	<string>com.googleusercontent.apps.174631727468-pvc127uqp3dqvop2g2to0vhngabeacon</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>174631727468-2qd1k3m6d1s28fkutjbps1momisnoplm.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDVxVE7HeWLfR7xLiMBGWFHgqSSIRlwKQU</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.KickflipDigitalAB.BidenVsTrump</string>
+	<string>com.KickflipGames.BidenVsTrump</string>
 	<key>PROJECT_ID</key>
 	<string>bidenvstrump-56b45</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:174631727468:ios:a4a9bfb5858b58a7f78349</string>
+	<string>1:174631727468:ios:d0d82d207f2ff352f78349</string>
 	<key>DATABASE_URL</key>
 	<string>https://bidenvstrump-56b45.firebaseio.com</string>
 </dict>

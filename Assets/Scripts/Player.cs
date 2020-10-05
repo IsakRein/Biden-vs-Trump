@@ -5,12 +5,19 @@ using UnityEditor;
 
 public class Player : MonoBehaviour
 {
-    public Vector3 startVector = new Vector3(1370f, 10f, 1f);
+    public Vector3 debugStartVector = new Vector3(0f, 15f, 0f);
+    public static Vector3 startVector = new Vector3(0f, 15f, 0f);
     private GameManager gameManager;
     private bool gameActive;
     private LevelManager levelManager;
     private Rigidbody2D rb2d;
     private Animator animator;
+    
+    [Header("Add jump")]
+    public Material outline_material;   
+    public float outline_thickness;
+    public bool outline_active;
+
     
     [Header("Jump mechanics")]   
     public float jumpHeight;
@@ -31,12 +38,17 @@ public class Player : MonoBehaviour
     public float jetpack_speed;
     public float jetpack_max_speed;
     public float jetpack_fall_multiplier = 2.5f;
+    public GameObject fire_effect;
+    public ParticleSystem smoke_effect;
 
     [Header("Boost Up")]
     public float boost_up_multiplier;
 
     [Header("Effects")]
     public GameObject waterSplash;
+    public GameObject waterSplash2;
+    public GameObject lavaSplash;
+
     public GameObject explosion;
     public float waterSplashY;
     public List<GameObject> smoke_impacts = new List<GameObject>();
@@ -55,7 +67,9 @@ public class Player : MonoBehaviour
     private Vector2 lastKnownVelocity;
 
     [Header("UI")]
-    public Text progress_text;
+    public UI_TextToSpriteIndex progress_text;
+    public Transform levelWon; 
+    public float levelWonX; 
 
     [Header("Unsorted trash")]
     public System.DateTime startTime;
@@ -72,6 +86,9 @@ public class Player : MonoBehaviour
     public bool is_dead;
 
     public BoxCollider2D feet_collider; 
+
+    public Transform previous_best_line;
+    public GameObject newBestText;
 
     private void Awake()
     {
@@ -91,11 +108,31 @@ public class Player : MonoBehaviour
         jumpingSpeed = gravity * t1;
     }
 
+    void Start()
+    {
+        levelWon = GameObject.FindGameObjectWithTag("Level Won").transform;
+        levelWonX = levelWon.position.x;
+    }
+
     void Update()
     {
         if (gameActive)
         {
-            progress_text.text = (((int)(transform.position.x/108)).ToString() + "%");
+            if (transform.position.x > levelWonX) 
+            {
+                gameManager.percentage = 100;
+                gameManager.GameWon();
+            }
+            else 
+            {
+                gameManager.percentage = (int)(100*transform.position.x/levelWonX);
+
+                if (transform.position.x > gameManager.previous_highscore_x) {
+                    newBestText.SetActive(true);
+                }
+            }
+
+            progress_text.updateFromDict(gameManager.percentage.ToString() + "%");
 
             if (jetpack_active)
             {
@@ -106,6 +143,7 @@ public class Player : MonoBehaviour
                 else {
                     jetpack_fall();
                 }
+                
             }
 
             else {
@@ -122,7 +160,6 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-
 
             if (frames_collision == 1) { collisionDetected = true; }
             if (seconds_jump > 0.0 && trigger_jump) { jump(jumpingSpeed); trigger_jump = false; }
@@ -141,37 +178,40 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (is_airbound)
-        {
-            if (velocityY * gravity_direction > 0) { currentGravity = gravity * gravity_direction; }
-            else if (jetpack_active) { currentGravity = gravity * jetpack_fall_multiplier * gravity_direction; }
-            else { currentGravity = gravity * fall_multiplier * gravity_direction; }
-
-            if (!jetpack_active) 
+        if (gameActive) {
+            if (is_airbound)
             {
-                velocityY -= currentGravity * Time.fixedDeltaTime; 
+                if (velocityY * gravity_direction > 0) { currentGravity = gravity * gravity_direction; }
+                else if (jetpack_active) { currentGravity = gravity * jetpack_fall_multiplier * gravity_direction; }
+                else { currentGravity = gravity * fall_multiplier * gravity_direction; }
+
+                if (!jetpack_active) 
+                {
+                    velocityY -= currentGravity * Time.fixedDeltaTime; 
+                }
             }
+
+            else { velocityY = 0; }
+            animator.SetFloat("Speed", velocityY * gravity_direction);
+
+            transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
         }
-
-        else { velocityY = 0; }
-        animator.SetFloat("Speed", velocityY * gravity_direction);
-
-        transform.position = (rb2d.position + (new Vector2(velocityX, velocityY) * Time.fixedDeltaTime));
-        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
-
+    
     public void StartGame()
     {
+        gameManager.previous_highscore = PlayerPrefs.GetInt(gameManager.current_level_key);
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
         collision_count = 0;
         transform.position = startVector;
+        startVector = debugStartVector;   
         jumpCounter = 0;
         rb2d.simulated = true;
         rb2d.velocity = new Vector2(0f,0f);
         animator.enabled = true; 
-        waterSplash.SetActive(false);
         is_jumping = true;
         is_airbound = true;
         jetpack_active = false;
@@ -190,6 +230,22 @@ public class Player : MonoBehaviour
         animator.SetBool("Has Landed", false);
         animator.SetBool("Jetpack", false);
         animator.SetBool("is_airbound", true);
+        outline_material.SetFloat("_Thickness", 0);
+        outline_active = false;
+
+
+        if (0 < gameManager.previous_highscore && gameManager.previous_highscore < 100) 
+        {
+            previous_best_line.gameObject.SetActive(true);
+            gameManager.previous_highscore_x = PlayerPrefs.GetFloat(gameManager.current_last_x_key);
+            previous_best_line.position = new Vector2(PlayerPrefs.GetFloat(gameManager.current_last_x_key), 0);
+
+        }
+        else {
+            previous_best_line.gameObject.SetActive(false);
+        }
+
+//        newBestText.SetActive(false);
     }
 
     public void PauseGame()
@@ -198,6 +254,7 @@ public class Player : MonoBehaviour
         rb2d.simulated = false;
         animator.enabled = false;
         lastKnownVelocity = rb2d.velocity;
+        saveScore();
     }
     
     public void ResumeGame() 
@@ -212,8 +269,50 @@ public class Player : MonoBehaviour
     {
         gameActive = false;
         gameObject.SetActive(false);
+        saveScore();
     }
-    
+
+    public void GameWon() 
+    {
+        saveScore();
+    }
+
+    IEnumerator fakeMove() 
+    {
+        float speedX = 120;
+        float time = 0;
+
+        while (time < 10f)
+        {
+            time += Time.deltaTime;
+            
+            transform.position += new Vector3(speedX * Time.deltaTime, 0, 0);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        gameObject.SetActive(false); 
+        yield return null;
+    }
+
+    public void setSavePoint()
+    {
+        startVector = transform.position;
+    }
+
+    public void saveScore() 
+    {
+        if (PlayerPrefs.GetInt(gameManager.current_level_key) < gameManager.percentage) 
+        {
+            gameManager.previous_highscore = gameManager.percentage;
+            gameManager.previous_highscore_x = transform.position.x;
+
+            PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);
+            PlayerPrefs.SetFloat(gameManager.current_last_x_key, transform.position.x);
+            PlayerPrefs.SetFloat(gameManager.current_last_y_key, transform.position.y);
+        }
+    }
+
     void jump(float _jumpingSpeed)
     {
         startDistance = rb2d.position.x;
@@ -223,6 +322,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Jumping", true);
         animator.SetBool("is_airbound", true);
         jumpCounter++;
+        outline_material.SetFloat("_Thickness", 0);
     }
 
     void jetpack_fly() 
@@ -231,6 +331,7 @@ public class Player : MonoBehaviour
         is_airbound = true;
         animator.SetBool("Jumping", true);
         animator.SetBool("is_airbound", true);
+
         if (velocityY < jetpack_max_speed)
         {
             velocityY += jetpack_speed * Time.deltaTime;
@@ -243,7 +344,6 @@ public class Player : MonoBehaviour
 
     void jetpack_fall() 
     {
-       
         velocityY -= currentGravity * Time.deltaTime;
     }
 
@@ -284,86 +384,104 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col)
-    {   
-        collision_count++;
+    {
+        if (gameActive) 
+        {    
+            collision_count++;
 
-        if (!is_dead) 
-        {
-            if (col.gameObject.tag == "Death") 
-            { 
-                death_explosion(); 
-            }
-            
-            else
+            if (!is_dead) 
             {
-                foreach (var item in col.contacts)
+                if (col.gameObject.tag == "Death") 
+                { 
+                    death_explosion(); 
+                }
+                
+                else
                 {
-                    // Collision right
-                    if (item.normal == new Vector2(-1, 0))
+                    foreach (var item in col.contacts)
                     {
-                        death_explosion();
-                    }
-
-                    // Collision tops
-                    if (item.normal == new Vector2(0, -1 * gravity_direction))
-                    {
-                        velocityY = 0;
-                    }
-
-                    // Collision bottom
-                    if (item.normal == new Vector2(0, 1 * gravity_direction)) {
-                        is_airbound = false;
-                        animator.SetBool("is_airbound", false);
-
-                        float feet_left = feet_collider.bounds.min.x;
-                        float feet_right = feet_collider.bounds.max.x;
-                        float feet_bottom = feet_collider.bounds.min.y;
-
-                        Vector2 left_ray_start = new Vector2(feet_left+0.1f, feet_bottom + 1f);
-                        Vector2 right_ray_start = new Vector2(feet_right-0.1f, feet_bottom + 1f);
-
-                        RaycastHit2D ray_left = Physics2D.Raycast(left_ray_start, -Vector2.up, 2f);
-                        RaycastHit2D ray_right = Physics2D.Raycast(right_ray_start, -Vector2.up, 2f);
-
-                        if (ray_left.collider != null && ray_right.collider != null)
-                        {
-                            trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); 
-                        }
-                        else if (ray_right.collider == null && ray_left.collider != null)
+                        // Collision right
+                        if (item.normal == new Vector2(-1, 0))
                         {   
-                            Vector2 start_point = right_ray_start + (-Vector2.up * 2f);
+                            // foreach (var cont in col.contacts)
+                            // { 
+                            //     Debug.Log(cont.normal);
+                            //     Debug.Log(cont.point);
+                            //     Debug.Log(new Vector2(transform.position.x, transform.position.y) - cont.point);
+                            //     Debug.Log("-");
+                            // }
+                            // Debug.Log(item.point);
+                            // Debug.Log(new Vector2(transform.position.x, transform.position.y) - item.point);
+                            // Debug.Log(transform.position.x - item.point.x);
+                            // Debug.Log("-");
 
-                            RaycastHit2D ray_right_to_left = Physics2D.Raycast(start_point, Vector2.left, feet_right-feet_left);
-                            trigger_smoke_impact(ray_right_to_left.point.x + max_offset_ground_x);
+                            if ((transform.position.y - item.point.y) < 10) {
+                                death_explosion();
+                            }
+                        }
+
+                        // Collision tops
+                        if (item.normal == new Vector2(0, -1 * gravity_direction))
+                        {
+                            velocityY = 0;
+                        }
+
+                        // Collision bottom
+                        if (item.normal == new Vector2(0, 1 * gravity_direction)) {
+                            is_airbound = false;
+                            animator.SetBool("is_airbound", false);
                             
+
+                            float feet_left = feet_collider.bounds.min.x;
+                            float feet_right = feet_collider.bounds.max.x;
+                            float feet_bottom = feet_collider.bounds.min.y;
+
+                            Vector2 left_ray_start = new Vector2(feet_left+0.1f, feet_bottom + 1f);
+                            Vector2 right_ray_start = new Vector2(feet_right-0.1f, feet_bottom + 1f);
+
+                            RaycastHit2D ray_left = Physics2D.Raycast(left_ray_start, -Vector2.up, 2f);
+                            RaycastHit2D ray_right = Physics2D.Raycast(right_ray_start, -Vector2.up, 2f);
+
+                            if (ray_left.collider != null && ray_right.collider != null)
+                            {
+                                trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); 
+                            }
+                            else if (ray_right.collider == null && ray_left.collider != null)
+                            {   
+                                Vector2 start_point = right_ray_start + (-Vector2.up * 2f);
+
+                                RaycastHit2D ray_right_to_left = Physics2D.Raycast(start_point, Vector2.left, feet_right-feet_left);
+                                trigger_smoke_impact(ray_right_to_left.point.x + max_offset_ground_x);
+                                
+                            }
+                            else if (ray_left.collider == null && ray_right.collider != null)
+                            {
+                                Vector2 start_point = left_ray_start + (-Vector2.up * 2f);                   
+                    
+                                RaycastHit2D ray_left_to_right = Physics2D.Raycast(start_point, Vector2.right, feet_right-feet_left);
+                                trigger_smoke_impact(ray_left_to_right.point.x - max_offset_ground_x);
+                            }
+
+                            // Smoke
+                            // if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
+                            // { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
+                            // else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
+                            // { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
+                            // else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
+
+                            // Stop jumping
+                            if (is_jumping) { jump_end(); }
+                            
+                            // Jumping again
+                            if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { jump(jumpingSpeed); }
                         }
-                        else if (ray_left.collider == null && ray_right.collider != null)
+
+                        if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
                         {
-                            Vector2 start_point = left_ray_start + (-Vector2.up * 2f);                   
-                   
-                            RaycastHit2D ray_left_to_right = Physics2D.Raycast(start_point, Vector2.right, feet_right-feet_left);
-                            trigger_smoke_impact(ray_left_to_right.point.x - max_offset_ground_x);
-                        }
-
-                        // Smoke
-                        // if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
-                        // { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
-                        // else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
-                        // { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
-                        // else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
-
-                        // Stop jumping
-                        if (is_jumping) { jump_end(); }
-                        
-                        // Jumping again
-                        if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { jump(jumpingSpeed); }
-                    }
-
-                    if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))
-                    {
-                        if (collision_count > 1)
-                        {
-                            death_explosion();
+                            if (collision_count > 1)
+                            {
+                                //death_explosion();
+                            }
                         }
                     }
                 }
@@ -373,70 +491,108 @@ public class Player : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        foreach (var item in col.contacts)
-        {
-            if (item.normal == new Vector2(0, -1*gravity_direction))
+        if (gameActive)  {
+            foreach (var item in col.contacts)
             {
-                velocityY = 0;
+                if (item.normal == new Vector2(0, -1*gravity_direction))
+                {
+                    velocityY = 0;
+                }
             }
         }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        collision_count -= 1;
-
-        if (collision_count == 0) 
+        if (gameActive)
         {
-            is_airbound = true;
-            animator.SetBool("is_airbound", true);
+            collision_count -= 1;
+
+            if (collision_count == 0) 
+            {
+                is_airbound = true;
+                animator.SetBool("is_airbound", true);
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D trig)
     {
-
-        if (trig.tag == "add_jump_square") 
+        if (gameActive)
         {
-            prev_jump_counter = jumpCounter;
-            jumpCounter = 1;
-        }
+            if (trig.tag == "add_jump_square") 
+            {
+                outline_material.SetFloat("_Thickness", outline_thickness);
+                prev_jump_counter = jumpCounter;
+                jumpCounter = 1;
+            }
 
-        if (trig.tag == "jetpack") 
-        {
-            jetpack_active = true;
-            camera_animator.SetBool("zoomed_out", true);
-            animator.SetBool("Jetpack", true);
-        }
+            if (trig.tag == "jetpack") 
+            {
+                jetpack_active = true;
+                camera_animator.SetBool("zoomed_out", true);
+                animator.SetBool("Jetpack", true);
+            }
 
-        if (trig.tag == "jetpack_stop") 
-        {
-            jetpack_active = false;
-            camera_animator.SetBool("zoomed_out", false);
-            animator.SetBool("Jetpack", false);
-        }
+            if (trig.tag == "jetpack_stop") 
+            {
+                jetpack_active = false;
+                camera_animator.SetBool("zoomed_out", false);
+                animator.SetBool("Jetpack", false);
+            }
 
-        if (trig.tag == "boost_up")
-        {
-            jump(jumpingSpeed*boost_up_multiplier);
-            jumpCounter = 1;
-        }
+            if (trig.tag == "boost_up")
+            {
+                jump(jumpingSpeed*boost_up_multiplier);
+                jumpCounter = 1;
+            }
 
-        if (trig.tag == "gravity_switch")
-        {
-            gravity_trig_count += 1;
-            SwitchGravity(-1);
-        }
+            if (trig.tag == "gravity_switch")
+            {
+                gravity_trig_count += 1;
+                SwitchGravity(-1);
+            }
 
-        if (trig.tag == "gravity_switch_regular")
-        {
-            gravity_regular_trig_count += 1;
-            SwitchGravity(1);
-        }
+            if (trig.tag == "gravity_switch_regular")
+            {
+                gravity_regular_trig_count += 1;
+                SwitchGravity(1);
+            }
 
-        if (trig.tag == "no_double_jump")
-        {
-            no_double_jump_trig_count += 1;
+            if (trig.tag == "no_double_jump")
+            {
+                no_double_jump_trig_count += 1;
+            }
+
+            if (trig.tag == "water") {
+                GameObject water_inst = Instantiate(waterSplash);
+                water_inst.transform.position = new Vector2(transform.position.x, trig.bounds.max.y + 9f);
+                gameManager.Death();
+                animator.SetBool("Death", true);
+                is_jumping = false;
+                animator.SetBool("Jumping", false);
+                is_dead = true;
+            }
+
+            if (trig.tag == "water2") {
+                GameObject water_inst2 = Instantiate(waterSplash2);
+                water_inst2.transform.position = new Vector2(transform.position.x, trig.bounds.max.y + 9f);
+                gameManager.Death();
+                animator.SetBool("Death", true);
+                is_jumping = false;
+                animator.SetBool("Jumping", false);
+                is_dead = true;
+            }
+
+            if (trig.tag == "lava") {
+                GameObject lava_inst = Instantiate(lavaSplash);
+                lava_inst.transform.position = new Vector2(transform.position.x, trig.bounds.max.y + 9f);
+                gameManager.Death();
+                animator.SetBool("Death", true);
+                is_jumping = false;
+                animator.SetBool("Jumping", false);
+                is_dead = true;
+            }
         }
     }
 
@@ -476,6 +632,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         
         jumpCounter = _prev_jump_counter;
-    }
-    
+    }  
 }

@@ -15,6 +15,10 @@ TagManager:
   - no_double_jump
   - water
   - Main
+  - GameManager
+  - Level Won
+  - lava
+  - water2
   layers:
   - Default
   - TransparentFX

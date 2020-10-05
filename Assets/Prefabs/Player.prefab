@@ -49,7 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea08c648273162489a172f2909eafea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startVector: {x: 0, y: 0, z: 1}
+  debugStartVector: {x: 0, y: 15, z: 0}
+  outline_material: {fileID: 2100000, guid: 5a6db85ebb9466f4b90af9ebdd3c4fdc, type: 2}
+  outline_thickness: 1
+  outline_active: 0
   jumpHeight: 30
   jumpLength: 60
   velocityX: 120
@@ -64,8 +67,15 @@ MonoBehaviour:
   jetpack_speed: 1000
   jetpack_max_speed: 100
   jetpack_fall_multiplier: 0.6
+  fire_effect: {fileID: 0}
+  smoke_effect: {fileID: 0}
   boost_up_multiplier: 1.75
-  waterSplash: {fileID: 0}
+  waterSplash: {fileID: 7352181804296780945, guid: 9791eef9dc52544b29821dbebc2abce1,
+    type: 3}
+  waterSplash2: {fileID: 7352181804296780945, guid: e54c7265e99a4495eb1f4ecd1f6c99f2,
+    type: 3}
+  lavaSplash: {fileID: 7352181804296780945, guid: d4844b52aa81a48bc9ebb84f8d3f64d9,
+    type: 3}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
     type: 3}
   waterSplashY: -43.5
@@ -81,10 +91,14 @@ MonoBehaviour:
   jumpCounter: 0
   collisionDetected: 1
   progress_text: {fileID: 0}
+  levelWon: {fileID: 0}
+  levelWonX: 0
   collision_count: 0
   camera_animator: {fileID: 0}
   is_dead: 0
   feet_collider: {fileID: 7745802233813817208}
+  previous_best_line: {fileID: 0}
+  newBestText: {fileID: 0}
 --- !u!212 &7745802233813817211
 SpriteRenderer:
   m_ObjectHideFlags: 0

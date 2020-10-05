@@ -119,6 +119,15 @@ TextureImporter:
   - first:
       213: -1761991285924386082
     second: Font 2_38
+  - first:
+      213: 1072365044605187316
+    second: Font 2_39
+  - first:
+      213: 1214028150249394408
+    second: Font 2_40
+  - first:
+      213: 2421104705902869459
+    second: Font 2_41
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -164,7 +173,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 14
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -1034,7 +1043,7 @@ TextureImporter:
         width: 11
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1042,6 +1051,69 @@ TextureImporter:
       bones: []
       spriteID: edaa429c2462c87e0800000000000000
       internalID: -1761991285924386082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font 2_39
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4fc31935ec1ee00800000000000000
+      internalID: 1072365044605187316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font 2_40
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e090f2ab2819d010800000000000000
+      internalID: 1214028150249394408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font 2_41
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dbfd5707ed799120800000000000000
+      internalID: 2421104705902869459
       vertices: []
       indices: 
       edges: []

@@ -14,6 +14,7 @@ public class UI_SetPlayer : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName: "UI_ChooseLevel");
         }
+        main = GameObject.FindGameObjectWithTag("Main").GetComponent<Main>();
     }
 
     public void SetSelectedPlayer(string _selected_player) 
@@ -24,6 +25,16 @@ public class UI_SetPlayer : MonoBehaviour
     public void LoadSceneFromName(string scene_name) 
     {
         PlayerPrefs.SetString("Player", selected_player);
+
+        if (selected_player == "Joe Biden") 
+        {
+            main.AddToValue("biden_player_count");
+        }
+        else 
+        {
+            main.AddToValue("trump_player_count");
+        }
+
         SceneManager.LoadScene(sceneName: scene_name);
     }   
 }

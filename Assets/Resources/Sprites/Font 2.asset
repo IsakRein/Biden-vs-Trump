@@ -286,6 +286,24 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: Font 2_38
     m_HashCode: 1325499957
+  - m_ElementType: 2
+    m_Unicode: 0
+    m_GlyphIndex: 39
+    m_Scale: 1
+    m_Name: Font 2_39
+    m_HashCode: 1325499956
+  - m_ElementType: 2
+    m_Unicode: 0
+    m_GlyphIndex: 40
+    m_Scale: 1
+    m_Name: Font 2_40
+    m_HashCode: 1325499802
+  - m_ElementType: 2
+    m_Unicode: 0
+    m_GlyphIndex: 41
+    m_Scale: 1
+    m_Name: Font 2_41
+    m_HashCode: 1325499803
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -909,6 +927,54 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     sprite: {fileID: -1761991285924386082, guid: 9811eb85a96744e12a6040c5b2072cc6,
+      type: 3}
+  - m_Index: 39
+    m_Metrics:
+      m_Width: 5
+      m_Height: 14
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 12
+      m_HorizontalAdvance: 4
+    m_GlyphRect:
+      m_X: 441
+      m_Y: 1
+      m_Width: 5
+      m_Height: 14
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 1072365044605187316, guid: 9811eb85a96744e12a6040c5b2072cc6,
+      type: 3}
+  - m_Index: 40
+    m_Metrics:
+      m_Width: 11
+      m_Height: 14
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 12
+      m_HorizontalAdvance: 10
+    m_GlyphRect:
+      m_X: 447
+      m_Y: 1
+      m_Width: 11
+      m_Height: 14
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 1214028150249394408, guid: 9811eb85a96744e12a6040c5b2072cc6,
+      type: 3}
+  - m_Index: 41
+    m_Metrics:
+      m_Width: 14
+      m_Height: 14
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 12
+      m_HorizontalAdvance: 13
+    m_GlyphRect:
+      m_X: 459
+      m_Y: 1
+      m_Width: 14
+      m_Height: 14
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 2421104705902869459, guid: 9811eb85a96744e12a6040c5b2072cc6,
       type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []

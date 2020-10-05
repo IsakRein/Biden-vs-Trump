@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "174631727468-2qd1k3m6d1s28fkutjbps1momisnoplm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.KickflipDigitalAB.BidenVsTrump",
+            "certificate_hash": "850540c781b1260416375089f7aed80ec110c393"
+          }
+        },
+        {
           "client_id": "174631727468-ot2cs5kde1ljkuali0jdt5urea3g3sp0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -32,10 +40,46 @@
               "client_type": 3
             },
             {
-              "client_id": "174631727468-n8eafcjjtai5hurtcvj81fb3u0nd4lhd.apps.googleusercontent.com",
+              "client_id": "174631727468-pvc127uqp3dqvop2g2to0vhngabeacon.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.KickflipDigitalAB.BidenVsTrump"
+                "bundle_id": "com.KickflipGames.BidenVsTrump"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174631727468:android:e6fcb893b41b32b9f78349",
+        "android_client_info": {
+          "package_name": "com.KickflipGames.BidenVsTrump"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174631727468-ot2cs5kde1ljkuali0jdt5urea3g3sp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNPAKMrfBCpoJekVWxKpYY3oHKU3XuwtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174631727468-ot2cs5kde1ljkuali0jdt5urea3g3sp0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "174631727468-pvc127uqp3dqvop2g2to0vhngabeacon.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KickflipGames.BidenVsTrump"
               }
             }
           ]

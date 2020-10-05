@@ -1,19 +1,18 @@
 {
   "dependencies": {
+    "com.elringus.spriteglow": "https://github.com/Elringus/SpriteGlow.git#package",
     "com.google.firebase.auth": "6.15.2",
     "com.google.firebase.database": "6.15.2",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
+    "com.unity.ads": "3.4.9",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
-    "com.unity.ide.vscode": "1.2.1",
-    "com.unity.render-pipelines.lightweight": "7.4.1",
-    "com.unity.shadergraph": "7.4.1",
+    "com.unity.ide.vscode": "1.1.3",
+    "com.unity.purchasing": "2.0.6",
     "com.unity.test-framework": "1.1.11",
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.10",
-    "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -47,6 +46,10 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
+    "com.elringus.spriteglow": {
+      "revision": "package",
+      "hash": "05442994ffb7f6c679f648d702cdf888bd8c01dc"
+    },
     "com.unity.2d.tilemap.extras": {
       "revision": "master",
       "hash": "18cae2921070fc149efc3e9a0b410df35309db73"

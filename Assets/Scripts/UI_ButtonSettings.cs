@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_ButtonSettings : MonoBehaviour
 {
     public string player_prefs_key;
+    public Main main;
 
     public Sprite sprite_on;
     public Sprite sprite_off;
@@ -15,6 +16,7 @@ public class UI_ButtonSettings : MonoBehaviour
 
     void Start()
     {
+        main = GameObject.FindGameObjectWithTag("Main").GetComponent<Main>();
         image = gameObject.GetComponent<Image>();
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener( () => 
@@ -30,7 +32,8 @@ public class UI_ButtonSettings : MonoBehaviour
     void press() {
         toggle = !toggle;
         PlayerPrefs.SetInt(player_prefs_key, boolToInt(toggle));
-        
+        main.updateSettings();
+
         setSprite();
     }
 

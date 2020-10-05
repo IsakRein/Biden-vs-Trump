@@ -53,5 +53,6 @@
         "temp/":true,
         "Temp/":true
     },
-    "unity-tools.localDocumentationViewer": "chrome"
+    "unity-tools.localDocumentationViewer": "chrome",
+    "cSpell.enabled": false
 }

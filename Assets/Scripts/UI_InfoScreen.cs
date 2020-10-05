@@ -17,9 +17,6 @@ public class UI_InfoScreen : MonoBehaviour
 
     public void ChangeUI() 
     {
-        Debug.Log(current_active);
-        Debug.Log(active_settings.Count);
-
         if (current_active < active_settings.Count - 1) 
         {
             current_active += 1;

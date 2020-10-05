@@ -29,10 +29,10 @@ public class UI_Stats : MonoBehaviour
     public float mid_mid_piece_width;
 
     
-    /* void Update()
+    void Start()
     {
-        setWidth(debug_biden_count, debug_trump_count);
-    } */
+        setWidth(biden_count, trump_count);
+    }
 
     public void setWidth(int _biden_count, int _trump_count) 
     {
@@ -72,9 +72,6 @@ public class UI_Stats : MonoBehaviour
 
         biden_count_text.setMargin(0, -mid_mid_piece_x);
         trump_count_text.setMargin(mid_mid_piece_x, 0);
-
-        Debug.Log(mid_mid_piece_x); 
-
 
         stats_BL.localPosition = new Vector2(l_pos, 0);
         stats_RR.localPosition = new Vector2(r_pos, 0);

@@ -6,6 +6,7 @@ public class Environment : MonoBehaviour
 {
     public GameManager gameManager;
     private bool gameActive;
+    public Transform environmentOriginal;
 
     public List<GameObject> originalChildren = new List<GameObject>();
 
@@ -28,7 +29,7 @@ public class Environment : MonoBehaviour
             Transform child = transform.GetChild(0);
             originalChildren.Add(child.gameObject);
             childrenSizes.Add(child.GetComponent<SpriteRenderer>().bounds.size.x); 
-            child.transform.parent = GameObject.Find("Environment Original").transform;
+            child.transform.parent = environmentOriginal;
             child.gameObject.SetActive(false);
         }
     }
@@ -79,12 +80,12 @@ public class Environment : MonoBehaviour
   
     void Update()
     {
-        transform.position = new Vector2(transform.position.x, 0);
-
-        float camera_ratio = -((lastX - transform.position.x) / (120 * Time.deltaTime));
 
         if (gameActive) 
         {
+            transform.position = new Vector2(transform.position.x, 0);
+
+            float camera_ratio = -((lastX - transform.position.x) / (120 * Time.deltaTime));
             for (int i = 0; i < children.Count; i++)
             {
                 Transform child = children[i];

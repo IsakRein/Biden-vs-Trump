@@ -2863,10 +2863,10 @@ RectTransform:
   m_Father: {fileID: 1904043904}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.748}
-  m_AnchorMax: {x: 1, y: 0.93928665}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.6575255}
+  m_AnchorMax: {x: 1, y: 0.87878543}
+  m_AnchoredPosition: {x: 0, y: 9}
+  m_SizeDelta: {x: 0, y: -28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1381499225
 MonoBehaviour:
@@ -3047,6 +3047,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a96432f9b7e4886ac024123626a558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings_sound: 0
+  settings_music: 0
+  settings_vibration: 0
+  remove_ads: 0
+  plays_between_ads: 2
+  plays_to_first_ad: 2
+  plays_since_ad: 0
+  nextPopUp: Merch
+  nextAdType: Ad
+  gameId: 3841622
+  testMode: 1
   biden_level_1: 0
   biden_level_2: 0
   biden_level_3: 0

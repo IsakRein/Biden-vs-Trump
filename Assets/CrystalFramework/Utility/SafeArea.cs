@@ -117,10 +117,10 @@ namespace Crystal
             Refresh ();
         }
 
-        void Update ()
-        {
-            Refresh ();
-        }
+        // void Update ()
+        // {
+        //     Refresh ();
+        // }
 
         void Refresh ()
         {
