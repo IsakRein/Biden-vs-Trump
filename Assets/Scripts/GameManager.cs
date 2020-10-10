@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Environment environment;
     public LevelManager levelManager;
     public AdManager adManager;
+
     public CameraScript cameraScript;
 
     public float verticalSize;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public string current_last_x_key;
     public string current_last_y_key;
 
+    public UI_GameWon uI_GameWon;
 
     void Start()
     {
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() 
     {
+        player.gameObject.SetActive(false);
         if (!adManager.PlayAd()) 
         {
             ContinueStartGame();
@@ -112,12 +115,14 @@ public class GameManager : MonoBehaviour
 
     public void GameWon()
     {
+        uI_GameWon.gameObject.SetActive(true);
+        uI_GameWon.customStart();
+        game_won_event.Invoke();
         gameActive = false;
         player.GameWon();
         cameraScript.followPlayer = false;
         environment.Death();
         levelManager.Death();
-        game_won_event.Invoke();
     }
 }
 

@@ -50,8 +50,10 @@ public class UI_Stats : MonoBehaviour
         if (biden_count > trump_count) { stats_info_text.updateFromDict("Biden is leading"); }
         else if (biden_count < trump_count) { stats_info_text.updateFromDict("Trump is leading"); }
         else { stats_info_text.updateFromDict("Draw"); }
+
         biden_count_text.updateFromDict(biden_count.ToString());
         trump_count_text.updateFromDict(trump_count.ToString());
+
 
         stats_BL.gameObject.SetActive(percentage != 0.0f);
         stats_RL.gameObject.SetActive(percentage == 0.0f);

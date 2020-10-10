@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -88,7 +89,6 @@ public class Player : MonoBehaviour
     public BoxCollider2D feet_collider; 
 
     public Transform previous_best_line;
-    public GameObject newBestText;
 
     private void Awake()
     {
@@ -121,15 +121,13 @@ public class Player : MonoBehaviour
             if (transform.position.x > levelWonX) 
             {
                 gameManager.percentage = 100;
-                gameManager.GameWon();
+                if (gameManager.gameActive) {
+                    gameManager.GameWon();
+                }
             }
             else 
             {
                 gameManager.percentage = (int)(100*transform.position.x/levelWonX);
-
-                if (transform.position.x > gameManager.previous_highscore_x) {
-                    newBestText.SetActive(true);
-                }
             }
 
             progress_text.updateFromDict(gameManager.percentage.ToString() + "%");
@@ -138,7 +136,10 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKey("space") || (Input.touchCount > 0))
                 {
-                    jetpack_fly();
+                    if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                    {
+                        jetpack_fly();
+                    }
                 }
                 else {
                     jetpack_fall();
@@ -156,7 +157,11 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                     {
-                        jump(jumpingSpeed);
+                        if (Input.GetKeyDown("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                        {
+                            jump(jumpingSpeed);
+                        }
+                    
                     }
                 }
             }
@@ -245,7 +250,6 @@ public class Player : MonoBehaviour
             previous_best_line.gameObject.SetActive(false);
         }
 
-//        newBestText.SetActive(false);
     }
 
     public void PauseGame()
@@ -268,6 +272,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         gameActive = false;
+        Handheld.Vibrate();
         gameObject.SetActive(false);
         saveScore();
     }
@@ -307,10 +312,11 @@ public class Player : MonoBehaviour
             gameManager.previous_highscore = gameManager.percentage;
             gameManager.previous_highscore_x = transform.position.x;
 
-            PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);
-            PlayerPrefs.SetFloat(gameManager.current_last_x_key, transform.position.x);
-            PlayerPrefs.SetFloat(gameManager.current_last_y_key, transform.position.y);
+            PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);  
         }
+
+        PlayerPrefs.SetFloat(gameManager.current_last_x_key, transform.position.x);
+        PlayerPrefs.SetFloat(gameManager.current_last_y_key, transform.position.y);
     }
 
     void jump(float _jumpingSpeed)
@@ -415,7 +421,7 @@ public class Player : MonoBehaviour
                             // Debug.Log(transform.position.x - item.point.x);
                             // Debug.Log("-");
 
-                            if ((transform.position.y - item.point.y) < 10) {
+                            if ((transform.position.y - item.point.y) < 12) {
                                 death_explosion();
                             }
                         }
@@ -473,7 +479,12 @@ public class Player : MonoBehaviour
                             if (is_jumping) { jump_end(); }
                             
                             // Jumping again
-                            if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { jump(jumpingSpeed); }
+                            if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { 
+                                if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                                {
+                                    jump(jumpingSpeed); 
+                                }
+                            }
                         }
 
                         if (item.normal == new Vector2(0, -1) || item.normal == new Vector2(0, 1))

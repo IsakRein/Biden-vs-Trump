@@ -73,6 +73,8 @@ public class DatabaseManager : MonoBehaviour
     {
         if (main.loaded)
         {
+            Debug.Log("Downloaded data");
+
             if (main.success)
             {                
                 setPlayerPrefs();

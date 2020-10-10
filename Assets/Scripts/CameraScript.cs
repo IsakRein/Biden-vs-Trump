@@ -16,6 +16,10 @@ public class CameraScript : MonoBehaviour
     private float x_position;
     float verticalSize;
     float horizontalSize;
+
+    public RectTransform safeArea;
+    float safeVerticalSize;
+    float safeHorizontalSize; 
      
 
     void Start()
@@ -27,6 +31,12 @@ public class CameraScript : MonoBehaviour
 		verticalSize = (float) (Camera.main.orthographicSize * 2.0);
 		horizontalSize = verticalSize * Screen.width / Screen.height;
         x_position = -horizontalSize/2 + xOffset;
+
+        Vector3[] v = new Vector3[4];
+        safeArea.GetWorldCorners(v);
+
+        safeHorizontalSize = v[2].x - v[0].x;
+        safeVerticalSize = v[2].y - v[0].y;
     } 
 
     void Update()
@@ -38,7 +48,7 @@ public class CameraScript : MonoBehaviour
 
             verticalSize = (float) (Camera.main.orthographicSize * 2.0);
             horizontalSize = verticalSize * Screen.width / Screen.height;
-            x_position = -horizontalSize/2 + xOffset;
+            x_position = -safeHorizontalSize /2 + xOffset;
 
             if (player.position.y > yOffset && !playerScript.jetpack_active)
             {

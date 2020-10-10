@@ -7,6 +7,16 @@ using UnityEngine.Advertisements;
 
 public class Main : MonoBehaviour
 {
+    [Header("Blurs")]
+    public Material blur_regular;
+    public float blur_regular_value;
+
+    public Material blur_pause;
+    public float blur_pause_value;
+
+    public Material blur_popup;
+    public float blur_popup_value;
+
     [Header("Settings")]
     public bool settings_sound;
     public bool settings_music;
@@ -65,6 +75,10 @@ public class Main : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        blur_regular.SetFloat("_Size", blur_regular_value);
+        blur_pause.SetFloat("_Size", blur_pause_value);
+        blur_popup.SetFloat("_Size", blur_popup_value);
 
         DontDestroyOnLoad(this.gameObject);
     }

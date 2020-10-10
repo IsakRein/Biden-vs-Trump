@@ -25,12 +25,12 @@ public class UI_ChooseLevel6 : MonoBehaviour
 
     void Start()
     {
-        level_1_won = PlayerPrefs.GetFloat("level_1_score") >= 100.0f;       
-        level_2_won = PlayerPrefs.GetFloat("level_2_score") >= 100.0f;       
-        level_3_won = PlayerPrefs.GetFloat("level_3_score") >= 100.0f;       
-        level_4_won = PlayerPrefs.GetFloat("level_4_score") >= 100.0f;       
-        level_5_won = PlayerPrefs.GetFloat("level_5_score") >= 100.0f;       
-        level_6_won = PlayerPrefs.GetFloat("level_6_score") >= 100.0f;
+        level_1_won = PlayerPrefs.GetInt("level_1_score") >= 100;       
+        level_2_won = PlayerPrefs.GetInt("level_2_score") >= 100;       
+        level_3_won = PlayerPrefs.GetInt("level_3_score") >= 100;       
+        level_4_won = PlayerPrefs.GetInt("level_4_score") >= 100;       
+        level_5_won = PlayerPrefs.GetInt("level_5_score") >= 100;       
+        level_6_won = PlayerPrefs.GetInt("level_6_score") >= 100;
 
         play_button_button = play_button.GetComponent<Button>();
         buttonMoveText = play_button.GetComponent<ButtonMoveText>();
