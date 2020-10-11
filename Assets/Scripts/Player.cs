@@ -142,10 +142,12 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKey("space") || (Input.touchCount > 0))
                 {
-                    if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                    {
-                        jetpack_fly();
-                    }
+                    jetpack_fly();
+
+                    // if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                    // {
+                    //     jetpack_fly();
+                    // }
                 }
                 else {
                     jetpack_fall();
@@ -163,10 +165,11 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                     {
-                        if (Input.GetKeyDown("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                        {
-                            jump(jumpingSpeed);
-                        }
+                        jump(jumpingSpeed);
+                        // if (Input.GetKeyDown("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                        // {
+                        //     jump(jumpingSpeed);
+                        // }
                     
                     }
                 }
@@ -495,10 +498,11 @@ public class Player : MonoBehaviour
                             
                             // Jumping again
                             if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { 
-                                if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                                {
-                                    jump(jumpingSpeed); 
-                                }
+                                jump(jumpingSpeed); 
+                                // if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                                // {
+                                //     jump(jumpingSpeed); 
+                                // }
                             }
                         }
 
