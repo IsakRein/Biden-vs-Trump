@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     public string current_last_y_key;
 
     public UI_GameWon uI_GameWon;
+    public LocalSoundManager localSoundManager;
+
+
+    private void Awake() {
+        localSoundManager = FindObjectOfType<LocalSoundManager>();
+    }
 
     void Start()
     {
@@ -57,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
+
+        
     }
 
     public void StartGame() 
@@ -82,6 +90,7 @@ public class GameManager : MonoBehaviour
         gameActive = true;
 
         environment.StartGame();
+        localSoundManager.Play(current_level);
     }
 
     public void PauseGame() 
@@ -90,6 +99,7 @@ public class GameManager : MonoBehaviour
         environment.PauseGame();
         levelManager.PauseGame();
         gameActive = false;
+        localSoundManager.Pause(current_level);
     }
 
     public void ResumeGame() 
@@ -98,6 +108,7 @@ public class GameManager : MonoBehaviour
         environment.ResumeGame();
         levelManager.ResumeGame();
         gameActive = true;
+        localSoundManager.UnPause(current_level);
     }
 
     public void Death()
@@ -110,7 +121,11 @@ public class GameManager : MonoBehaviour
             game_over.Invoke();
         }
 
-        gameActive = false;        
+        gameActive = false;   
+        
+        localSoundManager.Stop(current_level);
+        localSoundManager.Play("Death");
+        
     }
 
     public void GameWon()
@@ -123,6 +138,12 @@ public class GameManager : MonoBehaviour
         cameraScript.followPlayer = false;
         environment.Death();
         levelManager.Death();
+        
+        localSoundManager.Play("Explosion2");
+    }
+
+    private void OnDestroy() {
+        localSoundManager.Stop(current_level);
     }
 }
 

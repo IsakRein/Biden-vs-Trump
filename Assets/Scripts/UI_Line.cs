@@ -7,7 +7,7 @@ using UnityEngine;
 public class UI_Line : MonoBehaviour
 {
     [Range(0, 1)]
-    public float input_percentage = 0.0f;
+    public float input_percentage = 0.20f;
     public float width = 10.0f;
 
     public Transform line_left;

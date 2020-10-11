@@ -41,26 +41,34 @@ public class AdManager : MonoBehaviour
             {
                 main.plays_since_ad = 0;
 
-                if (main.nextAdType == "Ad") { 
-                    if (Advertisement.IsReady("Interstitial"))
-                    {
-                        var options = new ShowOptions { resultCallback = HandleShowResult };
-                        Advertisement.Show("Interstitial", options);
-                        main.nextAdType = "PopUp"; 
+
+                //Temp
+                if (main.nextPopUp == "Merch") { ShowMerchPopUp(); main.nextPopUp = "RemoveAds"; }
+                else if (main.nextPopUp == "RemoveAds") {ShowRemoveAdsPopUp(); main.nextPopUp = "Merch";}
+                main.nextAdType = "Ad";
+                //End temp
+
+
+                // if (main.nextAdType == "Ad") { 
+                //     if (Advertisement.IsReady("Interstitial"))
+                //     {
+                //         var options = new ShowOptions { resultCallback = HandleShowResult };
+                //         Advertisement.Show("Interstitial", options);
+                //         main.nextAdType = "PopUp"; 
                     
-                    } 
-                    else 
-                    {
-                        main.plays_since_ad = main.plays_between_ads;
-                        return false;
-                    } 
-                }
-                else if (main.nextAdType == "PopUp") 
-                {
-                    if (main.nextPopUp == "Merch") { ShowMerchPopUp(); main.nextPopUp = "RemoveAds"; }
-                    else if (main.nextPopUp == "RemoveAds") {ShowRemoveAdsPopUp(); main.nextPopUp = "Merch";}
-                    main.nextAdType = "Ad";
-                }
+                //     } 
+                //     else 
+                //     {
+                //         main.plays_since_ad = main.plays_between_ads;
+                //         return false;
+                //     } 
+                // }
+                // else if (main.nextAdType == "PopUp") 
+                // {
+                //     if (main.nextPopUp == "Merch") { ShowMerchPopUp(); main.nextPopUp = "RemoveAds"; }
+                //     else if (main.nextPopUp == "RemoveAds") {ShowRemoveAdsPopUp(); main.nextPopUp = "Merch";}
+                //     main.nextAdType = "Ad";
+                // }
                 return true;
             }
             else {

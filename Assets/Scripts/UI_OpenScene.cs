@@ -7,12 +7,22 @@ using UnityEngine.SceneManagement;
 public class UI_OpenScene : MonoBehaviour
 {
     public static string last_scene;
+   
     string[] bad_scenes = new string[4] {"UI_About", "UI_Credits", "UI_InfoScreen", "UI_Settings"};
+
+    Main main;
+
+    private void Start() {
+        main = FindObjectOfType<Main>().GetComponent<Main>();
+    }
 
     public void OpenScene(string name) 
     {
         string currentScene = SceneManager.GetActiveScene().name;
         
+        
+        main.actual_last_scene = currentScene;
+
         if (!bad_scenes.Contains(currentScene)) 
         { 
             last_scene = currentScene;

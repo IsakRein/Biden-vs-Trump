@@ -19,6 +19,7 @@ TagManager:
   - Level Won
   - lava
   - water2
+  - AudioManager
   layers:
   - Default
   - TransparentFX

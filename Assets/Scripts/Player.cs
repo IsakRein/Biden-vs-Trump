@@ -90,6 +90,9 @@ public class Player : MonoBehaviour
 
     public Transform previous_best_line;
 
+    private Main main;
+    private LocalSoundManager localSoundManager;
+
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -106,6 +109,9 @@ public class Player : MonoBehaviour
 
         gravity = (2 * jumpHeight) / (fall_multiplier * t2*t2);
         jumpingSpeed = gravity * t1;
+
+        main = FindObjectOfType<Main>().GetComponent<Main>();
+        localSoundManager = FindObjectOfType<LocalSoundManager>();
     }
 
     void Start()
@@ -267,12 +273,18 @@ public class Player : MonoBehaviour
         rb2d.simulated = true;
         animator.enabled = true;
         rb2d.velocity = lastKnownVelocity;
+        collision_count = 0;
     }
     
     public void Death()
     {
         gameActive = false;
-        Handheld.Vibrate();
+        
+        #if UNITY_IPHONE || UNITY_ANDROID
+        if (main.settings_vibration) {
+            Handheld.Vibrate();
+        }
+        #endif
         gameObject.SetActive(false);
         saveScore();
     }
@@ -329,6 +341,7 @@ public class Player : MonoBehaviour
         animator.SetBool("is_airbound", true);
         jumpCounter++;
         outline_material.SetFloat("_Thickness", 0);
+        localSoundManager.Play("Jump");
     }
 
     void jetpack_fly() 
@@ -372,6 +385,7 @@ public class Player : MonoBehaviour
         is_jumping = false;
         animator.SetBool("Jumping", false);
         is_dead = true;
+        //localSoundManager.Play("Explosion2");
     }
  
     void trigger_smoke_impact(float _smoke_impact_offset_X)
@@ -387,6 +401,7 @@ public class Player : MonoBehaviour
             play_smoke_impact = false;
             StartCoroutine(ResetSmokeImpact());
         }
+        localSoundManager.Play("Landing");
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -517,13 +532,16 @@ public class Player : MonoBehaviour
     {
         if (gameActive)
         {
-            collision_count -= 1;
+            is_airbound = true;
+            animator.SetBool("is_airbound", true);
+                
+            // collision_count -= 1;
 
-            if (collision_count == 0) 
-            {
-                is_airbound = true;
-                animator.SetBool("is_airbound", true);
-            }
+            // if (collision_count == 0) 
+            // {
+            //     is_airbound = true;
+            //     animator.SetBool("is_airbound", true);
+            // }
         }
     }
 

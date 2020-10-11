@@ -326,14 +326,14 @@ RectTransform:
   m_GameObject: {fileID: 44919993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 38, y: 1, z: 0}
+  m_LocalScale: {x: 27, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 768636299}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -31, y: 0}
+  m_AnchoredPosition: {x: -36.5, y: 0}
   m_SizeDelta: {x: 1, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &44919995
@@ -1062,6 +1062,170 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &537169829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 537169830}
+  - component: {fileID: 537169832}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &537169830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537169829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &537169832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537169829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a24ab6ac6fd9849b0a4f55eeee5b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 3809651c50b9dcf488bb9ae44e828275, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: DrumLoop
+    clip: {fileID: 8300000, guid: 68af6ecafbadb764e99e5ba6a99f7cd6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: SmallBlink
+    clip: {fileID: 8300000, guid: 38589902e79145543b1a2129879a9f77, type: 3}
+    volume: 1
+    pitch: 0.8
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Blink
+    clip: {fileID: 8300000, guid: b2bd90dbd6cbb9f4387c21d8a478405a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: NationalAnthem
+    clip: {fileID: 8300000, guid: 2663b57699e541c4eb2727973126e308, type: 3}
+    volume: 0.55
+    pitch: 1
+    loop: 1
+    isMusic: 1
+    source: {fileID: 0}
+  - name: level_1
+    clip: {fileID: 8300000, guid: f4354b6856ae76b4baf66ada4c48e642, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 6a19bacb2c4d7be4c97a59d47cc7c1ad, type: 3}
+    volume: 0
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: 0b9642314e6d22c4bb71e88bd6cf2f55, type: 3}
+    volume: 1.8
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Explosion2
+    clip: {fileID: 8300000, guid: 855ac6edba34dd242835b084053e4803, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 031df71c878a0a244818c5377775f6dc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_1_ambient
+    clip: {fileID: 8300000, guid: 2788efcd9d4ab114ca547af24daab458, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_2_ambient
+    clip: {fileID: 8300000, guid: e40fb1ea217501b4783acb16651c9178, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_3_ambient
+    clip: {fileID: 8300000, guid: 63b69ba749afe114d9dbfe27a275d08d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_4_ambient
+    clip: {fileID: 8300000, guid: 840f859c397293e4bae56fc0b5f90723, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_5_ambient
+    clip: {fileID: 8300000, guid: 927307b5e3788ed47ae58ec7f4ae8efa, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_6_ambient
+    clip: {fileID: 8300000, guid: 2788efcd9d4ab114ca547af24daab458, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isMusic: 0
+    source: {fileID: 0}
+  - name: level_2
+    clip: {fileID: 8300000, guid: e624c1e9566f7044fa58ea93fba93613, type: 3}
+    volume: 0.32
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  main: {fileID: 0}
 --- !u!1 &545670297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767560610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11, y: 0, z: 0}
+  m_LocalPosition: {x: -22, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 768636299}
@@ -1755,7 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2558a4404cf744c17a099f24896934e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input_percentage: 0.39
+  input_percentage: 0.28
   width: 100
   line_left: {fileID: 2110685848}
   line_middle: {fileID: 44919994}
@@ -2792,7 +2956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301440203
 GameObject:
@@ -3300,6 +3464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a96432f9b7e4886ac024123626a558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 537169832}
   blur_regular: {fileID: 2100000, guid: 0c9429ab4f026ef4c87a6db9fb1ffff6, type: 2}
   blur_regular_value: 1
   blur_pause: {fileID: 2100000, guid: 5d4faecf7e1c949d089fc92100b99019, type: 2}
@@ -3310,11 +3475,12 @@ MonoBehaviour:
   settings_music: 0
   settings_vibration: 0
   remove_ads: 0
-  plays_between_ads: 2
+  plays_between_ads: 0
   plays_to_first_ad: 0
   plays_since_ad: 0
   nextPopUp: Merch
   nextAdType: Ad
+  actual_last_scene: 
   gameId: 3841622
   testMode: 1
   biden_level_1: 0
@@ -3345,7 +3511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1593038417
 MonoBehaviour:

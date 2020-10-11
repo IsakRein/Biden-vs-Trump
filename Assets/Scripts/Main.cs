@@ -7,6 +7,8 @@ using UnityEngine.Advertisements;
 
 public class Main : MonoBehaviour
 {
+    public AudioManager audioManager;
+
     [Header("Blurs")]
     public Material blur_regular;
     public float blur_regular_value;
@@ -29,6 +31,8 @@ public class Main : MonoBehaviour
     public int plays_since_ad;
     public string nextPopUp = "Merch"; 
     public string nextAdType = "Ad"; 
+
+    public string actual_last_scene;
 
 
 #if UNITY_IOS

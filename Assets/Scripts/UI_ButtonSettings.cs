@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UI_ButtonSettings : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UI_ButtonSettings : MonoBehaviour
     public Image image;
     public Button button;
     public bool toggle = true;
+
+    public UnityEvent toggleOn;
+    public UnityEvent toggleOff;
 
     void Start()
     {
@@ -35,9 +39,17 @@ public class UI_ButtonSettings : MonoBehaviour
         main.updateSettings();
 
         setSprite();
+        invokeEvents();
+        
     }
 
+    private void invokeEvents()
+    {
+        if (toggle) { toggleOn.Invoke(); }
+        else {toggleOff.Invoke();}
+    }
     private void setSprite() {
+        
         if (toggle) { image.sprite = sprite_on; }
         else { image.sprite = sprite_off; }
     }
