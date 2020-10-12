@@ -216,6 +216,7 @@ public class Player : MonoBehaviour
     public void StartGame()
     {
         gameManager.previous_highscore = PlayerPrefs.GetInt(gameManager.current_level_key);
+        Debug.Log("gameManager.previous_highscore " + gameManager.previous_highscore);
         gameActive = true;
         jumpCounter = 2;
         collisionDetected = false;
@@ -349,6 +350,13 @@ public class Player : MonoBehaviour
 
     void jetpack_fly() 
     {
+        if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        {
+            localSoundManager.Play("JetpackActive");
+            fire_effect.SetActive(true);
+            smoke_effect.gameObject.SetActive(true);
+        }
+
         is_jumping = true;
         is_airbound = true;
         animator.SetBool("Jumping", true);
@@ -366,6 +374,13 @@ public class Player : MonoBehaviour
 
     void jetpack_fall() 
     {
+        if (Input.GetKeyUp("space") || (Input.touchCount == 0))
+        {
+            localSoundManager.Stop("JetpackActive");
+            fire_effect.SetActive(false);
+            smoke_effect.gameObject.SetActive(false);
+        }
+
         velocityY -= currentGravity * Time.deltaTime;
     }
 
@@ -558,6 +573,8 @@ public class Player : MonoBehaviour
                 outline_material.SetFloat("_Thickness", outline_thickness);
                 prev_jump_counter = jumpCounter;
                 jumpCounter = 1;
+                localSoundManager.Play("Glass");
+                localSoundManager.Play("PowerUp2");
             }
 
             if (trig.tag == "jetpack") 
@@ -565,6 +582,7 @@ public class Player : MonoBehaviour
                 jetpack_active = true;
                 camera_animator.SetBool("zoomed_out", true);
                 animator.SetBool("Jetpack", true);
+                localSoundManager.Play("JetpackStart");
             }
 
             if (trig.tag == "jetpack_stop") 

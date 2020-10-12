@@ -1150,14 +1150,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: 6a19bacb2c4d7be4c97a59d47cc7c1ad, type: 3}
-    volume: 0
+    volume: 0.5
     pitch: 1
     loop: 0
     isMusic: 0
     source: {fileID: 0}
   - name: Landing
     clip: {fileID: 8300000, guid: 0b9642314e6d22c4bb71e88bd6cf2f55, type: 3}
-    volume: 1.8
+    volume: 1
     pitch: 1
     loop: 0
     isMusic: 0
@@ -1220,10 +1220,80 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: level_2
     clip: {fileID: 8300000, guid: e624c1e9566f7044fa58ea93fba93613, type: 3}
-    volume: 0.32
+    volume: 0.5
     pitch: 1
     loop: 0
     isMusic: 1
+    source: {fileID: 0}
+  - name: level_3
+    clip: {fileID: 8300000, guid: 91ddc1f8546976945879168fc89d8d71, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  - name: level_4
+    clip: {fileID: 8300000, guid: af694f41be256f340b42f4e559e8f95f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  - name: level_5
+    clip: {fileID: 8300000, guid: 8c2caf84c55c981499eea79bd3a26594, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  - name: level_6
+    clip: {fileID: 8300000, guid: 8fbc162bc5d18ad40a5ba7d299d0c27d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isMusic: 1
+    source: {fileID: 0}
+  - name: Applause
+    clip: {fileID: 8300000, guid: 5acaf57db7ffc1c49bc36eb65f5d6b92, type: 3}
+    volume: 0.52
+    pitch: 1.21
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 207edb5c4fccb844c945dd0f4b670ba6, type: 3}
+    volume: 0.45
+    pitch: 0.45
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Glass
+    clip: {fileID: 8300000, guid: b105e984619a2b44d8ab7b6ba0d85b82, type: 3}
+    volume: 0.2
+    pitch: 0.7
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: PowerUp2
+    clip: {fileID: 8300000, guid: 7c20bcd0b66e6fa41877a2736c365c2b, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: JetpackStart
+    clip: {fileID: 8300000, guid: b2d2f84ab6013bf40955ca82ee621a5c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: JetpackActive
+    clip: {fileID: 8300000, guid: 8265958733cb6074799e6439b7bd02cf, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isMusic: 0
     source: {fileID: 0}
   main: {fileID: 0}
 --- !u!1 &545670297

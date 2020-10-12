@@ -119,12 +119,13 @@ public class GameManager : MonoBehaviour
 
         if (gameActive) {
             game_over.Invoke();
+            localSoundManager.Stop(current_level);
+            localSoundManager.Play("Death");
         }
 
         gameActive = false;   
         
-        localSoundManager.Stop(current_level);
-        localSoundManager.Play("Death");
+        
         
     }
 
@@ -139,11 +140,13 @@ public class GameManager : MonoBehaviour
         environment.Death();
         levelManager.Death();
         
-        localSoundManager.Play("Explosion2");
+        localSoundManager.Play("Applause");
+        localSoundManager.Play("PowerUp");
     }
 
     private void OnDestroy() {
         localSoundManager.Stop(current_level);
+        localSoundManager.Stop("Applause");
     }
 }
 
