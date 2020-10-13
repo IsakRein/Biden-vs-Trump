@@ -46535,6 +46535,8 @@ MonoBehaviour:
     type: 3}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
     type: 3}
+  explosion_regular: {fileID: 6998087068771673668, guid: 9acfcaa017d656d47bca08865e362276,
+    type: 3}
   waterSplashY: -43.5
   smoke_impacts:
   - {fileID: 3044470438215095668, guid: 52965fa2c1d564698900dce0f6744911, type: 3}

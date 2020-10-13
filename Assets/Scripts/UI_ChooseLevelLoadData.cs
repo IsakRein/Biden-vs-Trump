@@ -25,13 +25,17 @@ public class UI_ChooseLevelLoadData : MonoBehaviour
         main = GameObject.FindGameObjectWithTag("Main").GetComponent<Main>();
 
         writeText();
-        LoadData();
+
+        if (main.actual_last_scene != "- Main -" && main.actual_last_scene != "UI_ChooseFighter") 
+        {
+            LoadData();
+        }
     }
 
     void Update()
     {
         if (loaded) {
-            Debug.Log("Downloaded data");
+            Debug.Log("Downloaded data 2");
 
             if (success)
             {

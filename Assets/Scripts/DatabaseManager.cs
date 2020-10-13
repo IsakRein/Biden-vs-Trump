@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Firebase.Extensions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -23,10 +24,9 @@ public class DatabaseManager : MonoBehaviour
                 main.success = false;
                 main.loaded = true;
             }
+            
             LoadData();
         });
-
-        createPlayerPrefs();
     }
 
     public void LoadData()
@@ -74,6 +74,7 @@ public class DatabaseManager : MonoBehaviour
         if (main.loaded)
         {
             Debug.Log("Downloaded data");
+            if (!PlayerPrefs.HasKey("trump_player_count")) { createPlayerPrefs(); }
 
             if (main.success)
             {                
@@ -83,7 +84,8 @@ public class DatabaseManager : MonoBehaviour
             {
                 loadPlayerPrefs();
             }
-            openScene.OpenScene("UI_ChooseFighter");
+            if (PlayerPrefs.HasKey("Player")) { openScene.OpenScene("UI_ChooseLevel"); }
+            else {openScene.OpenScene("UI_ChooseFighter"); }
         }
     }
 

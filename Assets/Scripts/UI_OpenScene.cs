@@ -19,7 +19,7 @@ public class UI_OpenScene : MonoBehaviour
     public void OpenScene(string name) 
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        
+        main = FindObjectOfType<Main>().GetComponent<Main>();
         
         main.actual_last_scene = currentScene;
 

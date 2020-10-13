@@ -14,8 +14,6 @@ public class UI_ChooseLevelSound : MonoBehaviour
         main = FindObjectOfType<Main>().GetComponent<Main>();
         localSoundManager = GetComponent<LocalSoundManager>();
 
-        Debug.Log(main.actual_last_scene);
-
         // if (!same_music_scenes.Contains(main.actual_last_scene)) 
         // {
         //     localSoundManager.Play("NationalAnthem");

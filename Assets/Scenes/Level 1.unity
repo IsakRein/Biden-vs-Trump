@@ -33280,7 +33280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168277886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10934.6, y: 9.2, z: 0}
+  m_LocalPosition: {x: 0, y: 9.2, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children:
   - {fileID: 305565001}
@@ -33300,7 +33300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea08c648273162489a172f2909eafea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugStartVector: {x: 10934, y: 15, z: 0}
+  debugStartVector: {x: 0, y: 15, z: 0}
   outline_material: {fileID: 2100000, guid: 5a6db85ebb9466f4b90af9ebdd3c4fdc, type: 2}
   outline_thickness: 1
   outline_active: 0
@@ -33328,6 +33328,8 @@ MonoBehaviour:
   lavaSplash: {fileID: 7352181804296780945, guid: d4844b52aa81a48bc9ebb84f8d3f64d9,
     type: 3}
   explosion: {fileID: 6998087068771673668, guid: 367ac59735f224ed1a14dab5425e755a,
+    type: 3}
+  explosion_regular: {fileID: 6998087068771673668, guid: 9acfcaa017d656d47bca08865e362276,
     type: 3}
   waterSplashY: -43.5
   smoke_impacts:

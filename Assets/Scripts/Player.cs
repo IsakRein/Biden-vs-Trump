@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     public GameObject lavaSplash;
 
     public GameObject explosion;
+    public GameObject explosion_regular;
     public float waterSplashY;
     public List<GameObject> smoke_impacts = new List<GameObject>();
     public float smoke_impact_offset_X;
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
 
     private Main main;
     private LocalSoundManager localSoundManager;
+
 
     private void Awake()
     {
@@ -248,6 +250,8 @@ public class Player : MonoBehaviour
         outline_material.SetFloat("_Thickness", 0);
         outline_active = false;
 
+        fire_effect.SetActive(false);
+        smoke_effect.Stop(); 
 
         if (0 < gameManager.previous_highscore && gameManager.previous_highscore < 100) 
         {
@@ -290,6 +294,8 @@ public class Player : MonoBehaviour
         }
         #endif
         gameObject.SetActive(false);
+        localSoundManager.Stop("JetpackActive");
+
         saveScore();
     }
 
@@ -354,7 +360,7 @@ public class Player : MonoBehaviour
         {
             localSoundManager.Play("JetpackActive");
             fire_effect.SetActive(true);
-            smoke_effect.gameObject.SetActive(true);
+            smoke_effect.Play();
         }
 
         is_jumping = true;
@@ -378,7 +384,7 @@ public class Player : MonoBehaviour
         {
             localSoundManager.Stop("JetpackActive");
             fire_effect.SetActive(false);
-            smoke_effect.gameObject.SetActive(false);
+            smoke_effect.Stop();
         }
 
         velocityY -= currentGravity * Time.deltaTime;
@@ -396,7 +402,10 @@ public class Player : MonoBehaviour
 
     void death_explosion() 
     {
-        GameObject explosion_inst = Instantiate(explosion);
+        GameObject explosion_inst;
+        if (jetpack_active) {explosion_inst = Instantiate(explosion);}
+        else {explosion_inst = Instantiate(explosion_regular);}
+
         explosion_inst.transform.position = transform.position;
         gameManager.Death();
         animator.SetBool("Death", true);
@@ -588,6 +597,9 @@ public class Player : MonoBehaviour
             if (trig.tag == "jetpack_stop") 
             {
                 jetpack_active = false;
+                fire_effect.SetActive(false);
+                smoke_effect.Stop();
+                localSoundManager.Stop("JetpackActive");
                 camera_animator.SetBool("zoomed_out", false);
                 animator.SetBool("Jetpack", false);
             }
@@ -596,11 +608,14 @@ public class Player : MonoBehaviour
             {
                 jump(jumpingSpeed*boost_up_multiplier);
                 jumpCounter = 1;
+                localSoundManager.Play("BoostUp");
             }
 
             if (trig.tag == "gravity_switch")
             {
                 gravity_trig_count += 1;
+                if (gravity_trig_count==3  ){localSoundManager.Play("Gravity");}
+ 
                 SwitchGravity(-1);
             }
 

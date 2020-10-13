@@ -1283,14 +1283,28 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: JetpackStart
     clip: {fileID: 8300000, guid: b2d2f84ab6013bf40955ca82ee621a5c, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.25
+    pitch: 1.5
     loop: 0
     isMusic: 0
     source: {fileID: 0}
   - name: JetpackActive
     clip: {fileID: 8300000, guid: 8265958733cb6074799e6439b7bd02cf, type: 3}
     volume: 0.2
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: BoostUp
+    clip: {fileID: 8300000, guid: bb39f4e8eefcbd749838056716ae1275, type: 3}
+    volume: 0.72
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    source: {fileID: 0}
+  - name: Gravity
+    clip: {fileID: 8300000, guid: 0b0af8297e7fe864297191cf82135c52, type: 3}
+    volume: 0.25
     pitch: 1
     loop: 0
     isMusic: 0
