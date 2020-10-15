@@ -5763,6 +5763,9 @@ MonoBehaviour:
   start:
     m_PersistentCalls:
       m_Calls: []
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &2080250572
 Transform:
   m_ObjectHideFlags: 0

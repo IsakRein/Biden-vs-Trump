@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private LevelManager levelManager;
     private Rigidbody2D rb2d;
     private Animator animator;
+    public Environment environment;
     
     [Header("Add jump")]
     public Material outline_material;   
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
     private int prev_jump_counter;
     private bool play_smoke_impact;
     public Animator camera_animator;
+    public CameraScript cameraScript;
     public bool is_dead;
 
     public BoxCollider2D feet_collider; 
@@ -114,6 +116,8 @@ public class Player : MonoBehaviour
 
         main = FindObjectOfType<Main>().GetComponent<Main>();
         localSoundManager = FindObjectOfType<LocalSoundManager>();
+        cameraScript = camera_animator.gameObject.GetComponent<CameraScript>();
+        environment = GameObject.Find("Environment").GetComponent<Environment>();
     }
 
     void Start()
@@ -126,6 +130,7 @@ public class Player : MonoBehaviour
     {
         if (gameActive)
         {
+            cameraScript.FollowPlayer();
             if (transform.position.x > levelWonX) 
             {
                 gameManager.percentage = 100;
@@ -218,12 +223,18 @@ public class Player : MonoBehaviour
     public void StartGame()
     {
         gameManager.previous_highscore = PlayerPrefs.GetInt(gameManager.current_level_key);
+        gameManager.previous_highscore_x = PlayerPrefs.GetFloat(gameManager.current_level_key + "_x");
+
         Debug.Log("gameManager.previous_highscore " + gameManager.previous_highscore);
-        gameActive = true;
+        Debug.Log("gameManager.previous_highscore_x " + gameManager.previous_highscore_x);
+
         jumpCounter = 2;
         collisionDetected = false;
         collision_count = 0;
         transform.position = startVector;
+        environment.StartGame();
+        gameActive = true;
+
         startVector = debugStartVector;   
         jumpCounter = 0;
         rb2d.simulated = true;
@@ -256,8 +267,7 @@ public class Player : MonoBehaviour
         if (0 < gameManager.previous_highscore && gameManager.previous_highscore < 100) 
         {
             previous_best_line.gameObject.SetActive(true);
-            gameManager.previous_highscore_x = PlayerPrefs.GetFloat(gameManager.current_last_x_key);
-            previous_best_line.position = new Vector2(PlayerPrefs.GetFloat(gameManager.current_last_x_key), 0);
+            previous_best_line.position = new Vector2(gameManager.previous_highscore_x, 0);
 
         }
         else {
@@ -272,7 +282,6 @@ public class Player : MonoBehaviour
         rb2d.simulated = false;
         animator.enabled = false;
         lastKnownVelocity = rb2d.velocity;
-        saveScore();
     }
     
     public void ResumeGame() 
@@ -333,12 +342,9 @@ public class Player : MonoBehaviour
         {
             gameManager.previous_highscore = gameManager.percentage;
             gameManager.previous_highscore_x = transform.position.x;
-
-            PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);  
+            PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);
+            PlayerPrefs.SetFloat(gameManager.current_level_key + "_x", transform.position.x);
         }
-
-        PlayerPrefs.SetFloat(gameManager.current_last_x_key, transform.position.x);
-        PlayerPrefs.SetFloat(gameManager.current_last_y_key, transform.position.y);
     }
 
     void jump(float _jumpingSpeed)

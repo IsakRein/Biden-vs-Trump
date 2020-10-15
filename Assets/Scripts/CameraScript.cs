@@ -39,7 +39,7 @@ public class CameraScript : MonoBehaviour
         safeVerticalSize = v[2].y - v[0].y;
     } 
 
-    void Update()
+    public void FollowPlayer()
     {
         if (followPlayer) 
         {

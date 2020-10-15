@@ -144,19 +144,27 @@ public class DatabaseManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("level_5_score")) { PlayerPrefs.SetInt("level_5_score", 0); }
         if (!PlayerPrefs.HasKey("level_6_score")) { PlayerPrefs.SetInt("level_6_score", 0); }
 
-        //Scores
-        if (!PlayerPrefs.HasKey("level_1_last_x")) { PlayerPrefs.SetFloat("level_1_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_1_last_y")) { PlayerPrefs.SetFloat("level_1_last_y", 0f); }
-        if (!PlayerPrefs.HasKey("level_2_last_x")) { PlayerPrefs.SetFloat("level_2_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_2_last_y")) { PlayerPrefs.SetFloat("level_2_last_y", 0f); }
-        if (!PlayerPrefs.HasKey("level_3_last_x")) { PlayerPrefs.SetFloat("level_3_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_3_last_y")) { PlayerPrefs.SetFloat("level_3_last_y", 0f); }
-        if (!PlayerPrefs.HasKey("level_4_last_x")) { PlayerPrefs.SetFloat("level_4_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_4_last_y")) { PlayerPrefs.SetFloat("level_4_last_y", 0f); }
-        if (!PlayerPrefs.HasKey("level_5_last_x")) { PlayerPrefs.SetFloat("level_5_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_5_last_y")) { PlayerPrefs.SetFloat("level_5_last_y", 0f); }
-        if (!PlayerPrefs.HasKey("level_6_last_x")) { PlayerPrefs.SetFloat("level_6_last_x", 0f); }
-        if (!PlayerPrefs.HasKey("level_6_last_y")) { PlayerPrefs.SetFloat("level_6_last_y", 0f); }
+        if (!PlayerPrefs.HasKey("level_1_score_x")) { PlayerPrefs.SetFloat("level_1_score_x", 0); }
+        if (!PlayerPrefs.HasKey("level_2_score_x")) { PlayerPrefs.SetFloat("level_2_score_x", 0); }
+        if (!PlayerPrefs.HasKey("level_3_score_x")) { PlayerPrefs.SetFloat("level_3_score_x", 0); }
+        if (!PlayerPrefs.HasKey("level_4_score_x")) { PlayerPrefs.SetFloat("level_4_score_x", 0); }
+        if (!PlayerPrefs.HasKey("level_5_score_x")) { PlayerPrefs.SetFloat("level_5_score_x", 0); }
+        if (!PlayerPrefs.HasKey("level_6_score_x")) { PlayerPrefs.SetFloat("level_6_score_x", 0); }
+
+
+        // //Scores
+        // if (!PlayerPrefs.HasKey("level_1_last_x")) { PlayerPrefs.SetFloat("level_1_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_1_last_y")) { PlayerPrefs.SetFloat("level_1_last_y", 0f); }
+        // if (!PlayerPrefs.HasKey("level_2_last_x")) { PlayerPrefs.SetFloat("level_2_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_2_last_y")) { PlayerPrefs.SetFloat("level_2_last_y", 0f); }
+        // if (!PlayerPrefs.HasKey("level_3_last_x")) { PlayerPrefs.SetFloat("level_3_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_3_last_y")) { PlayerPrefs.SetFloat("level_3_last_y", 0f); }
+        // if (!PlayerPrefs.HasKey("level_4_last_x")) { PlayerPrefs.SetFloat("level_4_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_4_last_y")) { PlayerPrefs.SetFloat("level_4_last_y", 0f); }
+        // if (!PlayerPrefs.HasKey("level_5_last_x")) { PlayerPrefs.SetFloat("level_5_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_5_last_y")) { PlayerPrefs.SetFloat("level_5_last_y", 0f); }
+        // if (!PlayerPrefs.HasKey("level_6_last_x")) { PlayerPrefs.SetFloat("level_6_last_x", 0f); }
+        // if (!PlayerPrefs.HasKey("level_6_last_y")) { PlayerPrefs.SetFloat("level_6_last_y", 0f); }
 
         //Stats
         if (!PlayerPrefs.HasKey("biden_level_1")) { PlayerPrefs.SetInt("biden_level_1", 0); }

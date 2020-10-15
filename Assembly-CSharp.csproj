@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\Mechanics\Mechanics_Camera.cs" />
      <Compile Include="Assets\Scripts\Mechanics\Mechanics_Player.cs" />
+     <Compile Include="Assets\Scripts\MovingObjectManger.cs" />
      <Compile Include="Assets\Scripts\OnEnableEventHandeler.cs" />
      <Compile Include="Assets\Scripts\OnTriggerEnterEvent.cs" />
      <Compile Include="Assets\Scripts\Parallax.cs" />
@@ -85,6 +86,7 @@
      <Compile Include="Assets\Scripts\Text.cs" />
      <Compile Include="Assets\Scripts\TextAnimator.cs" />
      <Compile Include="Assets\Scripts\TextManager.cs" />
+     <Compile Include="Assets\Scripts\UI_AnimateCamera.cs" />
      <Compile Include="Assets\Scripts\UI_ButtonSettings.cs" />
      <Compile Include="Assets\Scripts\UI_CheckWon.cs" />
      <Compile Include="Assets\Scripts\UI_ChooseLevel6.cs" />

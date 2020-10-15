@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
 
     public void ContinueStartGame() 
     {
+        cameraScript.transform.position = new Vector3(0,0,0);
+
         player.gameObject.SetActive(true);
         player.StartGame();
         levelManager.StartGame();
@@ -88,8 +90,7 @@ public class GameManager : MonoBehaviour
         cameraScript.followPlayer = true;
 
         gameActive = true;
-
-        environment.StartGame();
+        //environment.StartGame();
         localSoundManager.Play(current_level);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private bool gameActive;
-
+    public Component[] movingObjectMangers;
     public void StartGame() 
     {
         gameActive = true;
@@ -13,17 +13,23 @@ public class LevelManager : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
-        //transform.position = new Vector2(0,0);
+        movingObjectMangers = GetComponentsInChildren(typeof(MovingObjectManger));
     }
 
     public void PauseGame()
     {
         gameActive = false;
+        foreach (MovingObjectManger movingObjectManger in movingObjectMangers) {
+            movingObjectManger.Pause();
+        }
     }
 
     public void ResumeGame()
     {
         gameActive = true;
+        foreach (MovingObjectManger movingObjectManger in movingObjectMangers) {
+            movingObjectManger.Resume();
+        }
     }
 
     public void Death()
