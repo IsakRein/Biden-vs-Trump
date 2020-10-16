@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         localSoundManager = FindObjectOfType<LocalSoundManager>();
     }
 
+
     void Start()
     {
         current_level_key = current_level + "_score";
@@ -149,6 +150,9 @@ public class GameManager : MonoBehaviour
         localSoundManager.Stop(current_level);
         localSoundManager.Stop("Applause");
     }
+
+
+    
 }
 
 

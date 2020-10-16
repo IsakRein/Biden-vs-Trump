@@ -67,6 +67,21 @@ public class DatabaseManager : MonoBehaviour
                 main.loaded = true;
             }
         });
+
+        bool _isAuthenticated = NPBinding.GameServices.LocalUser.IsAuthenticated;
+        if (!_isAuthenticated) {
+            NPBinding.GameServices.LocalUser.Authenticate((bool _success, string _error)=>{
+                if (_success)
+                {
+                    Debug.Log("Sign-In Successfully");
+                    Debug.Log("Local User Details : " + NPBinding.GameServices.LocalUser.ToString());
+                }
+                else
+                {
+                    Debug.Log("Sign-In Failed with error " + _error);
+                }
+            });
+        }
     }
 
     void Update()

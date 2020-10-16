@@ -12,8 +12,10 @@ public class LocalSoundManager : MonoBehaviour
 
 
     private void Start() {
-        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         start.Invoke();
+        Debug.Log("Playing");
+        Debug.Log(audioManager);
     }
 
     private void OnDestroy() {

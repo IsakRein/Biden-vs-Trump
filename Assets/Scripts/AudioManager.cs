@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
             if (s.name == "Jump") {
                 s.source.pitch = UnityEngine.Random.Range(0.65f, 1.35f);
             }
-
+            
             s.source.Play();
         }
     }

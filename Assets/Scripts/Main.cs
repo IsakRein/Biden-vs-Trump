@@ -20,9 +20,9 @@ public class Main : MonoBehaviour
     public float blur_popup_value;
 
     [Header("Settings")]
-    public bool settings_sound;
-    public bool settings_music;
-    public bool settings_vibration;
+    public bool settings_sound = true;
+    public bool settings_music = true;
+    public bool settings_vibration = true;
     public bool remove_ads;
 
     [Header("Ads")]
@@ -42,7 +42,7 @@ public class Main : MonoBehaviour
 #else
     public string gameId = "3843988";
 #endif
-    public bool testMode = true;
+    public bool testMode = false;
 
     [Header("Stats")]
     public int biden_level_1 =      0;
@@ -89,10 +89,18 @@ public class Main : MonoBehaviour
 
     public void updateSettings()
     {
-        settings_sound = PlayerPrefs.GetInt("settings_sound")== 1;
-        settings_music = PlayerPrefs.GetInt("settings_music") == 1;
-        settings_vibration = PlayerPrefs.GetInt("settings_vibration") == 1;
-        remove_ads = PlayerPrefs.GetInt("remove_ads") == 1;
+        if (PlayerPrefs.HasKey("settings_sound")) {
+            settings_sound = PlayerPrefs.GetInt("settings_sound")== 1;
+        } else {settings_sound = true; } 
+        if (PlayerPrefs.HasKey("settings_music")) {
+            settings_music = PlayerPrefs.GetInt("settings_music") == 1;
+        } else {settings_music = true; }
+        if (PlayerPrefs.HasKey("settings_vibration")) {
+            settings_vibration = PlayerPrefs.GetInt("settings_vibration") == 1;
+        } else {settings_vibration = true; }
+        if (PlayerPrefs.HasKey("remove_ads")) {
+            remove_ads = PlayerPrefs.GetInt("remove_ads") == 1;
+        } else {remove_ads = false; }
     }
 
     public void AddToValue(string key)

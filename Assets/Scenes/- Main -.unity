@@ -3559,14 +3559,14 @@ MonoBehaviour:
   settings_music: 0
   settings_vibration: 0
   remove_ads: 0
-  plays_between_ads: 0
+  plays_between_ads: 6
   plays_to_first_ad: 0
   plays_since_ad: 0
   nextPopUp: Merch
   nextAdType: Ad
   actual_last_scene: 
   gameId: 3841622
-  testMode: 1
+  testMode: 0
   biden_level_1: 0
   biden_level_2: 0
   biden_level_3: 0

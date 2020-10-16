@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
@@ -73,6 +72,7 @@ public class Player : MonoBehaviour
     public UI_TextToSpriteIndex progress_text;
     public Transform levelWon; 
     public float levelWonX; 
+    public GameObject PauseButton;
 
     [Header("Unsorted trash")]
     public System.DateTime startTime;
@@ -96,6 +96,10 @@ public class Player : MonoBehaviour
     private Main main;
     private LocalSoundManager localSoundManager;
 
+    private float pause_min_x;
+    private float pause_min_y;
+    private float pause_max_x;
+    private float pause_max_y;
 
     private void Awake()
     {
@@ -124,6 +128,26 @@ public class Player : MonoBehaviour
     {
         levelWon = GameObject.FindGameObjectWithTag("Level Won").transform;
         levelWonX = levelWon.position.x;
+
+        Vector3[] pauseCorners = new Vector3[4];
+        PauseButton.GetComponent<RectTransform>().GetWorldCorners(pauseCorners);
+
+        Camera camera = camera_animator.gameObject.GetComponent<Camera>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            pauseCorners[i] = camera.WorldToScreenPoint(pauseCorners[i]);
+        }
+
+        pause_min_y = pauseCorners[0].y;
+        pause_max_x = pauseCorners[2].x;
+        pause_min_x = pauseCorners[0].x;
+        pause_max_y = pauseCorners[2].y;
+
+        Debug.Log(pause_min_y);
+        Debug.Log(pause_max_x);
+        Debug.Log(pause_min_x);
+        Debug.Log(pause_max_y);
     }
 
     void Update()
@@ -147,14 +171,17 @@ public class Player : MonoBehaviour
 
             if (jetpack_active)
             {
-                if (Input.GetKey("space") || (Input.touchCount > 0))
+                if ((Input.touchCount > 0))
                 {
+                    Vector2 touch = Input.GetTouch(0).position;
+                    if (!((pause_min_x < touch.x && touch.x < pause_max_x) && 
+                    (pause_min_y < touch.y && touch.y < pause_max_y)))
+                    {
+                        jetpack_fly();
+                    }
+                }
+                else if (Input.GetKey("space")) {
                     jetpack_fly();
-
-                    // if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                    // {
-                    //     jetpack_fly();
-                    // }
                 }
                 else {
                     jetpack_fall();
@@ -170,14 +197,18 @@ public class Player : MonoBehaviour
 
                 if (jumpCounter < 2)
                 {
-                    if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+                    if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+                    {
+                        Vector2 touch = Input.GetTouch(0).position;
+                        if (!((pause_min_x < touch.x && touch.x < pause_max_x) && 
+                        (pause_min_y < touch.y && touch.y < pause_max_y)))
+                        {
+                            jump(jumpingSpeed);
+                        }
+                    }
+                    else if (Input.GetKeyDown("space")) 
                     {
                         jump(jumpingSpeed);
-                        // if (Input.GetKeyDown("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                        // {
-                        //     jump(jumpingSpeed);
-                        // }
-                    
                     }
                 }
             }
@@ -345,7 +376,24 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt(gameManager.current_level_key, gameManager.percentage);
             PlayerPrefs.SetFloat(gameManager.current_level_key + "_x", transform.position.x);
         }
+
+        if (NPBinding.GameServices.LocalUser.IsAuthenticated) {
+            NPBinding.GameServices.ReportScoreWithGlobalID(gameManager.current_level + "_highscore", gameManager.previous_highscore, (bool _success, string _error)=>{
+
+              if (_success)
+              {
+                  Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} finished successfully.", gameManager.current_level + "_highscore"));
+                  Debug.Log(string.Format("New score= {0}.", gameManager.previous_highscore));
+              }
+              else
+              {
+                  Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} failed.", gameManager.current_level + "_highscore"));
+              }
+            });
+        }
     }
+
+    
 
     void jump(float _jumpingSpeed)
     {
@@ -362,8 +410,18 @@ public class Player : MonoBehaviour
 
     void jetpack_fly() 
     {
-        if (Input.GetKeyDown("space") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
+            Vector2 touch = Input.GetTouch(0).position;
+            if (!((pause_min_x < touch.x && touch.x < pause_max_x) && 
+            (pause_min_y < touch.y && touch.y < pause_max_y)))
+            {
+                localSoundManager.Play("JetpackActive");
+                fire_effect.SetActive(true);
+                smoke_effect.Play();
+            }
+        }
+        else if (Input.GetKeyDown("space")) {
             localSoundManager.Play("JetpackActive");
             fire_effect.SetActive(true);
             smoke_effect.Play();
@@ -516,23 +574,21 @@ public class Player : MonoBehaviour
                                 trigger_smoke_impact(ray_left_to_right.point.x - max_offset_ground_x);
                             }
 
-                            // Smoke
-                            // if (transform.position.x + max_offset_ground_x < col.collider.bounds.min.x)
-                            // { trigger_smoke_impact(col.collider.bounds.min.x - max_offset_ground_x); }
-                            // else if (transform.position.x > col.collider.bounds.max.x + max_offset_ground_x)
-                            // { trigger_smoke_impact(col.collider.bounds.max.x + max_offset_ground_x); }
-                            // else { trigger_smoke_impact(transform.position.x + smoke_impact_offset_X); }
-
-                            // Stop jumping
                             if (is_jumping) { jump_end(); }
                             
                             // Jumping again
-                            if ((Input.GetKey("space") || Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) { 
-                                jump(jumpingSpeed); 
-                                // if (Input.GetKey("space") || !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                                // {
-                                //     jump(jumpingSpeed); 
-                                // }
+                            if ((Input.touchCount > 0) && !jetpack_active && no_double_jump_trig_count == 0) 
+                            { 
+                                Vector2 touch = Input.GetTouch(0).position;
+                                if (!((pause_min_x < touch.x && touch.x < pause_max_x) && 
+                                (pause_min_y < touch.y && touch.y < pause_max_y)))
+                                {
+                                    jump(jumpingSpeed); 
+                                }
+                            }
+                            else if ((Input.GetKey("space")) && !jetpack_active && no_double_jump_trig_count == 0) 
+                            {
+                                jump(jumpingSpeed);
                             }
                         }
 
