@@ -377,20 +377,20 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetFloat(gameManager.current_level_key + "_x", transform.position.x);
         }
 
-        if (NPBinding.GameServices.LocalUser.IsAuthenticated) {
-            NPBinding.GameServices.ReportScoreWithGlobalID(gameManager.current_level + "_highscore", gameManager.previous_highscore, (bool _success, string _error)=>{
+        // if (NPBinding.GameServices.LocalUser.IsAuthenticated) {
+        //     NPBinding.GameServices.ReportScoreWithGlobalID(gameManager.current_level + "_highscore", gameManager.previous_highscore, (bool _success, string _error)=>{
 
-              if (_success)
-              {
-                  Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} finished successfully.", gameManager.current_level + "_highscore"));
-                  Debug.Log(string.Format("New score= {0}.", gameManager.previous_highscore));
-              }
-              else
-              {
-                  Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} failed.", gameManager.current_level + "_highscore"));
-              }
-            });
-        }
+        //       if (_success)
+        //       {
+        //           Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} finished successfully.", gameManager.current_level + "_highscore"));
+        //           Debug.Log(string.Format("New score= {0}.", gameManager.previous_highscore));
+        //       }
+        //       else
+        //       {
+        //           Debug.Log(string.Format("Request to report score to leaderboard with GID= {0} failed.", gameManager.current_level + "_highscore"));
+        //       }
+        //     });
+        // }
     }
 
     

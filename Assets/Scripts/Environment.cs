@@ -142,7 +142,7 @@ public class Environment : MonoBehaviour
     {
         float currentSizeX = child.GetComponent<SpriteRenderer>().bounds.size.x;
         GameObject childClone = Instantiate(child.gameObject, transform);
-        childClone.transform.position = new Vector2(child.position.x + currentSizeX, child.position.y);
+        // childClone.transform.position = new Vector2(child.position.x + currentSizeX, child.position.y);
         return(childClone.transform); 
     }
 }

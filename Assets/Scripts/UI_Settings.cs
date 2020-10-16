@@ -21,6 +21,7 @@ public class UI_Settings : MonoBehaviour
         if (PlayerPrefs.GetInt("remove_ads") == 1) 
         {
             ads_removed.Invoke();
+            
             foreach (var item in transforms)
             {
                 item.localPosition -= new Vector3(0f,200f,0f); 

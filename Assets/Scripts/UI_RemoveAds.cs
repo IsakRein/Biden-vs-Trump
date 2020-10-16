@@ -15,6 +15,7 @@ public class UI_RemoveAds : MonoBehaviour
     public void RemoveAds()
     {
         PlayerPrefs.SetInt("remove_ads", 1);
+        Debug.Log("Removed ads!");
         main.updateSettings();   
     }
 }

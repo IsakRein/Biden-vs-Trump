@@ -34,13 +34,16 @@ public class Main : MonoBehaviour
 
     public string actual_last_scene;
 
+    public string ios_ads_gameid = "3841622";
+    public string android_ads_gameid = "3841623";
+    public string default_ads_gameid = "3841623";
 
 #if UNITY_IOS
-    public string gameId = "3843988";
+    public string gameId = "3841622";
 #elif UNITY_ANDROID
-    public string gameId = "3843989";
+    public string gameId = "3841623";
 #else
-    public string gameId = "3843988";
+    public string gameId = "3841622";
 #endif
     public bool testMode = false;
 
@@ -67,6 +70,16 @@ public class Main : MonoBehaviour
 
     void Awake()
     {
+        
+#if UNITY_IOS
+            gameId = ios_ads_gameid;
+#elif UNITY_ANDROID
+            gameId = android_ads_gameid;
+#else
+            gameId =default_ads_gameid;
+#endif
+
+
         plays_since_ad = plays_between_ads-plays_to_first_ad-1;
 
         Application.targetFrameRate = 300;
